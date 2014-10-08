@@ -1,0 +1,23 @@
+{
+  "name": "simply-social",
+  "version": "0.0.0",
+  "authors": [
+    "Devin Schulz <devin@devinschulz.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/assets/vendors",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.26",
+    "bourbon": "~4.0.2",
+    "neat": "~1.6.0",
+    "normalize-scss": "~3.0.1",
+    "angular-route": "~1.2.26"
+  }
+}
