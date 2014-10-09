@@ -1,0 +1,121 @@
+.header {
+  background: #262728;
+  height: em(60);
+  @extend %row;
+}
+
+.header_logo {
+  padding-top: em(16);
+  @include span-columns(2 of 4, inline-block);
+  svg {
+    max-width: 100%;
+  }
+  @include media($mobile-max) {
+    img {
+      max-width: em(120);
+      margin-top: em(2);
+    }
+  }
+}
+
+.header_components {
+  text-align: right;
+  @include span-columns(2 of 4, inline-block);
+  @include omega();
+}
+
+.header_components_new,
+.header_components_search,
+.header_components_profile {
+  display: inline-block;
+  margin: {
+    left: em(15);
+    top: em(14);
+  }
+}
+
+.header_components_profile_avatar {
+  img {
+    border-radius: 4px;
+  }
+  .caret {
+    margin-top: em(-20);
+  }
+  @include media($tablet) {
+    text-align: left;
+  }
+}
+
+.header_components_new {
+  margin-left: 0;
+  path {
+    fill: $primary;
+  }
+  svg {
+    @include size(em(31) em(26));
+  }
+}
+
+@include media($tablet) {
+
+  .search_submit {
+    top: em(5);
+    right: em(5);
+  }
+
+  .header_logo {
+    @include span-columns(2 of 8, inline-block);
+  }
+
+  .header_components {
+    @include span-columns(6 of 8, inline-block);
+    @include omega();
+  }
+
+  .header_components_new {
+    padding-top: em(4);
+    @include shift(2);
+    @include span-columns(1 of 6, inline-block);
+  }
+
+  .header_components_search {
+    margin: 0;
+    padding-top: em(15);
+    @include span-columns(2 of 6, inline-block);
+  }
+
+  .header_components_profile {
+    margin-left: 0;
+    @include span-columns(1 of 6, inline-block);
+    @include omega();
+  }
+
+}
+
+@include media($desktop) {
+
+  .header_logo {
+    @include span-columns(2 of 12, inline-block);
+  }
+
+  .header_components {
+    @include span-columns(10 of 12, inline-block);
+    @include omega();
+  }
+
+  .header_components_new {
+    @include shift(6);
+    @include span-columns(1 of 10, inline-block);
+  }
+
+  .header_components_search {
+    @include span-columns(3 of 10, inline-block);
+    max-width: em(200);
+  }
+
+  .header_components_profile {
+    @include span-columns(1 of 10, inline-block);
+    @include omega();
+  }
+
+}

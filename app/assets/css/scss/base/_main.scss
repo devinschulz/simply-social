@@ -12,3 +12,15 @@ body {
 hr {
   border-top: 1px solid $hr-border;
 }
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  color: #4b4f54;
+  border-top: 4px solid;
+  border-right: 4px solid transparent;
+  border-left: 4px solid transparent;
+}

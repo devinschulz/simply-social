@@ -3,6 +3,7 @@
 angular.module 'app', [
   'ngRoute'
 
+  'app.directives'
   'app.home'
   'app.settings'
 ]

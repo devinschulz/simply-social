@@ -3,14 +3,20 @@
 //=============================================
 
 $mobile-width:              em(320);
+$mobile-width-max:          em(479);
 $mobile-landscape-width:    em(480);
+$mobile-landscape-width-max:em(767);
 $tablet-width:              em(768);
-$desktop-width:             em(1000);
+$tablet-width-max:          em(959);
+$desktop-width:             em(960);
 $super-width:               em(1120);
 
 $mobile:                    new-breakpoint($mobile-width, 4);
+$mobile-max:                new-breakpoint(max-width $mobile-width-max, 4);
 $mobile-landscape:          new-breakpoint($mobile-landscape-width, 6);
+$mobile-landscape-max:      new-breakpoint(max-width $mobile-landscape-width-max, 6);
 $tablet:                    new-breakpoint($tablet-width, 8);
+$tablet-max:                new-breakpoint(max-width $tablet-width-max, 8);
 $desktop:                   new-breakpoint($desktop-width, 12);
 $super:                     new-breakpoint($super-width, 16);
 
@@ -27,10 +33,11 @@ $max-width:                 $super-width;
 
 // Shades
 // -------------------------
-$black:                     #111;
-$gray:                      #aaa;
+$black:                     #262728;
+$gray:                      #70767f;
 $gray-lighter:              #ddd;
 $white:                     #fff;
+
 
 // Colors
 // -------------------------

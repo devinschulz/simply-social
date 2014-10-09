@@ -125,7 +125,7 @@ gulp.task 'default', ['gulplint', 'build'], ->
   $.livereload.listen()
   gulp.watch config.sass_path + '**/*.scss', ['styles']
   gulp.watch config.coffee_path + '**/*.coffee', ['scripts']
-  gulp.watch config.images_path + '*.{jpg, png, svg}', ['images']
+#  gulp.watch config.images_path + '*.{jpg, png, svg}', ['images']
   gulp.watch(config.root + '**/*.html').on 'change', (file) ->
     $.livereload().changed(file.path)
 
@@ -133,5 +133,5 @@ gulp.task 'build', [
   'styles'
   'vendors'
   'scripts'
-  'images'
+#  'images'
 ]
