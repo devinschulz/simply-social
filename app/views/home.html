@@ -1,1 +1,126 @@
-<h1>{{ title }}</h1>
+<div class="masthead">
+  <div class="container">
+    <div class="new-post">
+      <div class="new-post_input">
+        <textarea class="new-post_textarea" rows="1" placeholder="What's on your mind?"></textarea>
+      </div>
+      <div class="new-post_add">
+        <div class="new-post_add_photo">
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 13" enable-background="new 0 0 18 13"><g fill="#231F20"><path d="M9 3.818c-1.78 0-3.228 1.448-3.228 3.228s1.448 3.226 3.228 3.226c1.779 0 3.227-1.447 3.227-3.227s-1.448-3.227-3.227-3.227zm0 5.454c-1.228 0-2.228-.999-2.228-2.227 0-1.229 1-2.228 2.228-2.228s2.227.999 2.227 2.228c0 1.228-.999 2.227-2.227 2.227zM16 2.031h-2.985l-2.038-1.897c-.093-.086-.214-.134-.341-.134h-3.272c-.127 0-.248.048-.341.134l-2.038 1.897h-2.985c-1.065 0-2 1.005-2 2.15v6.819c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2v-6.818c0-1.146-.935-2.151-2-2.151zm1 8.969c0 .552-.449 1-1 1h-14c-.551 0-1-.448-1-1v-6.818c0-.592.486-1.15 1-1.15h3.182l.071-.014.111-.023.095-.058.063-.04 2.039-1.897h2.879l2.038 1.897.081.05.073.046.187.038h3.181c.514 0 1 .559 1 1.15v6.819z"/></g></svg>
+            Add Photo
+          </a>
+        </div>
+        <div class="new-post_add_video">
+          <a href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 13" enable-background="new 0 0 18 13"><g fill="#231F20"><path d="M10.546 3.6h-7.728c-.276 0-.5.224-.5.5s.224.5.5.5h7.728c.276 0 .5-.224.5-.5s-.224-.5-.5-.5zM17.437 1.677c-.283-.154-.619-.13-.921.064l-3.152 2.04v-2.081c0-.953-.559-1.7-1.272-1.7h-10.82c-.713 0-1.272.747-1.272 1.7v9.6c0 .953.559 1.7 1.272 1.7h10.818c.714 0 1.272-.747 1.272-1.7v-2.081l3.152 2.04c.17.109.351.165.526.165.137 0 .271-.033.395-.101.36-.195.565-.641.565-1.223v-7.2c0-.582-.205-1.028-.563-1.223zm-5.074 9.623c0 .437-.205.694-.272.7h-10.819c-.067-.006-.272-.264-.272-.7v-9.6c0-.436.205-.694.272-.7h10.818c.067.006.272.264.272.7v9.6zm4.637-1.2l-.029.263-3.607-2.334v-3.057l3.608-2.334.028.262v7.2z"/></g></svg>
+            Add Video
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="post-filter">
+      <ul class="post-filter_list">
+        <li class="post-filter_list_item is-active"><a href="#" title="View all posts">All Posts</a></li>
+        <li class="post-filter_list_item"><a href="#" title="View posts containing only photos">Photos</a></li>
+        <li class="post-filter_list_item"><a href="#" title="View posts containing only videos">Videos</a></li>
+      </ul>
+      <ul class="post-filter_views">
+        <li class="post-filter_views-item is-active">
+          <a href="#" title="Show posts as a list">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 9" enable-background="new 0 0 9 9"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 9h9v-1h-9v1zm0-9v1h9v-1h-9zm0 5h9v-1h-9v1z"/></svg>
+          </a>
+        </li>
+        <li class="post-filter_views-item">
+          <a href="#" title="Show posts as a grid">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 9" enable-background="new 0 0 9 9"><path fill-rule="evenodd" clip-rule="evenodd" d="M0 9h3v-3h-3v3zm6 0h3v-3h-3v3zm-6-6h3v-3h-3v3zm6-3v3h3v-3h-3z"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="posts">
+  <div class="container">
+    <article class="post" ng-repeat="post in posts" data-post-id="{{post.id}}" ng-class="{'has-comments' : post.comments.length >= 1}">
+      <div class="post_wrapper">
+        <div class="post_avatar">
+          <img ng-src="{{post.avatar}}" alt="{{post.name}}"/>
+        </div>
+        <div class="post_content">
+          <div class="row">
+            <div class="post_content_meta">
+              <div class="post_content_meta_author">
+                {{ post.name }}
+              </div>
+              <ul class="post_content_meta_actions">
+                <li class="post_content_meta_reply">
+                  <a href="#" title="Reply" ng-click="toggleComments(); post.selected[$index] = !post.selected[$index]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13.001" enable-background="new 0 0 13 13.001"><path fill="#231F20" d="M12.499 13.001c-.204 0-.392-.125-.467-.322-1.259-3.305-3.316-3.998-4.82-3.998-.576 0-1.061.102-1.356.183v2.837c0 .208-.129.396-.325.468-.195.074-.416.017-.553-.141l-4.857-5.6c-.163-.188-.163-.467 0-.655l4.857-5.6c.137-.158.357-.216.553-.141.196.073.325.26.325.468v2.658l.199-.003c1.63.001 6.945.675 6.945 9.346 0 .241-.172.448-.41.492l-.091.008zm-11.338-6.9l3.695 4.26v-1.86c0-.203.122-.385.31-.462.079-.032 4.086-1.529 6.68 2.13-.767-5.375-4.208-6.013-5.79-6.013-.366 0-.599.035-.618.038-.145.025-.294-.017-.404-.112-.112-.095-.177-.234-.177-.381v-1.86l-3.696 4.26z"/></svg>
+                  </a>
+                </li>
+                <li class="post_content_meta_like">
+                  <a href="#" title="Like">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" enable-background="new 0 0 13 13"><path fill="#231F20" d="M9.59 0c-1.14 0-2.385.604-3.09 1.918-.693-1.29-1.907-1.883-3.017-1.883-1.731 0-3.483 1.415-3.483 4.118 0 4.761 5.978 8.607 6.232 8.769.082.052.175.078.268.078.105 0 .21-.033.298-.099.253-.188 6.202-4.655 6.202-9.072 0-2.514-1.715-3.829-3.41-3.829zm-3.111 11.883c-1.169-.815-5.479-4.066-5.479-7.73 0-2.143 1.287-3.118 2.483-3.118.976 0 2.222.667 2.523 2.548.039.243.248.421.494.421s.455-.178.494-.421c.306-1.906 1.589-2.583 2.596-2.583 1.161 0 2.41.885 2.41 2.829 0 3.414-4.367 7.131-5.521 8.054z"/></svg>
+                  </a>
+                </li>
+                <li class="post_content_meta_posted-at">
+                  <posted-on posted="post.posted"></posted-on>
+                </li>
+              </ul>
+            </div>
+            <div class="post_content_message">
+              <p ng-bind-html="post.message"></p>
+            </div>
+            <div class="post_content_expand" ng-if="post.comments.length >= 1">
+              <a ng-href="#" ng-click="toggleComments(); post.selected[$index] = !post.selected[$index]" ng-class="{true: 'is-open'}[expanded]">{{text}} <span class="caret"></span></a>
+            </div>
+          </div>
+        </div>
+        <div class="row post_content_thumbnail" ng-if="post.thumbnail" ng-class="{'is-video' : post.video}">
+          <img ng-src="{{post.thumbnail}}" alt=""/>
+        </div>
+      </div>
+      <section class="comments" ng-show="post.selected[$index]">
+        <div class="comment_wrapper">
+          <div ng-repeat="comment in post.comments" class="comment" data-comment-id="{{comment.id}}">
+            <div class="post_avatar">
+              <img ng-src="{{comment.avatar}}" alt="{{comment.name}}"/>
+            </div>
+            <div class="post_content">
+              <div class="row">
+                <div class="post_content_meta">
+                  <div class="post_content_meta_author">
+                    {{ comment.name }}
+                  </div>
+                  <ul class="post_content_meta_actions">
+                    <li class="post_content_meta_reply">
+                      <a href="#" title="Reply">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13.001" enable-background="new 0 0 13 13.001"><path fill="#231F20" d="M12.499 13.001c-.204 0-.392-.125-.467-.322-1.259-3.305-3.316-3.998-4.82-3.998-.576 0-1.061.102-1.356.183v2.837c0 .208-.129.396-.325.468-.195.074-.416.017-.553-.141l-4.857-5.6c-.163-.188-.163-.467 0-.655l4.857-5.6c.137-.158.357-.216.553-.141.196.073.325.26.325.468v2.658l.199-.003c1.63.001 6.945.675 6.945 9.346 0 .241-.172.448-.41.492l-.091.008zm-11.338-6.9l3.695 4.26v-1.86c0-.203.122-.385.31-.462.079-.032 4.086-1.529 6.68 2.13-.767-5.375-4.208-6.013-5.79-6.013-.366 0-.599.035-.618.038-.145.025-.294-.017-.404-.112-.112-.095-.177-.234-.177-.381v-1.86l-3.696 4.26z"/></svg>
+                      </a>
+                    </li>
+                    <li class="post_content_meta_like">
+                      <a href="#" title="Like">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" enable-background="new 0 0 13 13"><path fill="#231F20" d="M9.59 0c-1.14 0-2.385.604-3.09 1.918-.693-1.29-1.907-1.883-3.017-1.883-1.731 0-3.483 1.415-3.483 4.118 0 4.761 5.978 8.607 6.232 8.769.082.052.175.078.268.078.105 0 .21-.033.298-.099.253-.188 6.202-4.655 6.202-9.072 0-2.514-1.715-3.829-3.41-3.829zm-3.111 11.883c-1.169-.815-5.479-4.066-5.479-7.73 0-2.143 1.287-3.118 2.483-3.118.976 0 2.222.667 2.523 2.548.039.243.248.421.494.421s.455-.178.494-.421c.306-1.906 1.589-2.583 2.596-2.583 1.161 0 2.41.885 2.41 2.829 0 3.414-4.367 7.131-5.521 8.054z"/></svg>
+                      </a>
+                    </li>
+                    <li class="post_content_meta_posted-at">
+                      <posted-on posted="comment.posted"></posted-on>
+                    </li>
+                  </ul>
+                </div>
+                <div class="post_content_message">
+                  <p ng-bind-html="comment.message"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="comments_reply">
+            <input type="text" placeholder="Reply&hellip;"/>
+          </div>
+        </div>
+      </section>
+    </article>
+  </div>
+</div>
