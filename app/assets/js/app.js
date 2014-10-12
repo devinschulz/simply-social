@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app', ['ngRoute', 'app.directives', 'app.home', 'app.settings']).config([
+angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.home', 'app.home.directives', 'app.settings']).config([
   '$routeProvider', function($routeProvider) {
     return $routeProvider.when('/', {
       templateUrl: 'views/home.html',
@@ -9,19 +9,95 @@ angular.module('app', ['ngRoute', 'app.directives', 'app.home', 'app.settings'])
       controller: 'SettingsController'
     });
   }
-]);
-
-angular.module('app.home', []).controller('HomeController', [
-  '$scope', function($scope) {
-    return $scope.title = 'Home';
+]).config([
+  '$httpProvider', function($httpProvider) {
+    if (!$httpProvider.defaults.headers.get) {
+      $httpProvider.defaults.headers.get = {};
+    }
+    return $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
   }
 ]);
 
-angular.module('app.settings', []).controller('SettingsController', [
-  '$scope', function($scope) {
-    return $scope.title = 'Settings';
-  }
-]);
+
+/**
+The MIT License (MIT)
+
+Copyright (c) 2013 Thom Seddon
+Copyright (c) 2010 Google
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Adapted from: http://code.google.com/p/gaequery/source/browse/trunk/src/static/scripts/jquery.autogrow-textarea.js
+
+Works nicely with the following styles:
+textarea {
+resize: none;
+word-wrap: break-word;
+transition: 0.05s;
+-moz-transition: 0.05s;
+-webkit-transition: 0.05s;
+-o-transition: 0.05s;
+}
+
+Usage: <textarea auto-grow></textarea>
+ */
+angular.module('grow', []).directive("autoGrow", function() {
+  return {
+    link: function(scope, element, attr) {
+      var $shadow, minHeight, paddingLeft, paddingRight, update;
+      minHeight = element[0].offsetHeight;
+      paddingLeft = element.css("paddingLeft");
+      paddingRight = element.css("paddingRight");
+      $shadow = angular.element("<div></div>").css({
+        position: "absolute",
+        top: -10000,
+        left: -10000,
+        width: element[0].offsetWidth - parseInt(paddingLeft || 0) - parseInt(paddingRight || 0),
+        fontSize: element.css("fontSize"),
+        fontFamily: element.css("fontFamily"),
+        lineHeight: element.css("lineHeight"),
+        resize: "none"
+      });
+      angular.element(document.body).append($shadow);
+      update = function() {
+        var times, val;
+        times = function(string, number) {
+          var i, r;
+          i = 0;
+          r = "";
+          while (i < number) {
+            r += string;
+            i++;
+          }
+          return r;
+        };
+        val = element.val().replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/&/g, "&amp;").replace(/\n$/, "<br/>&nbsp;").replace(/\n/g, "<br/>").replace(/\s{2,}/g, function(space) {
+          return times("&nbsp;", space.length - 1) + " ";
+        });
+        $shadow.html(val);
+        element.css("height", Math.max($shadow[0].offsetHeight + 10, minHeight) + "px");
+      };
+      element.bind("keyup keydown keypress change", update);
+      update();
+    }
+  };
+});
 
 angular.module('app.directives', []).directive('toggle', function() {
   return {
@@ -47,3 +123,51 @@ angular.module('app.directives', []).directive('toggle', function() {
     }
   };
 });
+
+angular.module('app.home', ['userFeed']).controller('HomeController', [
+  '$scope', 'feed', function($scope, feed) {
+    feed.getFeed().then(function(response) {
+      $scope.posts = response.data.feed;
+      return console.log($scope.posts);
+    });
+    $scope.text = "Expand";
+    $scope.expanded = false;
+    return $scope.toggleComments = function() {
+      $scope.text = $scope.expanded ? "Expand" : "Collapse";
+      return $scope.expanded = $scope.expanded ? false : true;
+    };
+  }
+]);
+
+angular.module('app.home.directives', []).directive('postedOn', function() {
+  return {
+    restrict: 'AE',
+    template: '<time datetime="{{posted}}">{{formattedDate}}</time>',
+    replace: true,
+    scope: {
+      posted: "="
+    },
+    link: function($scope) {
+      return $scope.formattedDate = moment($scope.posted).twitterShort();
+    }
+  };
+});
+
+angular.module('userFeed', []).factory('feed', [
+  '$http', function($http) {
+    var factory;
+    factory = {};
+    factory.getFeed = function() {
+      return $http.get('data/feed.json').success(function(response) {
+        return response.feed;
+      });
+    };
+    return factory;
+  }
+]);
+
+angular.module('app.settings', []).controller('SettingsController', [
+  '$scope', function($scope) {
+    return $scope.title = 'Settings';
+  }
+]);
