@@ -1,0 +1,103 @@
+.new-post {
+  display: block;
+  float: left;
+  padding: em(15);
+  @include fill-parent;
+  background: rgba($primary, 0.7);
+  @include media($mobile-landscape) {
+    padding: em(25);
+    @include span-columns(10 of 12, inline-block);
+    @include shift(1);
+  }
+  @include media($tablet) {
+    padding: em(30);
+    @include span-columns(6 of 8, inline-block);
+    @include shift(1);
+  }
+  @include media($desktop) {
+    @include span-columns(8 of 12, inline-block);
+    @include shift(2);
+  }
+  @include media($super) {
+    $width: 51.34; // 575px
+    margin-right: 0;
+    margin-left: percentage(((100 - $width) / 2) / 100);
+    width: percentage($width / 100);
+  }
+}
+
+.new-post_textarea {
+  border: none;
+  background: none;
+  color: $white;
+  font-weight: $font-weight-light;
+  font-size: em(20);
+  font-family: $font-family-light;
+  line-height: 1.2;
+  resize: none;
+  @extend %row;
+  &:focus {
+    outline: none;
+  }
+  @include placeholder() {
+    color: rgba($white, 0.5);
+  }
+  @include media($mobile-landscape) {
+    font-size: em(24);
+  }
+  @include media($desktop) {
+    font-size: em(32);
+  }
+}
+
+.new-post_input {
+  @extend %row;
+  padding: em(10) 0;
+  @include media($mobile-landscape) {
+    padding: em(10) 0 em(20);
+  }
+}
+
+.new-post_add {
+  @extend %row;
+  padding: em(10) 0 0;
+}
+
+.new-post_add_video,
+.new-post_add_photo {
+  display: inline-block;
+  float: left;
+  font-size: em(15);
+  a {
+    padding: em(10);
+    color: rgba($white, 0.5);
+  }
+  svg {
+    @include size(em(18) em(13));
+    margin-right: em(5);
+  }
+  path {
+    transition: fill 0.3s ease;
+    fill: rgba($white, 0.5);
+  }
+  &:hover,
+  &:focus {
+    a {
+      color: $white;
+    }
+    path {
+      fill: $white;
+    }
+  }
+}
+
+.new-post_add_photo {
+  a {
+    padding-left: 0;
+  }
+}
+
+.new-post_add_video {
+  margin-left: em(10);
+}
+
