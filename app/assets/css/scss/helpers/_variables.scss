@@ -18,7 +18,7 @@ $mobile-landscape-max:      new-breakpoint(max-width $mobile-landscape-width-max
 $tablet:                    new-breakpoint($tablet-width, 8);
 $tablet-max:                new-breakpoint(max-width $tablet-width-max, 8);
 $desktop:                   new-breakpoint($desktop-width, 12);
-$super:                     new-breakpoint($super-width, 16);
+$super:                     new-breakpoint($super-width, 12);
 
 //=============================================
 // Neat
@@ -38,6 +38,11 @@ $gray:                      #70767f;
 $gray-lighter:              #ddd;
 $white:                     #fff;
 
+$text-dark:                 #3f454d;
+$text-light:                #70767f;
+$link-light:                #bec3cc;
+
+$lines:                     #dee1e5;
 
 // Colors
 // -------------------------
