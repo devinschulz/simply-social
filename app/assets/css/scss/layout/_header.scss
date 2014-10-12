@@ -1,7 +1,17 @@
 .header {
-  background: #262728;
-  height: em(60);
+  position: fixed;
+  top: 0;
   @extend %row;
+  height: em(60);
+  background: #262728;
+  z-index: 1000;
+  @include media($desktop) {
+    .container {
+      max-width: em(1400);
+      padding: 0 em(20);
+      @include fill-parent;
+    }
+  }
 }
 
 .header_logo {
@@ -12,8 +22,8 @@
   }
   @include media($mobile-max) {
     img {
-      max-width: em(120);
       margin-top: em(2);
+      max-width: em(120);
     }
   }
 }
@@ -28,6 +38,7 @@
 .header_components_search,
 .header_components_profile {
   display: inline-block;
+  vertical-align: middle;
   margin: {
     left: em(15);
     top: em(14);
@@ -40,9 +51,6 @@
   }
   .caret {
     margin-top: em(-20);
-  }
-  @include media($tablet) {
-    text-align: left;
   }
 }
 
@@ -70,52 +78,50 @@
   .header_components {
     @include span-columns(6 of 8, inline-block);
     @include omega();
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 
   .header_components_new {
     padding-top: em(4);
-    @include shift(2);
-    @include span-columns(1 of 6, inline-block);
   }
 
   .header_components_search {
-    margin: 0;
-    padding-top: em(15);
-    @include span-columns(2 of 6, inline-block);
+    margin: em(7) 0 0 em(20);
+    max-width: em(200);
   }
 
   .header_components_profile {
-    margin-left: 0;
-    @include span-columns(1 of 6, inline-block);
-    @include omega();
+    margin-left: em(20);
   }
 
 }
 
 @include media($desktop) {
 
-  .header_logo {
-    @include span-columns(2 of 12, inline-block);
-  }
-
-  .header_components {
-    @include span-columns(10 of 12, inline-block);
-    @include omega();
-  }
-
-  .header_components_new {
-    @include shift(6);
-    @include span-columns(1 of 10, inline-block);
-  }
-
-  .header_components_search {
-    @include span-columns(3 of 10, inline-block);
-    max-width: em(200);
-  }
-
-  .header_components_profile {
-    @include span-columns(1 of 10, inline-block);
-    @include omega();
-  }
+//  .header_logo {
+//    @include span-columns(2 of 12, inline-block);
+//  }
+//
+//  .header_components {
+//    @include span-columns(10 of 12, inline-block);
+//    @include omega();
+//  }
+//
+//  .header_components_new {
+//    @include shift(6);
+//    @include span-columns(1 of 10, inline-block);
+//  }
+//
+//  .header_components_search {
+//    @include span-columns(3 of 10, inline-block);
+//    max-width: em(200);
+//  }
+//
+//  .header_components_profile {
+//    @include span-columns(1 of 10, inline-block);
+//    @include omega();
+//  }
 
 }
