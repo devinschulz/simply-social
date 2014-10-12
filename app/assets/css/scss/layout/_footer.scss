@@ -1,0 +1,29 @@
+.footer {
+  @extend %row;
+  border-top: 1px solid $lines;
+  padding: em(20) 0;
+  @include media($tablet) {
+    padding: em(30) 0;
+  }
+}
+
+.footer_nav_list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.footer_nav_list_item {
+  display: inline-block;
+  text-transform: uppercase;
+  color: $gray;
+  font: $font-weight-semi em(12) $font-family-semi;
+  a {
+    padding: em(5);
+    @include media($tablet) {
+      margin: 0 em(12);
+    }
+  }
+}
+
