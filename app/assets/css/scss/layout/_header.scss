@@ -45,6 +45,17 @@
   }
 }
 
+.header_components_profile {
+  position: relative;
+  &.is-active {
+    .dropdown {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+  }
+}
+
 .header_components_profile_avatar {
   img {
     border-radius: 4px;
