@@ -6,14 +6,16 @@
   <title></title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
   <header class="header">
     <div class="container">
       <div class="header_logo">
-        <img src="assets/images/logo.svg" alt="simplysocial Logo" width="136" height="25"/>
+        <a href="/">
+          <img src="assets/images/logo.svg" alt="simplysocial Logo" width="136" height="25"/>
+        </a>
       </div>
       <div class="header_components">
         <div class="header_components_new">
@@ -36,7 +38,7 @@
         </div>
         <div class="header_components_profile">
           <div class="header_components_profile_avatar">
-            <a href="">
+            <a href="#">
               <img src="assets/images/avatar.jpg" alt="" width="30" height="30"/>
               <div class="caret"></div>
             </a>
@@ -56,8 +58,11 @@
 
   <div ng-view></div>
 
+  <script src="assets/js/libs/moment.js"></script>
+  <script src="assets/js/libs/moment-twitter.js"></script>
   <script src="assets/js/libs/angular.js"></script>
   <script src="assets/js/libs/angular-route.js"></script>
+  <script src="assets/js/libs/angular-sanitize.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

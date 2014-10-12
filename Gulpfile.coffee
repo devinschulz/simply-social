@@ -53,7 +53,7 @@ gulp.task('styles', ->
     .pipe gulp.dest config.root
     .pipe $.pleeease
       fallbacks:
-        autoprefixer: ['last 4 versions', 'ie 8', 'ie 9', '> 5%']
+        autoprefixer: ['last 4 versions', 'ie 9', '> 5%']
       optimizers:
         minifier: if config.environment is PRODUCTION then true else false
       sourcemap: true
@@ -64,7 +64,7 @@ gulp.task('styles', ->
       'compress-css': true,
       'remove-intertag-spaces': true
     .pipe $.if config.environment is PRODUCTION, $.cssshrink()
-    .pipe gulp.dest config.root
+    .pipe gulp.dest config.css_path
     .pipe $.livereload()
 )
 
@@ -93,6 +93,9 @@ gulp.task 'gulplint', ->
 files = [
   config.vendors_path + '/angular/angular.js'
   config.vendors_path + '/angular-route/angular-route.js'
+  config.vendors_path + '/angular-sanitize/angular-sanitize.js'
+  config.vendors_path + '/moment/moment.js'
+  config.vendors_path + '/moment.twitter/moment-twitter.js'
 ]
 
 gulp.task 'move', ->
