@@ -7,6 +7,7 @@ html{
 body {
   color: $base-text-color;
   font-smoothing: antialiased;
+  padding-top: em(60);
 }
 
 hr {
