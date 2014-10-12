@@ -50,7 +50,7 @@ gulp.task('styles', ->
       precision: 10
       loadPath: config.sass_includes
       style: if config.environment is PRODUCTION then 'compressed' else 'expanded'
-    .pipe gulp.dest config.root
+    .pipe gulp.dest config.css_path
     .pipe $.pleeease
       fallbacks:
         autoprefixer: ['last 4 versions', 'ie 9', '> 5%']
