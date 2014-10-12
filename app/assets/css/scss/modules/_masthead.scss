@@ -1,0 +1,15 @@
+.masthead {
+  padding: em(40) 0 0;
+  background: url('../images/masthead.jpg') no-repeat center center;
+  @extend %row;
+  background-size: cover;
+  @include media($mobile-landscape) {
+    padding: em(60) 0 0;
+  }
+  @include media($tablet) {
+    padding: em(100) 0 0;
+  }
+  @include media($desktop) {
+    padding: em(120) 0 0;
+  }
+}
