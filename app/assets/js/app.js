@@ -142,7 +142,7 @@ focusClass = function() {
   return {
     link: function(scope, elem) {
       return elem.on('focus blur', function() {
-        return elem.toggleClass('is-focus').parent('form').toggleClass('is-focus');
+        return elem.toggleClass('is-focus').parent().toggleClass('is-focus');
       });
     }
   };
@@ -165,7 +165,9 @@ angular.module('app.home', ['userFeed']).controller('HomeController', [
   }
 ]);
 
-angular.module('app.home.directives', []).directive('postedOn', function() {
+var postedOn;
+
+postedOn = function() {
   return {
     restrict: 'AE',
     template: '<time datetime="{{posted}}">{{formattedDate}}</time>',
@@ -177,7 +179,9 @@ angular.module('app.home.directives', []).directive('postedOn', function() {
       return $scope.formattedDate = moment($scope.posted).twitterShort();
     }
   };
-});
+};
+
+angular.module('app.home.directives', []).directive('postedOn', postedOn);
 
 angular.module('userFeed', []).factory('feed', [
   '$http', function($http) {

@@ -78,8 +78,8 @@ $font-family-semi:          "Proxima Nova Semibold", Helvetica, Arial, sans-seri
 $font-family-regular:       "Proxima Nova Rg", Helvetica, Arial, sans-serif;
 $font-family-light:         "Proxima Nova Lt", Helvetica, Arial, sans-serif;
 
-$base-font-family:  	      $font-family-bold;
-$heading-font-family:       $base-font-family;
+$base-font-family:  	      $font-family-regular;
+$heading-font-family:       $font-family-regular;
 $mono-font-family:  	      Monaco, Menlo, Consolas, "Courier New", monospace;
 
 // Line Height
@@ -96,19 +96,15 @@ $giga-size:         	      $base-font-size * 3;
 $mega-size:         	      $base-font-size * 2.75;
 $kilo-size:         	      $base-font-size * 2.5;
 
-$h1-size:                   $base-font-size * 2.25; // 36px .alpha
-$h2-size:                   $base-font-size * 2;    // 32px .beta
-$h3-size:                   $base-font-size * 1.75; // 28px .gamma
-$h4-size:                   $base-font-size * 1.5;  // 24px .delta
-$h5-size:                   $base-font-size * 1.25; // 20px .epsilon
-$h6-size:                   $base-font-size; // .zeta
+$h1-size:                   $base-font-size * 2;      // 32px .alpha
+$h2-size:                   $base-font-size * 1.75;   // 28px .beta
+$h3-size:                   $base-font-size * 1.5;    // 24px .gamma
+$h4-size:                   $base-font-size * 1.25;   // 20px .delta
+$h5-size:                   $base-font-size;          // 16px .epsilon
+$h6-size:                   $base-font-size;          // .zeta
 
 $milli-size:        	      12;
 $micro-size:        	      10;
-
-$headings-font-family:      inherit;
-$headings-font-weight:      bold;
-$headings-color:            inherit;
 
 // Font Weights
 // -------------------------
@@ -116,6 +112,11 @@ $font-weight-light: 	      200;
 $font-weight-normal:        400;
 $font-weight-semi:          700;
 $font-weight-bold: 	        700;
+
+$headings-font-family:      inherit;
+$headings-font-weight:      $font-weight-normal;
+$headings-color:            inherit;
+
 
 //=============================================
 // Component Sizing
