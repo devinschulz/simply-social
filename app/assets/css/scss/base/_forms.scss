@@ -1,0 +1,21 @@
+textarea {
+  resize: none;
+  word-wrap: break-word;
+  transition: 0.3s;
+  line-height: 1.2;
+}
+
+
+input[type="text"] {
+  border: 1px solid $lines;
+  background: $white;
+  border-radius: em(4);
+  padding: em(13) em(14);
+  width: 100%;
+  @include placeholder() {
+    color: $link-light;
+  }
+  &:focus {
+    outline: none;
+  }
+}
