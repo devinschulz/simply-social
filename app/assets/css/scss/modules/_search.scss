@@ -19,11 +19,11 @@
 }
 
 .search_submit {
-  background: none;
-  border: none;
   position: absolute;
   top: em(14);
   right: em(14);
+  border: none;
+  background: none;
   &:focus,
   &:hover {
     svg {
@@ -31,10 +31,9 @@
     }
   }
   path {
-    fill: $white;
+    fill: #44474b;
   }
   svg {
-    opacity: 0.4;
     transition: all 0.3s ease;
     @include size(em(16));
   }
@@ -46,16 +45,16 @@ input[type=search] {
 
 .search_input {
   box-sizing: border-box;
-  width: 100%;
-  border: 1px solid rgba($white, 0.4);
-  background: none;
   padding: em(5) em(40) em(5) em(10);
-  color: $white;
+  width: 100%;
+  border: 1px solid #44474b;
   border-radius: 4px;
+  background: none;
+  color: $white;
   transition: all 0.3s ease;
   &:focus {
     outline: none;
-    border: 1px solid rgba($white, 0.6);
+    border: 1px solid rgba($white, 0.4);
   }
   &::-webkit-search-decoration,
   &::-webkit-search-cancel-button,
@@ -68,17 +67,19 @@ input[type=search] {
 @include media($mobile-landscape-max) {
 
   .search_form {
-    width: 100%;
-    display: block;
     position: absolute;
     top: em(60);
     left: 0;
-    background: darken($black, 10%);
-    padding: em(10);
-    transform: translateY(-100%);
-    transition: all 0.3s ease;
     z-index: -1;
+    display: block;
+    padding: em(10);
+    width: 100%;
+    background: darken($black, 10%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: translateY(-100%);
     &.is-active {
+      opacity: 1;
       transform: translateY(0);
     }
   }
