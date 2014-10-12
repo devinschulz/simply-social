@@ -9,11 +9,16 @@
 
 @import 'base/main';
 @import 'base/typography';
+@import 'base/forms';
 
 @import 'modules/navigation';
 @import 'modules/buttons';
 @import 'modules/search';
 @import 'modules/dropdown';
+@import 'modules/masthead';
+@import 'modules/new-post';
+@import 'modules/post-filter';
+@import 'modules/posts';
 
 @import 'layout/header';
 @import 'layout/sidebar';
