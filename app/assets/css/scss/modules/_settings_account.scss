@@ -1,0 +1,43 @@
+.settings {
+
+}
+
+.settings__title {
+  font-size: em(13);
+  color: $gray;
+  text-transform: uppercase;
+  font-family: $font-family-semi;
+  font-weight: $font-weight-semi;
+  letter-spacing: em(0.25);
+  margin-bottom: em(25);
+}
+
+.settings_account_avatar {
+  img {
+    border-radius: em(4);
+  }
+}
+
+.settings_account_info_row {
+  position: relative;
+  @extend %row;
+  margin-bottom: em(20);
+  svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: em(13);
+    @include size(em(16));
+  }
+  circle,
+  path {
+    fill: $link-light;
+    transition: all 0.3s ease;
+  }
+  &.is-focus {
+    circle,
+    path {
+      fill: $primary;
+    }
+  }
+}
