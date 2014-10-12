@@ -32,10 +32,17 @@
   }
   path {
     fill: #44474b;
+    transition: fill 0.3s ease;
   }
   svg {
-    transition: all 0.3s ease;
     @include size(em(16));
+    display: block;
+    &:hover,
+    &:focus {
+      path {
+        fill: rgba($white, 0.4);
+      }
+    }
   }
 }
 
@@ -55,6 +62,13 @@ input[type=search] {
   &:focus {
     outline: none;
     border: 1px solid rgba($white, 0.4);
+  }
+  &.is-focus {
+    + .search_submit {
+      path {
+        fill: rgba($white, 0.4);
+      }
+    }
   }
   &::-webkit-search-decoration,
   &::-webkit-search-cancel-button,
