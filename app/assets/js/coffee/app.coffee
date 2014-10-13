@@ -15,13 +15,15 @@ angular.module 'app', [
   'app.settings.directives'
 ]
 
-.config(['$routeProvider', ($routeProvider) ->
-  $routeProvider
+.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 
+  # Remove hash from URL
+  $locationProvider.html5Mode(true)
+
+  $routeProvider
     .when '/',
       templateUrl: 'views/home.html'
       controller: 'HomeController'
-
     .when '/settings',
       templateUrl: 'views/settings.html'
       controller: 'SettingsController'

@@ -1,6 +1,7 @@
 'use strict';
 angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.header', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
-  '$routeProvider', function($routeProvider) {
+  '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     return $routeProvider.when('/', {
       templateUrl: 'views/home.html',
       controller: 'HomeController'
@@ -148,7 +149,7 @@ focusClass = function() {
   return {
     link: function(scope, elem) {
       return elem.on('focus blur', function() {
-        return elem.toggleClass('is-focus').parent('form').toggleClass('is-focus');
+        return elem.toggleClass('is-focus').parent().toggleClass('is-focus');
       });
     }
   };
@@ -171,7 +172,9 @@ angular.module('app.home', ['userFeed']).controller('HomeController', [
   }
 ]);
 
-angular.module('app.home.directives', []).directive('postedOn', function() {
+var postedOn;
+
+postedOn = function() {
   return {
     restrict: 'AE',
     template: '<time datetime="{{posted}}">{{formattedDate}}</time>',
@@ -183,7 +186,9 @@ angular.module('app.home.directives', []).directive('postedOn', function() {
       return $scope.formattedDate = moment($scope.posted).twitterShort();
     }
   };
-});
+};
+
+angular.module('app.home.directives', []).directive('postedOn', postedOn);
 
 angular.module('userFeed', []).factory('feed', [
   '$http', function($http) {
@@ -209,3 +214,41 @@ SettingsCtrl = function($scope, settings) {
 };
 
 angular.module('app.settings', ['settings.Service']).controller('SettingsController', SettingsCtrl);
+
+var optionsCheckbox, optionsToggle;
+
+optionsToggle = function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      label: "=",
+      val: "=",
+      id: "="
+    },
+    template: '<div class="toggle"> <input class="toggle_input" id="{{id}}" name="{{id}}" type="checkbox" ng-checked="{{val}}"/> <label class="toggle_handle" for="{{id}}"></label> <label class="toggle_label" for="{{id}}">{{label}}</label> </div>'
+  };
+};
+
+optionsCheckbox = function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    template: ''
+  };
+};
+
+angular.module('app.settings.directives', []).directive('optionsToggle', optionsToggle).directive('optionsCheckbox', optionsCheckbox);
+
+angular.module('settings.Service', []).factory('settings', [
+  '$http', function($http) {
+    var setting;
+    setting = {};
+    setting.getSettings = function() {
+      return $http.get('data/settings.json').success(function(response) {
+        return response.settings;
+      });
+    };
+    return setting;
+  }
+]);

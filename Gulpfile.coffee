@@ -4,6 +4,7 @@ ignore = require 'gulp-ignore'
 pngcrush = require 'imagemin-pngcrush'
 args = require('yargs').argv
 path = require 'path'
+connect = require('gulp-connect')
 
 # Environments
 # To change environment add the --env=prod argument
@@ -25,6 +26,7 @@ config =
     'vendors/neat/app/assets/stylesheets/neat.scss'
     'vendors/normalize-scss/normalize.scss'
   ],
+  public_path: './public'
   port: 35729
 
 # Prepend sass path to includes
@@ -80,7 +82,7 @@ gulp.task 'scripts', ->
     .pipe $.if config.environment is PRODUCTION, $.uglify()
     .pipe $.concat 'app.js'
     .pipe gulp.dest config.js_path
-    .pipe $.livereload()
+    .pipe connect.reload()
 
 gulp.task 'gulplint', ->
   gulp.src './gulpfile.coffee'
@@ -122,15 +124,21 @@ gulp.task 'images', ->
       use:
         pngcrush()
     .pipe gulp.dest config.images_path
-    .pipe $.livereload()
+    .pipe connect.reload()
 
-gulp.task 'default', ['gulplint', 'build'], ->
+gulp.task 'server', ->
+  connect.server
+    root: 'app'
+    port: 8000
+    livereload: true
+
+gulp.task 'default', ['gulplint', 'server', 'build'], ->
   $.livereload.listen()
   gulp.watch config.sass_path + '**/*.scss', ['styles']
   gulp.watch config.coffee_path + '**/*.coffee', ['scripts']
 #  gulp.watch config.images_path + '*.{jpg, png, svg}', ['images']
   gulp.watch(config.root + '**/*.html').on 'change', (file) ->
-    $.livereload().changed(file.path)
+    connect.reload().changed(file.path)
 
 gulp.task 'build', [
   'styles'
