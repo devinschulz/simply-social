@@ -1,0 +1,67 @@
+.toggle {
+  @extend %row;
+  margin-bottom: em(20);
+}
+
+.toggle_label {
+  display: inline-block;
+  font-size: em(17);
+  margin-left: em(24);
+}
+
+.toggle_input {
+  position: absolute;
+  margin-left: em(-9999);
+  visibility: hidden;
+  &:checked {
+    + .toggle_handle {
+      background: $valid;
+      &:before {
+        background: $valid;
+      }
+      &:after {
+        margin-left: em(25);
+      }
+    }
+  }
+}
+
+.toggle_handle {
+  float: left;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+
+  padding: 2px;
+  width: em(50);
+  height: em(25);
+  background: $lines;
+  border-radius: 60px;
+
+  &:before,
+  &:after {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    content: "";
+  }
+
+  &:before {
+    right: 1px;
+    background-color: $lines;
+    border-radius: em(60);
+    transition: background 0.4s;
+  }
+
+  &:after {
+    width: em(23);
+    background-color: #fff;
+    border-radius: 100%;
+    transition: margin 0.4s;
+  }
+}
+
