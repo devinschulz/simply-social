@@ -3,9 +3,11 @@ angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.h
   '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     return $routeProvider.when('/', {
+      title: 'Posts',
       templateUrl: 'views/home.html',
       controller: 'HomeController'
     }).when('/settings', {
+      title: 'Settings',
       templateUrl: 'views/settings.html',
       controller: 'SettingsController'
     });
@@ -16,6 +18,12 @@ angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.h
       $httpProvider.defaults.headers.get = {};
     }
     return $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+  }
+]).run([
+  '$location', '$rootScope', function($location, $rootScope) {
+    return $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+      return $rootScope.title = current.$$route.title;
+    });
   }
 ]);
 
