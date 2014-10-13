@@ -1,0 +1,62 @@
+{
+  "settings": {
+    "user": {
+      "name": "Jessica Tuan",
+      "email": "jessica@mail.com",
+      "avatar": "assets/images/avatar-large.jpg"
+    },
+    "notifications": [
+      {
+        "id": 1,
+        "title": "email me when my posts are marked as favorites",
+        "checked": true
+      }, {
+        "id": 2,
+        "title": "email me when I’m mentioned",
+        "checked": true
+      }, {
+        "id": 3,
+        "title": "email me when I get a reply",
+        "checked": true
+      }, {
+        "id": 4,
+        "title": "email me when someone follows me",
+        "checked": false
+      }
+    ],
+    "privacy": [
+      {
+        "tag": [
+          {
+            "id": 5,
+            "title": "allow anyone to tag me",
+            "checked": true
+          }, {
+            "id": 6,
+            "title": "only allow people I follow to tag me",
+            "checked": false
+          }, {
+            "id": 7,
+            "title": "don’t allow anyone to tag me",
+            "checked": false
+          }
+        ],
+        "other": [
+          {
+            "id": 8,
+            "title": "add a location to my posts",
+            "checked": true
+          }, {
+            "id": 9,
+            "title": "let others find me by my email address",
+            "checked": true
+          }, {
+            "id": 10,
+            "title": "tailor ads based on my information",
+            "checked": true
+          }
+        ]
+      }
+    ]
+  }
+}

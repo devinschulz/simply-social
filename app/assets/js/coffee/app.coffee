@@ -5,9 +5,12 @@ angular.module 'app', [
   'ngSanitize'
   'grow'
   'app.directives'
+
   'app.home'
   'app.home.directives'
+
   'app.settings'
+  'app.settings.directives'
 ]
 
 .config(['$routeProvider', ($routeProvider) ->

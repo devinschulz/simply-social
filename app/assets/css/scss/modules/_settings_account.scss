@@ -1,8 +1,14 @@
 .settings {
-
+  padding-top: em(50);
+  section {
+    @extend %row;
+    border-bottom: 1px solid $lines;
+    padding-bottom: em(50);
+    margin-bottom: em(50);
+  }
 }
 
-.settings__title {
+.settings_title {
   font-size: em(13);
   color: $gray;
   text-transform: uppercase;
@@ -12,9 +18,32 @@
   margin-bottom: em(25);
 }
 
+.settings_account {
+  margin-top: em(50);
+}
+
 .settings_account_avatar {
+  margin: 0 auto em(20);
+  width: em(85);
+  .btn {
+    margin-top: em(3);
+  }
   img {
     border-radius: em(4);
+  }
+  @include media($mobile-landscape) {
+    display: block;
+    float: left;
+    width: em(85);
+  }
+}
+
+.settings_account_info {
+  @include media($mobile-landscape) {
+    width: calc(100% - #{em(85)});
+    display: block;
+    float: left;
+    padding-left: em(50);
   }
 }
 
@@ -22,6 +51,12 @@
   position: relative;
   @extend %row;
   margin-bottom: em(20);
+  &:last-child {
+    margin-bottom: 0;
+  }
+  label {
+    @extend %visuallyhidden;
+  }
   svg {
     position: absolute;
     top: 50%;

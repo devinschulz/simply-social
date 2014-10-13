@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.home', 'app.home.directives', 'app.settings']).config([
+angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
   '$routeProvider', function($routeProvider) {
     return $routeProvider.when('/', {
       templateUrl: 'views/home.html',
@@ -196,8 +196,51 @@ angular.module('userFeed', []).factory('feed', [
   }
 ]);
 
-angular.module('app.settings', []).controller('SettingsController', [
-  '$scope', function($scope) {
-    return $scope.title = 'Settings';
+angular.module('app.settings', ['settings.Service']).controller('SettingsController', [
+  '$scope', 'settings', function($scope, settings) {
+    return settings.getSettings().then(function(response) {
+      console.log(response);
+      $scope.user = response.data.settings.user;
+      $scope.notifications = response.data.settings.notifications;
+      return $scope.options = response.data.settings.privacy;
+    });
+  }
+]);
+
+var optionsCheckbox, optionsToggle;
+
+optionsToggle = function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      label: "=",
+      val: "=",
+      id: "="
+    },
+    template: '<div class="toggle"> <input class="toggle_input" id="{{id}}" name="{{id}}" type="checkbox" ng-checked="{{val}}"/> <label class="toggle_handle" for="{{id}}"></label> <label class="toggle_label" for="{{id}}">{{label}}</label> </div>'
+  };
+};
+
+optionsCheckbox = function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    template: ''
+  };
+};
+
+angular.module('app.settings.directives', []).directive('optionsToggle', optionsToggle).directive('optionsCheckbox', optionsCheckbox);
+
+angular.module('settings.Service', []).factory('settings', [
+  '$http', function($http) {
+    var setting;
+    setting = {};
+    setting.getSettings = function() {
+      return $http.get('data/settings.json').success(function(response) {
+        return response.settings;
+      });
+    };
+    return setting;
   }
 ]);

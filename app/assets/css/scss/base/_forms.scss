@@ -38,3 +38,8 @@ input[type="password"] {
 .input-has-icon {
   padding-left: em(40) !important;
 }
+
+label {
+  color: $gray;
+  cursor: pointer;
+}
