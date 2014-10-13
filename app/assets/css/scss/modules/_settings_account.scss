@@ -1,5 +1,8 @@
 .settings {
   padding-top: em(50);
+  h1 {
+    margin-bottom: 0;
+  }
   section {
     @extend %row;
     border-bottom: 1px solid $lines;
@@ -74,5 +77,18 @@
     path {
       fill: $primary;
     }
+  }
+}
+
+.settings_notifications,
+.settings_privacy {
+  .settings_title {
+    margin-bottom: em(35);
+  }
+}
+
+.settings_privacy_tags_item {
+  &.is-first {
+    margin-top: em(25);
   }
 }
