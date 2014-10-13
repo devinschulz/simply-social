@@ -1,50 +1,86 @@
-<main role="main">
-  <div class="container">
-    <div class="settings layout">
-      <h1>Settings</h1>
-      <section class="settings_account">
-        <h2 class="settings_title">Account</h2>
-        <div class="row">
-          <div class="settings_account_avatar">
-            <img ng-src="{{user.avatar}}" alt="Your profile picture"/>
-            <a class="btn btn-secondary btn-small" href="#">change</a>
+<div class="container">
+  <form class="settings layout" action="#" method="post" name="settings">
+    <h1>Settings</h1>
+    <section class="settings_account">
+      <h2 class="settings_title">Account</h2>
+      <div class="row">
+        <div class="settings_account_avatar">
+          <img ng-src="{{user.avatar}}" alt="Your profile picture"/>
+          <a class="btn btn-secondary btn-small" href="#">change</a>
+        </div>
+        <div class="settings_account_info">
+          <div class="settings_account_info_row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" enable-background="new 0 0 16 16"><path fill="#231F20" d="M14.085 11.578l-3.612-1.196v-1.517c1.131-.887 1.875-2.334 1.875-3.974 0-2.696-1.995-4.89-4.447-4.89s-4.447 2.193-4.447 4.889c0 1.734.831 3.251 2.072 4.119v1.373l-3.612 1.196c-1.145.38-1.914 1.401-1.914 2.542v1.88h16v-1.88c0-1.141-.77-2.163-1.915-2.542zm-6.184-10.578c1.643 0 3.017 1.306 3.36 3.045-1.042.158-1.705-.183-2.33-1.195l-.445-.722-.416.739c-.341.606-1.55 1.157-2.537 1.157-.347 0-.647-.064-.941-.161.402-1.645 1.725-2.863 3.309-2.863zm-3.447 3.89l.002-.021c.341.094.691.155 1.077.155.948 0 2.184-.406 2.939-1.092.635.783 1.381 1.155 2.32 1.155.172 0 .358-.027.544-.051-.07 2.076-1.578 3.744-3.435 3.744-1.901 0-3.447-1.745-3.447-3.89zm10.546 10.11h-14v-.88c0-.709.494-1.349 1.229-1.593l4.298-1.422v-1.588c.435.157.891.263 1.374.263.555 0 1.082-.126 1.572-.331v1.656l4.297 1.422c.736.244 1.23.884 1.23 1.593v.88z"/></svg>
+            <label for="user.name">Name</label>
+            <input ng-model="user.name"
+                   id="user.name"
+                   class="input-has-icon input-secondary"
+                   type="text"
+                   value="{{user.name}}"
+                   placeholder="Your Name"
+                   focus-class />
           </div>
-          <div class="settings_account_info">
-            <div class="settings_account_info_row">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" enable-background="new 0 0 16 16"><path fill="#231F20" d="M14.085 11.578l-3.612-1.196v-1.517c1.131-.887 1.875-2.334 1.875-3.974 0-2.696-1.995-4.89-4.447-4.89s-4.447 2.193-4.447 4.889c0 1.734.831 3.251 2.072 4.119v1.373l-3.612 1.196c-1.145.38-1.914 1.401-1.914 2.542v1.88h16v-1.88c0-1.141-.77-2.163-1.915-2.542zm-6.184-10.578c1.643 0 3.017 1.306 3.36 3.045-1.042.158-1.705-.183-2.33-1.195l-.445-.722-.416.739c-.341.606-1.55 1.157-2.537 1.157-.347 0-.647-.064-.941-.161.402-1.645 1.725-2.863 3.309-2.863zm-3.447 3.89l.002-.021c.341.094.691.155 1.077.155.948 0 2.184-.406 2.939-1.092.635.783 1.381 1.155 2.32 1.155.172 0 .358-.027.544-.051-.07 2.076-1.578 3.744-3.435 3.744-1.901 0-3.447-1.745-3.447-3.89zm10.546 10.11h-14v-.88c0-.709.494-1.349 1.229-1.593l4.298-1.422v-1.588c.435.157.891.263 1.374.263.555 0 1.082-.126 1.572-.331v1.656l4.297 1.422c.736.244 1.23.884 1.23 1.593v.88z"/></svg>
-              <label for="name">Name</label>
-              <input name="name" id="name" class="input-has-icon input-secondary" type="text" value="{{user.name}}" placeholder="Your Name" focus-class/>
-            </div>
-            <div class="settings_account_info_row">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 13" enable-background="new 0 0 17 13"><path fill="#231F20" d="M15.357 0h-13.714c-.906 0-1.643.801-1.643 1.786v9.429c0 .984.737 1.785 1.643 1.785h13.714c.906 0 1.643-.801 1.643-1.786v-9.428c0-.985-.737-1.786-1.643-1.786zm-.065 1l-6.792 6.113-6.792-6.113h13.584zm.708 10.214c0 .433-.289.786-.643.786h-13.714c-.354 0-.643-.353-.643-.786v-9.428l.011-.067 7.154 6.439c.096.085.215.128.335.128s.239-.043.334-.128l7.154-6.439.012.067v9.428z"/></svg>
-              <label for="email">Email</label>
-              <input name="email" id="email" class="input-has-icon input-secondary" type="email" value="{{user.email}}" placeholder="Your Email" focus-class/>
-            </div>
-            <div class="settings_account_info_row">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 18" enable-background="new 0 0 17 18"><circle cx="8.5" cy="12.125" r="1"/><path d="M14.64 6h-.64v-.5c0-3.033-2.468-5.5-5.496-5.5-3.033 0-5.504 2.467-5.504 5.5v.5h-3v12h17v-12h-2.36zm-10.64-.5c0-2.481 2.022-4.5 4.504-4.5 2.476 0 4.496 2.019 4.496 4.5v.5h-9v-.5zm12 11.5h-15v-10h15v10z"/></svg>
-              <label for="password">Password</label>
-              <input name="password" id="password" class="input-has-icon input-secondary" type="password" value="password" placeholder="Your Password" focus-class/>
-            </div>
-            <div class="settings_account_info_row">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 18" enable-background="new 0 0 17 18"><circle cx="8.5" cy="12.125" r="1"/><path d="M14.64 6h-.64v-.5c0-3.033-2.468-5.5-5.496-5.5-3.033 0-5.504 2.467-5.504 5.5v.5h-3v12h17v-12h-2.36zm-10.64-.5c0-2.481 2.022-4.5 4.504-4.5 2.476 0 4.496 2.019 4.496 4.5v.5h-9v-.5zm12 11.5h-15v-10h15v10z"/></svg>
-              <label for="confirm-password">Confirm Password</label>
-              <input name="confirm-password" id="confirm-password" class="input-has-icon input-secondary" type="password" value="password" placeholder="Confirm Password" focus-class/>
-            </div>
+          <div class="settings_account_info_row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 13" enable-background="new 0 0 17 13"><path fill="#231F20" d="M15.357 0h-13.714c-.906 0-1.643.801-1.643 1.786v9.429c0 .984.737 1.785 1.643 1.785h13.714c.906 0 1.643-.801 1.643-1.786v-9.428c0-.985-.737-1.786-1.643-1.786zm-.065 1l-6.792 6.113-6.792-6.113h13.584zm.708 10.214c0 .433-.289.786-.643.786h-13.714c-.354 0-.643-.353-.643-.786v-9.428l.011-.067 7.154 6.439c.096.085.215.128.335.128s.239-.043.334-.128l7.154-6.439.012.067v9.428z"/></svg>
+            <label for="user.email">Email</label>
+            <input ng-model="user.email"
+                   id="user.email"
+                   class="input-has-icon input-secondary"
+                   type="email"
+                   value="{{user.email}}"
+                   placeholder="Your Email"
+                   focus-class />
+            <span ng-show="settings.user.email.$dirty">save</span>
+          </div>
+          <div class="settings_account_info_row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 18" enable-background="new 0 0 17 18"><circle cx="8.5" cy="12.125" r="1"/><path d="M14.64 6h-.64v-.5c0-3.033-2.468-5.5-5.496-5.5-3.033 0-5.504 2.467-5.504 5.5v.5h-3v12h17v-12h-2.36zm-10.64-.5c0-2.481 2.022-4.5 4.504-4.5 2.476 0 4.496 2.019 4.496 4.5v.5h-9v-.5zm12 11.5h-15v-10h15v10z"/></svg>
+            <label for="user.password">Password</label>
+            <input id="user.password"
+                   class="input-has-icon input-secondary"
+                   type="password"
+                   value="password"
+                   placeholder="Password"
+                   focus-class />
+          </div>
+          <div class="settings_account_info_row">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 18" enable-background="new 0 0 17 18"><circle cx="8.5" cy="12.125" r="1"/><path d="M14.64 6h-.64v-.5c0-3.033-2.468-5.5-5.496-5.5-3.033 0-5.504 2.467-5.504 5.5v.5h-3v12h17v-12h-2.36zm-10.64-.5c0-2.481 2.022-4.5 4.504-4.5 2.476 0 4.496 2.019 4.496 4.5v.5h-9v-.5zm12 11.5h-15v-10h15v10z"/></svg>
+            <label for="user.confirm">Confirm Password</label>
+            <input id="user.confirm"
+                   class="input-has-icon input-secondary"
+                   type="password"
+                   value="password"
+                   placeholder="Confirm Password"
+                   focus-class />
           </div>
         </div>
-      </section>
-      <section class="settings_notifications">
-        <h2 class="settings_title">Notifications</h2>
-        <div class="settings_notifications_row">
-          <options-toggle ng-repeat="notification in notifications" val="notification.checked" label="notification.title" id="notification.id"></options-toggle>
-        </div>
-      </section>
-      <section class="settings_privacy">
-        <h2 class="settings_title">Privacy</h2>
-      </section>
-      <div class="settings_save">
-        <a class="btn btn-primary" href="#">Save Changes</a>
       </div>
+    </section>
+    <section class="settings_notifications">
+      <h2 class="settings_title">Notifications</h2>
+      <div class="settings_notifications_row">
+        <div class="toggle" ng-repeat="notification in notifications">
+          <input class="toggle_input" id="notification-{{notification.id}}" name="notification-{{notification.id}}" type="checkbox" ng-checked="notification.checked"/>
+          <label class="toggle_handle" for="notification-{{notification.id}}"></label>
+          <label class="toggle_label" for="notification-{{notification.id}}">{{notification.title}}</label>
+        </div>
+      </div>
+    </section>
+    <section class="settings_privacy">
+      <h2 class="settings_title">Privacy</h2>
+      <div class="settings_privacy_tags">
+        <div class="settings_privacy_tags_item radio-group" ng-repeat="option in options.tags">
+          <input class="radio" type="radio" name="tag" id="tag-{{option.id}}" ng-checked="option.checked"/>
+          <label for="tag-{{option.id}}">{{option.title}}</label>
+        </div>
+        <div class="settings_privacy_tags_item checkbox-group" ng-repeat="option in options.other" ng-class="{true: 'is-first'}[$first]">
+          <input class="radio" type="checkbox" name="tag" id="tag-{{option.id}}" ng-checked="option.checked"/>
+          <label for="tag-{{option.id}}">{{option.title}}</label>
+        </div>
+      </div>
+    </section>
+    <div class="settings_save">
+      <button type="submit" class="btn btn-primary" href="#">Save Changes</button>
     </div>
-  </div>
-</main>
+  </form>
+</div>
+
