@@ -13,9 +13,9 @@ angular.module 'app.home', ['userFeed']
     $scope.text = "Expand"
     $scope.expanded = false
 
-    $scope.toggleComments = ->
-      $scope.text = if $scope.expanded then "Expand" else "Collapse"
-      $scope.expanded = if $scope.expanded then false else true
+    $scope.toggleComments = (repeaterScope) ->
+      repeaterScope.text = if repeaterScope.expanded then "Expand" else "Collapse"
+      repeaterScope.expanded = if repeaterScope.expanded then false else true
 
 ]
 

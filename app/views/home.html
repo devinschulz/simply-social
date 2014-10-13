@@ -56,7 +56,7 @@
               </div>
               <ul class="post_content_meta_actions">
                 <li class="post_content_meta_reply">
-                  <a href="#" title="Reply" ng-click="toggleComments(); post.selected[$index] = !post.selected[$index]">
+                  <a href="#" title="Reply" ng-click="toggleComments(this); post.selected[$index] = !post.selected[$index]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13.001" enable-background="new 0 0 13 13.001"><path fill="#231F20" d="M12.499 13.001c-.204 0-.392-.125-.467-.322-1.259-3.305-3.316-3.998-4.82-3.998-.576 0-1.061.102-1.356.183v2.837c0 .208-.129.396-.325.468-.195.074-.416.017-.553-.141l-4.857-5.6c-.163-.188-.163-.467 0-.655l4.857-5.6c.137-.158.357-.216.553-.141.196.073.325.26.325.468v2.658l.199-.003c1.63.001 6.945.675 6.945 9.346 0 .241-.172.448-.41.492l-.091.008zm-11.338-6.9l3.695 4.26v-1.86c0-.203.122-.385.31-.462.079-.032 4.086-1.529 6.68 2.13-.767-5.375-4.208-6.013-5.79-6.013-.366 0-.599.035-.618.038-.145.025-.294-.017-.404-.112-.112-.095-.177-.234-.177-.381v-1.86l-3.696 4.26z"/></svg>
                   </a>
                 </li>
@@ -74,7 +74,7 @@
               <p ng-bind-html="post.message"></p>
             </div>
             <div class="post_content_expand" ng-if="post.comments.length >= 1">
-              <a ng-href="#" ng-click="toggleComments(); post.selected[$index] = !post.selected[$index]" ng-class="{true: 'is-open'}[expanded]">{{text}} <span class="caret"></span></a>
+              <a ng-href="#" ng-click="toggleComments(this); post.selected[$index] = !post.selected[$index]" ng-class="{true: 'is-open'}[expanded]">{{text}} <span class="caret"></span></a>
             </div>
           </div>
         </div>

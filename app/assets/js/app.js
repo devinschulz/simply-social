@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.home', 'app.home.directives', 'app.settings']).config([
+angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.header', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
   '$routeProvider', function($routeProvider) {
     return $routeProvider.when('/', {
       templateUrl: 'views/home.html',
@@ -17,6 +17,12 @@ angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.h
     return $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
   }
 ]);
+
+var HeaderController;
+
+HeaderController = function($scope) {};
+
+angular.module('app.header', []).controller('HeaderController', HeaderController);
 
 
 /**
@@ -158,9 +164,9 @@ angular.module('app.home', ['userFeed']).controller('HomeController', [
     });
     $scope.text = "Expand";
     $scope.expanded = false;
-    return $scope.toggleComments = function() {
-      $scope.text = $scope.expanded ? "Expand" : "Collapse";
-      return $scope.expanded = $scope.expanded ? false : true;
+    return $scope.toggleComments = function(repeaterScope) {
+      repeaterScope.text = repeaterScope.expanded ? "Expand" : "Collapse";
+      return repeaterScope.expanded = repeaterScope.expanded ? false : true;
     };
   }
 ]);
@@ -192,8 +198,14 @@ angular.module('userFeed', []).factory('feed', [
   }
 ]);
 
-angular.module('app.settings', []).controller('SettingsController', [
-  '$scope', function($scope) {
-    return $scope.title = 'Settings';
-  }
-]);
+var SettingsCtrl;
+
+SettingsCtrl = function($scope, settings) {
+  return settings.getSettings().then(function(response) {
+    $scope.user = response.data.settings.user;
+    $scope.notifications = response.data.settings.notifications;
+    return $scope.options = response.data.settings.privacy;
+  });
+};
+
+angular.module('app.settings', ['settings.Service']).controller('SettingsController', SettingsCtrl);
