@@ -9,11 +9,15 @@ angular
 
     'app.header'
 
+    'app.modal'
+    'app.modal.directives'
+
     'app.home'
     'app.home.directives'
 
     'app.settings'
     'app.settings.directives'
+
   ]
 
   .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->

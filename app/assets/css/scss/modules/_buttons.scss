@@ -20,16 +20,16 @@
 
 .btn-primary {
   color: $white;
-  background: $primary;
+  background: $valid;
   font-family: $font-family-bold;
   font-weight: $font-weight-bold;
   &:hover,
   &:focus {
     color: $white;
-    background: darken($primary, 5%);
+    background: darken($valid, 5%);
   }
   &:active {
-    background: darken($primary, 10%);
+    background: darken($valid, 10%);
   }
 }
 

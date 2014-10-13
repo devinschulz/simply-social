@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.header', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
+angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.header', 'app.modal', 'app.modal.directives', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
   '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     return $routeProvider.when('/', {
@@ -26,12 +26,6 @@ angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.h
     });
   }
 ]);
-
-var HeaderController;
-
-HeaderController = function($scope) {};
-
-angular.module('app.header', []).controller('HeaderController', HeaderController);
 
 
 /**
@@ -165,6 +159,21 @@ focusClass = function() {
 
 angular.module('app.directives', []).directive('toggle', toggle).directive('a', a).directive('dropdown', dropdown).directive('focusClass', focusClass);
 
+var HeaderController;
+
+HeaderController = function($scope, $rootScope, ModalService) {
+  return $scope.openModal = function() {
+    return ModalService.showModal({
+      templateUrl: "views/modal/modal.html",
+      controller: "ModalController"
+    }).then(function() {
+      return $rootScope.modalOpen = true;
+    });
+  };
+};
+
+angular.module('app.header', ['angularModalService']).controller('HeaderController', HeaderController);
+
 angular.module('app.home', ['userFeed']).controller('HomeController', [
   '$scope', 'feed', function($scope, feed) {
     feed.getFeed().then(function(response) {
@@ -210,6 +219,31 @@ angular.module('userFeed', []).factory('feed', [
     return factory;
   }
 ]);
+
+var ModalController;
+
+ModalController = function($scope, $rootScope, close) {
+  return $scope.closeModal = function() {
+    $rootScope.modalOpen = false;
+    return close();
+  };
+};
+
+angular.module('app.modal', ['angularModalService']).controller('ModalController', ModalController);
+
+var focus;
+
+focus = function($timeout) {
+  return {
+    link: function(scope, elem) {
+      return $timeout(function() {
+        return elem[0].focus();
+      });
+    }
+  };
+};
+
+angular.module('app.modal.directives', []).directive('focus', focus);
 
 var SettingsCtrl;
 

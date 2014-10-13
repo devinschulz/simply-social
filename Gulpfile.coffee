@@ -67,7 +67,7 @@ gulp.task('styles', ->
       'remove-intertag-spaces': true
     .pipe $.if config.environment is PRODUCTION, $.cssshrink()
     .pipe gulp.dest config.css_path
-    .pipe $.livereload()
+    .pipe connect.reload()
 )
 
 # Scripts
@@ -96,6 +96,7 @@ files = [
   config.vendors_path + '/angular/angular.js'
   config.vendors_path + '/angular-route/angular-route.js'
   config.vendors_path + '/angular-sanitize/angular-sanitize.js'
+  config.vendors_path + '/angular-modal-service/dst/angular-modal-service.js'
   config.vendors_path + '/moment/moment.js'
   config.vendors_path + '/moment.twitter/moment-twitter.js'
 ]
@@ -137,8 +138,8 @@ gulp.task 'default', ['gulplint', 'server', 'build'], ->
   gulp.watch config.sass_path + '**/*.scss', ['styles']
   gulp.watch config.coffee_path + '**/*.coffee', ['scripts']
 #  gulp.watch config.images_path + '*.{jpg, png, svg}', ['images']
-  gulp.watch(config.root + '**/*.html').on 'change', (file) ->
-    connect.reload().changed(file.path)
+  gulp.watch(config.root + '**/*.html').on 'change', ->
+    connect.reload()
 
 gulp.task 'build', [
   'styles'

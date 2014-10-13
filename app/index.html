@@ -12,11 +12,15 @@
 </head>
 <body>
 
-  <div ng-include="'views/header/header.html'"></div>
+  <div class="main" ng-class="{true: 'modal-open'}[modalOpen]">
 
-  <div ng-view></div>
+    <div ng-include="'views/header/header.html'"></div>
 
-  <div ng-include="'views/footer/footer.html'"></div>
+    <div ng-view></div>
+
+    <div ng-include="'views/footer/footer.html'"></div>
+
+  </div>
 
   <!-- build:js public/js/app.js -->
   <script src="assets/js/libs/moment.js"></script>
@@ -24,6 +28,7 @@
   <script src="assets/js/libs/angular.js"></script>
   <script src="assets/js/libs/angular-route.js"></script>
   <script src="assets/js/libs/angular-sanitize.js"></script>
+  <script src="assets/js/libs/angular-modal-service.js"></script>
   <script src="assets/js/app.js"></script>
   <!-- endbuild -->
 </body>

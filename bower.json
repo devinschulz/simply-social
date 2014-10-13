@@ -22,6 +22,7 @@
     "angular-sanitize": "~1.2.26",
     "moment": "~2.8.3",
     "angular-moment": "~0.8.2",
-    "moment.twitter": "~0.2.0"
+    "moment.twitter": "~0.2.0",
+    "angular-modal-service": "~0.3.0"
   }
 }

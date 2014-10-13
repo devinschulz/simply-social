@@ -25,3 +25,12 @@ hr {
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
+
+.visually-hidden {
+  @extend %visuallyhidden;
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+}
