@@ -24,39 +24,37 @@
         "checked": false
       }
     ],
-    "privacy": [
-      {
-        "tag": [
-          {
-            "id": 5,
-            "title": "allow anyone to tag me",
-            "checked": true
-          }, {
-            "id": 6,
-            "title": "only allow people I follow to tag me",
-            "checked": false
-          }, {
-            "id": 7,
-            "title": "don’t allow anyone to tag me",
-            "checked": false
-          }
-        ],
-        "other": [
-          {
-            "id": 8,
-            "title": "add a location to my posts",
-            "checked": true
-          }, {
-            "id": 9,
-            "title": "let others find me by my email address",
-            "checked": true
-          }, {
-            "id": 10,
-            "title": "tailor ads based on my information",
-            "checked": true
-          }
-        ]
-      }
-    ]
+    "privacy": {
+      "tags": [
+        {
+          "id": 5,
+          "title": "allow anyone to tag me",
+          "checked": true
+        }, {
+          "id": 6,
+          "title": "only allow people I follow to tag me",
+          "checked": false
+        }, {
+          "id": 7,
+          "title": "don’t allow anyone to tag me",
+          "checked": false
+        }
+      ],
+      "other": [
+        {
+          "id": 8,
+          "title": "add a location to my posts",
+          "checked": true
+        }, {
+          "id": 9,
+          "title": "let others find me by my email address",
+          "checked": true
+        }, {
+          "id": 10,
+          "title": "tailor ads based on my information",
+          "checked": true
+        }
+      ]
+    }
   }
 }
