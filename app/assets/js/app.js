@@ -199,7 +199,6 @@ angular.module('userFeed', []).factory('feed', [
 angular.module('app.settings', ['settings.Service']).controller('SettingsController', [
   '$scope', 'settings', function($scope, settings) {
     return settings.getSettings().then(function(response) {
-      console.log(response);
       $scope.user = response.data.settings.user;
       $scope.notifications = response.data.settings.notifications;
       return $scope.options = response.data.settings.privacy;
