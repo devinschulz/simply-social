@@ -1,8 +1,8 @@
 <div class="masthead">
   <div class="container">
-    <div class="new-post layout">
+    <form class="new-post layout">
       <div class="new-post_input">
-        <textarea class="new-post_textarea" rows="1" placeholder="What's on your mind?"></textarea>
+        <textarea ng-model="new.post" class="new-post_textarea" rows="1" placeholder="What's on your mind?"></textarea>
       </div>
       <div class="new-post_add">
         <div class="new-post_add_photo">
@@ -18,7 +18,7 @@
           </a>
         </div>
       </div>
-    </div>
+    </form>
     <div class="post-filter">
       <ul class="post-filter_list">
         <li class="post-filter_list_item is-active"><a href="#" title="View all posts">All Posts</a></li>
@@ -116,9 +116,9 @@
               </div>
             </div>
           </div>
-          <div class="comments_reply">
-            <input type="text" placeholder="Reply&hellip;"/>
-          </div>
+          <form class="comments_reply" action="#" method="post" name="comment">
+            <input ng-model="comment.reply" type="text" placeholder="Reply&hellip;"/>
+          </form>
         </div>
       </section>
     </article>

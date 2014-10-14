@@ -165,12 +165,17 @@
 }
 
 .post_content_thumbnail {
+  margin-top: em(9);
+  @extend %row;
   img {
-    margin: em(9) 0 em(-17) em(-10);
+    margin: 0 0 em(-17) em(-10);
     width: calc(100% + #{em(10 * 2)});
     border-radius: 0 0 em(4) em(4);
-    @include media($mobile-landscape) {
-      margin: em(18) 0 em(-33) em(-26);
+  }
+  @include media($mobile-landscape) {
+    margin-top: em(18);
+    img {
+      margin: 0 0 em(-33) em(-26);
       width: calc(100% + #{em(26 * 2)});
     }
   }
@@ -185,24 +190,46 @@
   width: 100%;
   &:hover,
   &:focus {
-    &:before {
+    &:after {
       background: rgba(#000, 0);
     }
   }
-  &:before {
+  &:before,
+  &:after {
+    content: '';
     position: absolute;
+    display: block;
+  }
+
+  &:before {
+    background: url('../images/play-video.svg');
+    @include size(em(40));
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    @include media($mobile-landscape) {
+      @include size(em(60));
+    }
+    @include media($tablet) {
+      @include size(em(80));
+    }
+    @include media($desktop) {
+      @include size(em(100));
+    }
+  }
+  &:after {
     top: 0;
     left: 0;
-    display: block;
-    margin: em(9) 0 em(-17) em(-10);
+    margin: 0 0 em(-17) em(-10);
     width: calc(100% + #{em(10 * 2)});
-    height: 102%;
+    height: 108%;
     background: rgba(#000, 0.3);
     content: '';
     transition: all 0.3s ease;
     border-radius: 0 0 em(4) em(4);
     @include media($mobile-landscape) {
-      margin: em(18) 0 em(-33) em(-26);
+      margin: 0 0 em(-33) em(-26);
       width: calc(100% + #{em(26 * 2)});
     }
   }
@@ -231,5 +258,8 @@
   padding: em(10);
   @include media($mobile-landscape) {
     padding: em(25);
+  }
+  .placeholder {
+    color: $link-light;
   }
 }
