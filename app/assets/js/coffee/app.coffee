@@ -4,10 +4,11 @@ angular
   .module 'app', [
     'ngRoute'
     'ngSanitize'
-    'grow'
+    'taiPlaceholder'
     'app.directives'
 
     'app.header'
+    'app.header.directives'
 
     'app.modal'
     'app.modal.directives'
