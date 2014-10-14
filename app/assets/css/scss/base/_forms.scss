@@ -3,6 +3,7 @@ textarea {
   line-height: 1.2;
   resize: none;
   transition: 0.3s;
+  overflow: auto; // IE Scrollbar fix
 }
 
 .input-primary,
