@@ -179,8 +179,7 @@ var HomeController;
 
 HomeController = function($scope, feed) {
   feed.getFeed().then(function(response) {
-    $scope.posts = response.data.feed;
-    return console.log($scope.posts);
+    return $scope.posts = response.data.feed;
   });
   $scope.text = "Expand";
   $scope.expanded = false;

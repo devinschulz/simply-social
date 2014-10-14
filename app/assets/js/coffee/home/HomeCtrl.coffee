@@ -1,7 +1,6 @@
 HomeController = ($scope, feed) ->
   feed.getFeed().then((response) ->
     $scope.posts = response.data.feed
-    console.log $scope.posts
   )
 
   # Set Defaults
