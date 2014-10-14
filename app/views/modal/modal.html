@@ -1,4 +1,4 @@
-<div class="modal" data-dismiss="modal" aria-hidden="true">
+<div class="modal" data-dismiss="modal" aria-hidden="true" ng-class="{'is-open': open, 'is-anchored': anchor}">
   <a href="#" class="modal_close" ng-click="closeModal()">
     <span class="visually-hidden">Close Message</span>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" enable-background="new 0 0 21 21"><g fill="#231F20"><path d="M10.5 0c-5.79 0-10.5 4.71-10.5 10.5s4.71 10.5 10.5 10.5 10.5-4.71 10.5-10.5-4.71-10.5-10.5-10.5zm0 20c-5.238 0-9.5-4.262-9.5-9.5s4.262-9.5 9.5-9.5 9.5 4.262 9.5 9.5-4.262 9.5-9.5 9.5zM14.71 6.29c-.195-.195-.512-.195-.707 0l-3.503 3.503-3.504-3.503c-.195-.195-.512-.195-.707 0s-.195.512 0 .707l3.503 3.503-3.503 3.503c-.195.195-.195.512 0 .707.098.098.226.146.354.146s.256-.049.354-.146l3.503-3.503 3.503 3.503c.098.098.226.146.354.146s.256-.049.354-.146c.195-.195.195-.512 0-.707l-3.504-3.503 3.503-3.503c.195-.195.195-.512 0-.707z"/></g></svg>
@@ -28,4 +28,4 @@
     </div>
   </form>
 </div>
-<div class="modal_overlay" ng-click="closeModal()"></div>
+<div class="modal_overlay" ng-click="closeModal()" ng-class="{true: 'is-open'}[open]"></div>

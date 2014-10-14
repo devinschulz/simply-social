@@ -162,7 +162,8 @@ angular.module('app.directives', []).directive('toggle', toggle).directive('a', 
 var HeaderController;
 
 HeaderController = function($scope, $rootScope, ModalService) {
-  return $scope.openModal = function() {
+  return $scope.openModal = function(event) {
+    event.preventDefault();
     return ModalService.showModal({
       templateUrl: "views/modal/modal.html",
       controller: "ModalController"
@@ -222,10 +223,19 @@ angular.module('userFeed', []).factory('feed', [
 
 var ModalController;
 
-ModalController = function($scope, $rootScope, close) {
+ModalController = function($scope, $timeout, $rootScope, close) {
+  var anchor, open;
+  open = function() {
+    return $scope.open = $scope.open === true ? false : true;
+  };
+  anchor = function() {
+    return $scope.anchor = $scope.anchor === true ? false : true;
+  };
+  $timeout(open, 200);
   return $scope.closeModal = function() {
     $rootScope.modalOpen = false;
-    return close();
+    $timeout(open, 0);
+    return close({}, 1000);
   };
 };
 

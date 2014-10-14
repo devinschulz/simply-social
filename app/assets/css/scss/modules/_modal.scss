@@ -2,12 +2,19 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -400%);
+  transition: all 0.5s ease;
   background: $lines;
   width: 100%;
   max-width: em(575);
   z-index: 1100;
   border-radius: em(3);
+  &.is-open {
+    transform: translate(-50%, -50%);
+    &.is-anchor {
+
+    }
+  }
 }
 
 .modal_overlay {
@@ -18,8 +25,11 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  background: rgba(#000, 0.8);
-  animation: 0.5s fadeInOverlay forwards;
+  background: rgba(#000, 0);
+  transition: background 0.3s ease;
+  &.is-open {
+    background: rgba(#000, 0.8);
+  }
 }
 
 .modal_wrapper {
@@ -105,15 +115,13 @@
   right: em(-25);
   path {
     fill: $gray;
+    transition: all 0.3s ease;
   }
-}
-
-@keyframes fadeInOverlay {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
+  &:hover,
+  &:focus {
+    path {
+      fill: lighten($gray, 10%);
+    }
   }
 }
 

@@ -1,5 +1,7 @@
 HeaderController = ($scope, $rootScope, ModalService) ->
-  $scope.openModal = ->
+
+  $scope.openModal = (event) ->
+    event.preventDefault()
     ModalService.showModal
       templateUrl: "views/modal/modal.html"
       controller: "ModalController"

@@ -1,7 +1,16 @@
-ModalController = ($scope, $rootScope, close) ->
+ModalController = ($scope, $timeout, $rootScope, close) ->
+
+  open = ->
+    $scope.open = if $scope.open is true then false else true
+  anchor = ->
+    $scope.anchor = if $scope.anchor is true then false else true
+
+  $timeout open, 200
+
   $scope.closeModal = ->
     $rootScope.modalOpen = false
-    close()
+    $timeout open, 0
+    close({}, 1000)
 
 angular
   .module 'app.modal', ['angularModalService']
