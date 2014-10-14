@@ -31,7 +31,7 @@ dropdown = () ->
 focusClass = () ->
   link: (scope, elem) ->
     elem.on 'focus blur', ->
-      elem.toggleClass('is-focus').parent('form').toggleClass('is-focus')
+      elem.toggleClass('is-focus').parent().toggleClass('is-focus')
 
 
 angular.module 'app.directives', []

@@ -1,0 +1,99 @@
+.settings {
+  padding-top: em(50);
+  h1 {
+    margin-bottom: 0;
+  }
+  section {
+    @extend %row;
+    border-bottom: 1px solid $lines;
+    padding-bottom: em(50);
+    margin-bottom: em(50);
+  }
+}
+
+.settings_title {
+  font-size: em(13);
+  color: $gray;
+  text-transform: uppercase;
+  font-family: $font-family-semi;
+  font-weight: $font-weight-semi;
+  letter-spacing: em(0.25);
+  margin-bottom: em(25);
+}
+
+.settings_account {
+  margin-top: em(50);
+}
+
+.settings_account_avatar {
+  margin: 0 auto em(20);
+  width: em(85);
+  .btn {
+    margin-top: em(3);
+  }
+  img {
+    border-radius: em(4);
+  }
+  @include media($mobile-landscape) {
+    display: block;
+    float: left;
+    width: em(85);
+  }
+}
+
+.settings_account_info {
+  @include media($mobile-landscape) {
+    width: calc(100% - #{em(85)});
+    display: block;
+    float: left;
+    padding-left: em(50);
+  }
+}
+
+.settings_account_info_row {
+  position: relative;
+  @extend %row;
+  margin-bottom: em(20);
+  &:last-child {
+    margin-bottom: 0;
+  }
+  label {
+    @extend %visuallyhidden;
+  }
+  svg {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: em(13);
+    @include size(em(16));
+  }
+  circle,
+  path {
+    fill: $link-light;
+    transition: all 0.3s ease;
+  }
+  &.is-focus {
+    circle,
+    path {
+      fill: $primary;
+    }
+  }
+}
+
+.settings_notifications,
+.settings_privacy {
+  .settings_title {
+    margin-bottom: em(35);
+  }
+}
+
+.settings_privacy_tags_item {
+  &.is-first {
+    margin-top: em(25);
+  }
+}
+
+.settings_save {
+  @extend %row;
+  margin-bottom: em(25);
+}

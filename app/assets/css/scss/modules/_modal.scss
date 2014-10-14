@@ -1,0 +1,134 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -400%);
+  transition: all 0.5s ease;
+  background: $lines;
+  width: 100%;
+  max-width: em(575);
+  z-index: 1100;
+  border-radius: em(3);
+  &.is-open {
+    transform: translate(-50%, -50%);
+    &.is-anchor {
+
+    }
+  }
+}
+
+.modal_overlay {
+  position: fixed;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: rgba(#000, 0);
+  transition: background 0.3s ease;
+  &.is-open {
+    background: rgba(#000, 0.8);
+  }
+}
+
+.modal_wrapper {
+  padding: em(25) em(25) em(17);
+  float: left;
+}
+
+.modal_title {
+  font-size: em(17);
+  margin-bottom: em(18);
+  color: $gray;
+}
+
+.modal_message {
+  border: none;
+  padding: em(10);
+  border-radius: em(4);
+  margin-bottom: em(16);
+  @extend %row;
+  &:focus {
+    outline: none;
+  }
+}
+
+.modal_actions {
+  @extend %row;
+}
+
+.modal_add {
+  font-size: em(15);
+  @include span-columns(3 of 4, inline-block);
+  svg {
+    display: inline-block;
+    margin-right: em(10);
+    @include size(em(18) em(13));
+  }
+  path {
+    fill: rgba($gray, 0.5);
+  }
+  a {
+    color: rgba($gray, 0.5);
+    float: left;
+    display: block;
+    padding: em(5) em(10);
+  }
+}
+
+.modal_add_photo,
+.modal_add_video {
+  display: inline-block;
+  &:hover,
+  &:focus {
+    a {
+      color: $gray;
+    }
+    path {
+      fill: $gray;
+    }
+  }
+}
+
+.modal_add_photo {
+  a {
+    padding-left: 0;
+  }
+}
+
+.modal_submit {
+  @include span-columns(1 of 4, inline-block);
+  @include omega();
+  .btn {
+    height: em(34);
+    line-height: em(34);
+    float: right;
+    font-size: em(15);
+  }
+}
+
+.modal_close {
+  @include size(em(21));
+  position: absolute;
+  top: em(-25);
+  right: em(-25);
+  path {
+    fill: $gray;
+    transition: all 0.3s ease;
+  }
+  &:hover,
+  &:focus {
+    path {
+      fill: lighten($gray, 10%);
+    }
+  }
+}
+
+.main {
+  transition: 0.5s filter ease;
+}
+
+.modal-open {
+  filter: blur(#{em(10)});
+}

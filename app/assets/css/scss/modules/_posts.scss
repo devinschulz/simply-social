@@ -22,21 +22,6 @@
   @include media($mobile-landscape) {
     margin-bottom: em(25);
   }
-  @include media($tablet) {
-    @include span-columns(6 of 8, inline-block);
-    @include shift(1);
-  }
-  @include media($desktop) {
-    @include span-columns(8 of 12, inline-block);
-    @include shift(2);
-
-  }
-  @include media($super) {
-    $width: 51.34; // 575px
-    margin-right: 0;
-    margin-left: percentage(((100 - $width) / 2) / 100);
-    width: percentage($width / 100);
-  }
 }
 
 .post_wrapper {
