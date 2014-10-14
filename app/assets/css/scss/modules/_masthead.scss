@@ -1,6 +1,6 @@
 .masthead {
   padding: em(40) 0 0;
-  background: url('../images/masthead.jpg') no-repeat center center;
+  background: #657980 url('../images/masthead.jpg') no-repeat center center;
   @extend %row;
   background-size: cover;
   @include media($mobile-landscape) {

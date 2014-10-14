@@ -24,9 +24,9 @@
     "gulp-combine-media-queries": "latest",
     "gulp-compressor": "latest",
     "gulp-concat": "latest",
+    "gulp-connect": "latest",
     "gulp-csscomb": "latest",
     "gulp-cssshrink": "latest",
-    "gulp-header": "^1.0.5",
     "gulp-if": "latest",
     "gulp-ignore": "latest",
     "gulp-imagemin": "latest",
@@ -49,7 +49,5 @@
     "path": "latest",
     "yargs": "latest"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }

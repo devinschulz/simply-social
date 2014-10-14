@@ -1,10 +1,13 @@
 'use strict';
-angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.home', 'app.home.directives', 'app.settings']).config([
-  '$routeProvider', function($routeProvider) {
+angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.header', 'app.modal', 'app.modal.directives', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
+  '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     return $routeProvider.when('/', {
+      title: 'Posts',
       templateUrl: 'views/home.html',
       controller: 'HomeController'
     }).when('/settings', {
+      title: 'Settings',
       templateUrl: 'views/settings.html',
       controller: 'SettingsController'
     });
@@ -15,6 +18,12 @@ angular.module('app', ['ngRoute', 'ngSanitize', 'grow', 'app.directives', 'app.h
       $httpProvider.defaults.headers.get = {};
     }
     return $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+  }
+]).run([
+  '$location', '$rootScope', function($location, $rootScope) {
+    return $rootScope.$on('$routeChangeSuccess', function(event, current, previous) {
+      return $rootScope.title = current.$$route.title;
+    });
   }
 ]);
 
@@ -142,13 +151,29 @@ focusClass = function() {
   return {
     link: function(scope, elem) {
       return elem.on('focus blur', function() {
-        return elem.toggleClass('is-focus').parent('form').toggleClass('is-focus');
+        return elem.toggleClass('is-focus').parent().toggleClass('is-focus');
       });
     }
   };
 };
 
 angular.module('app.directives', []).directive('toggle', toggle).directive('a', a).directive('dropdown', dropdown).directive('focusClass', focusClass);
+
+var HeaderController;
+
+HeaderController = function($scope, $rootScope, ModalService) {
+  return $scope.openModal = function(event) {
+    event.preventDefault();
+    return ModalService.showModal({
+      templateUrl: "views/modal/modal.html",
+      controller: "ModalController"
+    }).then(function() {
+      return $rootScope.modalOpen = true;
+    });
+  };
+};
+
+angular.module('app.header', ['angularModalService']).controller('HeaderController', HeaderController);
 
 angular.module('app.home', ['userFeed']).controller('HomeController', [
   '$scope', 'feed', function($scope, feed) {
@@ -158,14 +183,16 @@ angular.module('app.home', ['userFeed']).controller('HomeController', [
     });
     $scope.text = "Expand";
     $scope.expanded = false;
-    return $scope.toggleComments = function() {
-      $scope.text = $scope.expanded ? "Expand" : "Collapse";
-      return $scope.expanded = $scope.expanded ? false : true;
+    return $scope.toggleComments = function(repeaterScope) {
+      repeaterScope.text = repeaterScope.expanded ? "Expand" : "Collapse";
+      return repeaterScope.expanded = repeaterScope.expanded ? false : true;
     };
   }
 ]);
 
-angular.module('app.home.directives', []).directive('postedOn', function() {
+var postedOn;
+
+postedOn = function() {
   return {
     restrict: 'AE',
     template: '<time datetime="{{posted}}">{{formattedDate}}</time>',
@@ -177,7 +204,9 @@ angular.module('app.home.directives', []).directive('postedOn', function() {
       return $scope.formattedDate = moment($scope.posted).twitterShort();
     }
   };
-});
+};
+
+angular.module('app.home.directives', []).directive('postedOn', postedOn);
 
 angular.module('userFeed', []).factory('feed', [
   '$http', function($http) {
@@ -192,8 +221,86 @@ angular.module('userFeed', []).factory('feed', [
   }
 ]);
 
-angular.module('app.settings', []).controller('SettingsController', [
-  '$scope', function($scope) {
-    return $scope.title = 'Settings';
+var ModalController;
+
+ModalController = function($scope, $timeout, $rootScope, close) {
+  var anchor, open;
+  open = function() {
+    return $scope.open = $scope.open === true ? false : true;
+  };
+  anchor = function() {
+    return $scope.anchor = $scope.anchor === true ? false : true;
+  };
+  $timeout(open, 200);
+  return $scope.closeModal = function() {
+    $rootScope.modalOpen = false;
+    $timeout(open, 0);
+    return close({}, 1000);
+  };
+};
+
+angular.module('app.modal', ['angularModalService']).controller('ModalController', ModalController);
+
+var focus;
+
+focus = function($timeout) {
+  return {
+    link: function(scope, elem) {
+      return $timeout(function() {
+        return elem[0].focus();
+      });
+    }
+  };
+};
+
+angular.module('app.modal.directives', []).directive('focus', focus);
+
+var SettingsCtrl;
+
+SettingsCtrl = function($scope, settings) {
+  return settings.getSettings().then(function(response) {
+    $scope.user = response.data.settings.user;
+    $scope.notifications = response.data.settings.notifications;
+    return $scope.options = response.data.settings.privacy;
+  });
+};
+
+angular.module('app.settings', ['settings.Service']).controller('SettingsController', SettingsCtrl);
+
+var optionsCheckbox, optionsToggle;
+
+optionsToggle = function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    scope: {
+      label: "=",
+      val: "=",
+      id: "="
+    },
+    template: '<div class="toggle"> <input class="toggle_input" id="{{id}}" name="{{id}}" type="checkbox" ng-checked="{{val}}"/> <label class="toggle_handle" for="{{id}}"></label> <label class="toggle_label" for="{{id}}">{{label}}</label> </div>'
+  };
+};
+
+optionsCheckbox = function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    template: ''
+  };
+};
+
+angular.module('app.settings.directives', []).directive('optionsToggle', optionsToggle).directive('optionsCheckbox', optionsCheckbox);
+
+angular.module('settings.Service', []).factory('settings', [
+  '$http', function($http) {
+    var setting;
+    setting = {};
+    setting.getSettings = function() {
+      return $http.get('data/settings.json').success(function(response) {
+        return response.settings;
+      });
+    };
+    return setting;
   }
 ]);

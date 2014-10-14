@@ -1,33 +1,53 @@
 'use strict'
 
-angular.module 'app', [
-  'ngRoute'
-  'ngSanitize'
-  'grow'
-  'app.directives'
-  'app.home'
-  'app.home.directives'
-  'app.settings'
-]
+angular
+  .module 'app', [
+    'ngRoute'
+    'ngSanitize'
+    'grow'
+    'app.directives'
 
-.config(['$routeProvider', ($routeProvider) ->
-  $routeProvider
+    'app.header'
 
-    .when '/',
-      templateUrl: 'views/home.html'
-      controller: 'HomeController'
+    'app.modal'
+    'app.modal.directives'
 
-    .when '/settings',
-      templateUrl: 'views/settings.html'
-      controller: 'SettingsController'
+    'app.home'
+    'app.home.directives'
 
-])
+    'app.settings'
+    'app.settings.directives'
 
-# Prevent angular from caching ajax requests
-.config(['$httpProvider', ($httpProvider) ->
-  unless $httpProvider.defaults.headers.get
-    $httpProvider.defaults.headers.get = {}
+  ]
 
-  $httpProvider.defaults.headers.get['If-Modified-Since'] = '0'
+  .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
 
-])
+    # Remove hash from URL
+    $locationProvider.html5Mode(true)
+
+    $routeProvider
+      .when '/',
+        title: 'Posts'
+        templateUrl: 'views/home.html'
+        controller: 'HomeController'
+      .when '/settings',
+        title: 'Settings'
+        templateUrl: 'views/settings.html'
+        controller: 'SettingsController'
+
+  ])
+
+  # Prevent angular from caching ajax requests
+  .config(['$httpProvider', ($httpProvider) ->
+    unless $httpProvider.defaults.headers.get
+      $httpProvider.defaults.headers.get = {}
+
+    $httpProvider.defaults.headers.get['If-Modified-Since'] = '0'
+
+  ])
+
+  # Set the page title
+  .run(['$location', '$rootScope', ($location, $rootScope) ->
+    $rootScope.$on '$routeChangeSuccess', (event, current, previous) ->
+      $rootScope.title = current.$$route.title
+  ])

@@ -4,7 +4,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: $primary;
+  color: $text-dark;
   font-family: $heading-font-family;
   font-weight: $headings-font-weight;
   line-height: $heading-line-height;
@@ -42,7 +42,8 @@ a {
     color: $hover-link-color;
   }
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     color: $hover-link-color;
     outline: none;
   }
