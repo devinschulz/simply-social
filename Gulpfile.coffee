@@ -95,9 +95,11 @@ gulp.task 'gulplint', ->
 files = [
   config.vendors_path + '/angular/angular.js'
   config.vendors_path + '/angular-route/angular-route.js'
+  config.vendors_path + '/angular-animate/angular-animate.js'
   config.vendors_path + '/angular-sanitize/angular-sanitize.js'
   config.vendors_path + '/angular-placeholder-tai/lib/tai-placeholder.js'
   config.vendors_path + '/angular-modal-service/dst/angular-modal-service.js'
+  config.vendors_path + '/angular-elastic/elastic.js'
   config.vendors_path + '/moment/moment.js'
   config.vendors_path + '/moment.twitter/moment-twitter.js'
 ]

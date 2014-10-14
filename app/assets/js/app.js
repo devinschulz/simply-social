@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app', ['ngRoute', 'ngSanitize', 'taiPlaceholder', 'app.directives', 'app.header', 'app.header.directives', 'app.modal', 'app.modal.directives', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
+angular.module('app', ['ngRoute', 'ngSanitize', 'monospaced.elastic', 'taiPlaceholder', 'app.directives', 'app.header', 'app.header.directives', 'app.modal', 'app.modal.directives', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
   '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     return $routeProvider.when('/', {
