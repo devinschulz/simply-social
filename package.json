@@ -32,13 +32,16 @@
     "gulp-imagemin": "latest",
     "gulp-livereload": "latest",
     "gulp-load-plugins": "latest",
+    "gulp-minify-html": "^0.1.6",
     "gulp-notify": "latest",
     "gulp-pleeease": "latest",
     "gulp-plumber": "latest",
+    "gulp-rev": "^1.1.0",
     "gulp-rimraf": "latest",
     "gulp-ruby-sass": "latest",
     "gulp-scss-lint": "latest",
     "gulp-uglify": "latest",
+    "gulp-usemin": "^0.3.8",
     "gulp-util": "latest",
     "gulp-watch": "latest",
     "gulp.spritesmith": "latest",
@@ -49,5 +52,7 @@
     "path": "latest",
     "yargs": "latest"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp-jsonminify": "0.0.2"
+  }
 }

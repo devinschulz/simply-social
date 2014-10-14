@@ -96,6 +96,7 @@ files = [
   config.vendors_path + '/angular/angular.js'
   config.vendors_path + '/angular-route/angular-route.js'
   config.vendors_path + '/angular-sanitize/angular-sanitize.js'
+  config.vendors_path + '/angular-placeholder-tai/lib/tai-placeholder.js'
   config.vendors_path + '/angular-modal-service/dst/angular-modal-service.js'
   config.vendors_path + '/moment/moment.js'
   config.vendors_path + '/moment.twitter/moment-twitter.js'
@@ -133,6 +134,31 @@ gulp.task 'server', ->
     port: 8000
     livereload: true
 
+# Production Tasks
+gulp.task 'clean', ->
+  gulp.src config.public_path, { read: false }
+    .pipe $.rimraf()
+
+gulp.task 'moveImages', ->
+  gulp.src config.images_path + '/*/**'
+    .pipe gulp.dest config.public_path + '/assets/images/'
+
+gulp.task 'moveData', ->
+  gulp.src config.root + '/data/*'
+    .pipe $.jsonminify()
+    .pipe gulp.dest config.public_path + '/data'
+
+gulp.task 'moveViews'
+
+gulp.task 'compile', ['clean', 'moveImages', 'moveData'], ->
+  gulp.src config.root + '/*.html'
+    .pipe $.usemin
+      js: [$.uglify(), $.rev()]
+      css: [$.rev()]
+      html: [$.minifyHtml({empty: true})]
+    .pipe gulp.dest config.public_path
+
+# Default build tasks
 gulp.task 'default', ['gulplint', 'server', 'build'], ->
   $.livereload.listen()
   gulp.watch config.sass_path + '**/*.scss', ['styles']
