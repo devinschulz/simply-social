@@ -1,21 +1,18 @@
-angular.module 'app.home', ['userFeed']
+HomeController = ($scope, feed) ->
+  feed.getFeed().then((response) ->
+    $scope.posts = response.data.feed
+    console.log $scope.posts
+  )
 
-.controller 'HomeController', [
-  '$scope'
-  'feed'
-  ($scope, feed) ->
-    feed.getFeed().then((response) ->
-      $scope.posts = response.data.feed
-      console.log $scope.posts
-    )
+  # Set Defaults
+  $scope.text = "Expand"
+  $scope.expanded = false
 
-    # Set Defaults
-    $scope.text = "Expand"
-    $scope.expanded = false
+  $scope.toggleComments = (repeaterScope) ->
+    repeaterScope.text = if repeaterScope.expanded then "Expand" else "Collapse"
+    repeaterScope.expanded = if repeaterScope.expanded then false else true
 
-    $scope.toggleComments = (repeaterScope) ->
-      repeaterScope.text = if repeaterScope.expanded then "Expand" else "Collapse"
-      repeaterScope.expanded = if repeaterScope.expanded then false else true
-
-]
+angular
+  .module 'app.home', ['userFeed']
+  .controller 'HomeController', HomeController
 

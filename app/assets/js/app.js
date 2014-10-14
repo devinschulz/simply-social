@@ -175,20 +175,22 @@ HeaderController = function($scope, $rootScope, ModalService) {
 
 angular.module('app.header', ['angularModalService']).controller('HeaderController', HeaderController);
 
-angular.module('app.home', ['userFeed']).controller('HomeController', [
-  '$scope', 'feed', function($scope, feed) {
-    feed.getFeed().then(function(response) {
-      $scope.posts = response.data.feed;
-      return console.log($scope.posts);
-    });
-    $scope.text = "Expand";
-    $scope.expanded = false;
-    return $scope.toggleComments = function(repeaterScope) {
-      repeaterScope.text = repeaterScope.expanded ? "Expand" : "Collapse";
-      return repeaterScope.expanded = repeaterScope.expanded ? false : true;
-    };
-  }
-]);
+var HomeController;
+
+HomeController = function($scope, feed) {
+  feed.getFeed().then(function(response) {
+    $scope.posts = response.data.feed;
+    return console.log($scope.posts);
+  });
+  $scope.text = "Expand";
+  $scope.expanded = false;
+  return $scope.toggleComments = function(repeaterScope) {
+    repeaterScope.text = repeaterScope.expanded ? "Expand" : "Collapse";
+    return repeaterScope.expanded = repeaterScope.expanded ? false : true;
+  };
+};
+
+angular.module('app.home', ['userFeed']).controller('HomeController', HomeController);
 
 var postedOn;
 
