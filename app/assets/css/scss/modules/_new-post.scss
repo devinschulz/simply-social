@@ -34,6 +34,9 @@
   @include media($desktop) {
     font-size: em(32);
   }
+  &.placeholder {
+    color: rgba($white, 0.5);
+  }
 }
 
 .new-post_input {

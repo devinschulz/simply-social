@@ -65,7 +65,7 @@
       "name": "Vitor Leal",
       "message": "You have to see this bike. It will make your daily commute a absolute joy ride! <a href=\"vimeo.com/p/mV0PUrHRwQ/\">vimeo.com/p/mV0PUrHRwQ/</a>",
       "posted": "2014-10-10 17:56:41",
-      "thumbnail": "",
+      "thumbnail": "assets/images/thumbnails/vitor-video-thumbnail.jpg",
       "video": true,
       "photo": "",
       "avatar": "assets/images/avatars/vitor-avatar.jpg",
@@ -146,7 +146,7 @@
       "message": "<a href=\"#\">#freelancers</a> will enjoy <a href=\"#\">@WDTrends</a> for graphic and web design tips and inspiration.",
       "posted": "2014-10-10 17:56:41",
       "thumbnail": "",
-      "video": true,
+      "video": false,
       "photo": "",
       "avatar": "assets/images/avatars/ed-avatar.jpg",
       "comments": [

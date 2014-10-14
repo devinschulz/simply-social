@@ -1,4 +1,4 @@
-HeaderController = ($scope, $rootScope, ModalService) ->
+HeaderController = ['$scope', '$rootScope', 'ModalService', ($scope, $rootScope, ModalService) ->
 
   $scope.openModal = (event) ->
     event.preventDefault()
@@ -8,6 +8,7 @@ HeaderController = ($scope, $rootScope, ModalService) ->
     .then( ->
       $rootScope.modalOpen = true
     )
+]
 
 angular
   .module 'app.header', ['angularModalService']

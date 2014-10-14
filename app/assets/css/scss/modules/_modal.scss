@@ -4,16 +4,15 @@
   left: 50%;
   transform: translate(-50%, -400%);
   transition: all 0.5s ease;
-  background: $lines;
   width: 100%;
   max-width: em(575);
   z-index: 1100;
-  border-radius: em(3);
+  padding: em(10);
   &.is-open {
     transform: translate(-50%, -50%);
-    &.is-anchor {
-
-    }
+  }
+  @include media($tablet) {
+    padding: 0;
   }
 }
 
@@ -33,8 +32,13 @@
 }
 
 .modal_wrapper {
-  padding: em(25) em(25) em(17);
+  padding: em(15);
   float: left;
+  border-radius: em(3);
+  background: $lines;
+  @include media($mobile-landscape) {
+    padding: em(25) em(25) em(17);
+  }
 }
 
 .modal_title {
@@ -45,12 +49,20 @@
 
 .modal_message {
   border: none;
+  display: block;
+  line-height: 1em;
   padding: em(10);
   border-radius: em(4);
   margin-bottom: em(16);
+  min-height: em(90);
   @extend %row;
   &:focus {
     outline: none;
+  }
+  @include media($tablet) {
+    min-height: em(60);
+    font-size: em(24);
+    line-height: 1;
   }
 }
 
@@ -60,11 +72,14 @@
 
 .modal_add {
   font-size: em(15);
-  @include span-columns(3 of 4, inline-block);
+  width: 100%;
+  @include media($mobile-landscape) {
+    @include span-columns(3 of 4, inline-block);
+  }
   svg {
     display: inline-block;
     margin-right: em(10);
-    @include size(em(18) em(13));
+    @include size(em(19) em(13));
   }
   path {
     fill: rgba($gray, 0.5);
@@ -98,21 +113,28 @@
 }
 
 .modal_submit {
-  @include span-columns(1 of 4, inline-block);
-  @include omega();
+  @include fill-parent;
+  margin-top: em(10);
+  @include media($mobile-landscape) {
+    margin-top: em(0);
+    @include span-columns(1 of 4, inline-block);
+    @include omega();
+  }
   .btn {
+    @include fill-parent;
     height: em(34);
     line-height: em(34);
     float: right;
     font-size: em(15);
+    @include media($mobile-landscape) {
+      width: auto;
+    }
   }
 }
 
 .modal_close {
   @include size(em(21));
-  position: absolute;
-  top: em(-25);
-  right: em(-25);
+  @include position(absolute, em(-25) em(10) null null);
   path {
     fill: $gray;
     transition: all 0.3s ease;
@@ -122,6 +144,10 @@
     path {
       fill: lighten($gray, 10%);
     }
+  }
+  @include media($tablet) {
+    top: em(-25);
+    right: em(-25);
   }
 }
 

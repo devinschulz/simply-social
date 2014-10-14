@@ -26,3 +26,4 @@ Temporary Items
 .idea
 app/assets/vendors
 app/styles.css
+app/assets/js/plugins.js

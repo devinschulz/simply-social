@@ -4,20 +4,22 @@ angular
   .module 'app', [
     'ngRoute'
     'ngSanitize'
-    'grow'
+    'monospaced.elastic'
+    'taiPlaceholder'
     'app.directives'
 
     'app.header'
+    'app.header.directives'
 
     'app.modal'
     'app.modal.directives'
 
     'app.home'
+    'app.home.filters'
     'app.home.directives'
 
     'app.settings'
     'app.settings.directives'
-
   ]
 
   .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
@@ -34,7 +36,6 @@ angular
         title: 'Settings'
         templateUrl: 'views/settings.html'
         controller: 'SettingsController'
-
   ])
 
   # Prevent angular from caching ajax requests

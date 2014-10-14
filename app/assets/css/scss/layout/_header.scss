@@ -1,6 +1,5 @@
 .header {
-  position: fixed;
-  top: 0;
+  @include position(fixed, 0 null null null);
   @extend %row;
   height: em(60);
   background: #262728;
@@ -30,6 +29,7 @@
 
 .header_components {
   text-align: right;
+  white-space: nowrap;
   @include span-columns(2 of 4, inline-block);
   @include omega();
 }
@@ -107,33 +107,5 @@
     margin-left: em(20);
     cursor: pointer;
   }
-
-}
-
-@include media($desktop) {
-
-//  .header_logo {
-//    @include span-columns(2 of 12, inline-block);
-//  }
-//
-//  .header_components {
-//    @include span-columns(10 of 12, inline-block);
-//    @include omega();
-//  }
-//
-//  .header_components_new {
-//    @include shift(6);
-//    @include span-columns(1 of 10, inline-block);
-//  }
-//
-//  .header_components_search {
-//    @include span-columns(3 of 10, inline-block);
-//    max-width: em(200);
-//  }
-//
-//  .header_components_profile {
-//    @include span-columns(1 of 10, inline-block);
-//    @include omega();
-//  }
 
 }

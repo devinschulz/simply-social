@@ -1,6 +1,7 @@
 .post-filter {
   @extend %row;
   margin-top: em(20);
+  position: relative;
   @include media($mobile-landscape) {
     margin-top: em(50);
     @include span-columns(10 of 12, inline-block);
@@ -20,6 +21,12 @@
     margin-left: percentage(((100 - $width) / 2) / 100);
     width: percentage($width / 100);
   }
+}
+
+.bar {
+  position: absolute;
+  background: $primary;
+  height: 4px;
 }
 
 .post-filter_list {

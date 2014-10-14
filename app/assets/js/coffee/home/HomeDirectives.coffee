@@ -6,6 +6,6 @@ postedOn = ->
     posted: "="
   link: ($scope) -> $scope.formattedDate = moment($scope.posted).twitterShort()
 
-angular.module 'app.home.directives', []
-
-.directive 'postedOn', postedOn
+angular
+  .module 'app.home.directives', []
+  .directive 'postedOn', postedOn
