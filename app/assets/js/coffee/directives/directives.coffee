@@ -12,9 +12,7 @@ focusClass = ->
     elem.on 'focus blur', ->
       elem.toggleClass('is-focus').parent().toggleClass('is-focus')
 
-
 angular
   .module 'app.directives', []
   .directive 'a', a
   .directive 'focusClass', focusClass
-

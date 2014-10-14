@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app', ['ngRoute', 'ngSanitize', 'monospaced.elastic', 'taiPlaceholder', 'app.directives', 'app.header', 'app.header.directives', 'app.modal', 'app.modal.directives', 'app.home', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
+angular.module('app', ['ngRoute', 'ngSanitize', 'monospaced.elastic', 'taiPlaceholder', 'app.directives', 'app.header', 'app.header.directives', 'app.modal', 'app.modal.directives', 'app.home', 'app.home.filters', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
   '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     return $routeProvider.when('/', {
@@ -184,22 +184,45 @@ angular.module('app.header.directives', []).directive('toggle', toggle).directiv
 var HomeController;
 
 HomeController = [
-  '$scope', 'feed', function($scope, feed) {
+  '$scope', 'feed', '$sce', function($scope, feed, $sce) {
+    var i, _i, _len, _ref;
     feed.getFeed().then(function(response) {
       return $scope.posts = response.data.feed;
     });
     $scope.text = "Expand";
     $scope.expanded = false;
-    return $scope.toggleComments = function(repeaterScope) {
+    $scope.toggleComments = function(repeaterScope) {
       repeaterScope.text = repeaterScope.expanded ? "Expand" : "Collapse";
       return repeaterScope.expanded = repeaterScope.expanded ? false : true;
     };
+    $scope.filters = feed.sortLabels();
+    $scope.setSelected = function(elem) {
+      $scope.selected = elem;
+      return $scope.show = elem.type;
+    };
+    $scope.isSelected = function(elem) {
+      return $scope.selected === elem;
+    };
+    $scope.setSelected($scope.filters[0]);
+    $scope.views = feed.sortType();
+    _ref = $scope.views;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      i = _ref[_i];
+      i.icon = $sce.trustAsHtml(i.icon);
+    }
+    $scope.setSelectedLayout = function(elem) {
+      return $scope.selectedLayout = elem;
+    };
+    $scope.isSelectedLayout = function(elem) {
+      return $scope.selectedLayout === elem;
+    };
+    return $scope.setSelectedLayout($scope.views[0]);
   }
 ];
 
 angular.module('app.home', ['userFeed']).controller('HomeController', HomeController);
 
-var postedOn;
+var bar, postedOn;
 
 postedOn = function() {
   return {
@@ -215,20 +238,122 @@ postedOn = function() {
   };
 };
 
-angular.module('app.home.directives', []).directive('postedOn', postedOn);
+bar = [
+  '$timeout', function($timeout) {
+    return {
+      restrict: 'A',
+      link: function(scope, elem, attrs) {
+        var setLocation, underline;
+        underline = document.createElement('div');
+        underline.className = 'bar';
+        elem.append(underline);
+        setLocation = function(elem) {
+          var left, width;
+          console.log(elem);
+          left = elem[0].offsetLeft;
+          width = elem[0].offsetWidth;
+          underline.style.left = "" + left + "px";
+          return underline.style.width = "" + width + "px";
+        };
+        elem.children('li').bind('click', function(e) {
+          console.log(e);
+          if (angular.element(e.currentTarget).hasClass('is-active')) {
+            return;
+          }
+          return setLocation(angular.element(e.currentTarget));
+        });
+        return setLocation(elem.children("li.is-active"));
+      }
+    };
+  }
+];
 
-angular.module('userFeed', []).factory('feed', [
+angular.module('app.home.directives', []).directive('postedOn', postedOn).directive('bar', bar);
+
+
+/*
+Sort Post by Category
+@return object
+ */
+var PostSortFilter;
+
+PostSortFilter = function() {
+  return function(items, category) {
+    var categoryArray, x, y, _i, _j, _len, _len1;
+    if (!angular.isUndefined(items) && !angular.isUndefined(category) && category.length) {
+      categoryArray = [];
+      if (category === "all") {
+        return items;
+      } else if (category === "photos") {
+        for (_i = 0, _len = items.length; _i < _len; _i++) {
+          y = items[_i];
+          if (y.thumbnail && y.video === false) {
+            categoryArray.push(y);
+          }
+        }
+        return categoryArray;
+      } else if (category === "videos") {
+        for (_j = 0, _len1 = items.length; _j < _len1; _j++) {
+          x = items[_j];
+          if (x.video) {
+            categoryArray.push(x);
+          }
+        }
+        return categoryArray;
+      } else {
+        return items;
+      }
+    } else {
+      return items;
+    }
+  };
+};
+
+angular.module('app.home.filters', []).filter('PostSortFilter', PostSortFilter);
+
+var feed;
+
+feed = [
   '$http', function($http) {
-    var factory;
-    factory = {};
-    factory.getFeed = function() {
+    feed = {};
+    feed.getFeed = function() {
       return $http.get('data/feed.json').success(function(response) {
         return response.feed;
       });
     };
-    return factory;
+    feed.sortLabels = function() {
+      return [
+        {
+          "label": "All Posts",
+          "title": "View all posts",
+          "type": "all"
+        }, {
+          "label": "Photos",
+          "title": "View posts containing only photos",
+          "type": "photos"
+        }, {
+          "label": "Videos",
+          "title": "View posts containing only videos",
+          "type": "videos"
+        }
+      ];
+    };
+    feed.sortType = function() {
+      return [
+        {
+          "title": "Show posts as a list",
+          "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 9 9\" enable-background=\"new 0 0 9 9\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0 9h9v-1h-9v1zm0-9v1h9v-1h-9zm0 5h9v-1h-9v1z\"/></svg>"
+        }, {
+          "title": "Show posts as a grid",
+          "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 9 9\" enable-background=\"new 0 0 9 9\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M0 9h3v-3h-3v3zm6 0h3v-3h-3v3zm-6-6h3v-3h-3v3zm6-3v3h3v-3h-3z\"/></svg>"
+        }
+      ];
+    };
+    return feed;
   }
-]);
+];
+
+angular.module('userFeed', []).factory('feed', feed);
 
 var ModalController;
 

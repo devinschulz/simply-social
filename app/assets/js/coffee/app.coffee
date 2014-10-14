@@ -15,11 +15,11 @@ angular
     'app.modal.directives'
 
     'app.home'
+    'app.home.filters'
     'app.home.directives'
 
     'app.settings'
     'app.settings.directives'
-
   ]
 
   .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->

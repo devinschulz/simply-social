@@ -1,6 +1,10 @@
+###
+Sort Post by Category
+@return object
+###
 PostSortFilter = ->
   (items, category) ->
-    if !angular.isUndefined(items) && !angular.isUndefined(category) && category.length
+    if !angular.isUndefined(items) and !angular.isUndefined(category) and category.length
       categoryArray = []
       if category is "all"
         return items
