@@ -64,9 +64,7 @@ gulp.task('styles', ->
       log: true
     .pipe $.if config.environment is PRODUCTION, $.csscomb()
     .pipe $.if config.environment is PRODUCTION, $.compressor
-      'compress-css': true,
-      'remove-intertag-spaces': true
-    .pipe $.if config.environment is PRODUCTION, $.cssshrink()
+      'compress-css': true
     .pipe gulp.dest config.css_path
     .pipe connect.reload()
 )
