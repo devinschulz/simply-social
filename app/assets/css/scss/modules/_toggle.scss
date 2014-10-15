@@ -8,14 +8,14 @@
 
 .toggle_label {
   display: inline-block;
-  font-size: em(17);
   padding-left: em(70);
+  font-size: em(17);
 }
 
 .toggle_input {
   position: absolute;
-  margin-left: em(-9999);
   visibility: hidden;
+  margin-left: em(-9999);
   &:checked {
     + .toggle_handle {
       background: $valid;
@@ -30,40 +30,40 @@
 }
 
 .toggle_handle {
-  float: left;
-  display: inline-block;
   position: absolute;
-  cursor: pointer;
-  outline: none;
-  user-select: none;
-
+  display: inline-block;
+  float: left;
   padding: 2px;
   width: em(50);
   height: em(25);
-  background: $lines;
+
+  outline: none;
   border-radius: 60px;
+  background: $lines;
+  cursor: pointer;
+  user-select: none;
 
   &:before,
   &:after {
-    display: block;
     position: absolute;
     top: 1px;
-    left: 1px;
     bottom: 1px;
+    left: 1px;
+    display: block;
     content: "";
   }
 
   &:before {
     right: 1px;
-    background-color: $lines;
     border-radius: em(60);
+    background-color: $lines;
     transition: background 0.4s;
   }
 
   &:after {
     width: em(23);
-    background-color: #fff;
     border-radius: 100%;
+    background-color: #fff;
     transition: margin 0.4s;
   }
 }

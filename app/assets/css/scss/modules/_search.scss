@@ -21,10 +21,10 @@
 .search_submit {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   right: em(14);
   border: none;
   background: none;
+  transform: translateY(-50%);
   &:focus,
   &:hover {
     svg {
@@ -32,8 +32,8 @@
     }
   }
   path {
-    fill: #44474b;
     transition: fill 0.3s ease;
+    fill: #44474b;
   }
   svg {
     @include size(em(16));

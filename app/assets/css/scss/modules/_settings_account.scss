@@ -5,20 +5,20 @@
   }
   section {
     @extend %row;
-    border-bottom: 1px solid $lines;
-    padding-bottom: em(50);
     margin-bottom: em(50);
+    padding-bottom: em(50);
+    border-bottom: 1px solid $lines;
   }
 }
 
 .settings_title {
-  font-size: em(13);
+  margin-bottom: em(25);
   color: $gray;
   text-transform: uppercase;
-  font-family: $font-family-semi;
-  font-weight: $font-weight-semi;
   letter-spacing: em(0.25);
-  margin-bottom: em(25);
+  font-weight: $font-weight-semi;
+  font-size: em(13);
+  font-family: $font-family-semi;
 }
 
 .settings_account {
@@ -43,10 +43,10 @@
 
 .settings_account_info {
   @include media($mobile-landscape) {
-    width: calc(100% - #{em(85)});
     display: block;
     float: left;
     padding-left: em(50);
+    width: calc(100% - #{em(85)});
   }
 }
 
@@ -66,14 +66,14 @@
   svg {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     left: em(13);
+    transform: translateY(-50%);
     @include size(em(16));
   }
   circle,
   path {
-    fill: $link-light;
     transition: all 0.3s ease;
+    fill: $link-light;
   }
   &.is-focus {
     circle,
@@ -86,11 +86,11 @@
 .settings_account_info_save {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
   right: em(18);
-  font-size: em(13);
   color: $primary;
+  font-size: em(13);
   cursor: pointer;
+  transform: translateY(-50%);
 }
 
 .settings_notifications,

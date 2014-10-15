@@ -1,32 +1,32 @@
 .btn {
   position: relative;
-  text-align: center;
   display: inline-block;
-  vertical-align: middle;
-  border: none;
-  appearance: none;
-  transition: all 0.3s ease;
-  height: em(40);
-  line-height: em(40);
-  border-radius: em(4);
   padding: 0 em(25);
+  height: em(40);
+  border: none;
+  border-radius: em(4);
+  vertical-align: middle;
+  text-align: center;
+  line-height: em(40);
+  transition: all 0.3s ease;
+  appearance: none;
 }
 
 .btn-small {
   height: em(28);
-  line-height: em(28);
   font-size: em(13);
+  line-height: em(28);
 }
 
 .btn-primary {
-  color: $white;
   background: $valid;
-  font-family: $font-family-bold;
+  color: $white;
   font-weight: $font-weight-bold;
+  font-family: $font-family-bold;
   &:hover,
   &:focus {
-    color: $white;
     background: darken($valid, 5%);
+    color: $white;
   }
   &:active {
     background: darken($valid, 10%);
@@ -34,12 +34,12 @@
 }
 
 .btn-secondary {
-  color: $link-light;
   border: 1px solid $link-light;
+  color: $link-light;
   &:hover,
   &:focus {
-    color: $primary;
     border: 1px solid $primary;
+    color: $primary;
   }
 }
 

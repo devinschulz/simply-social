@@ -36,8 +36,8 @@
 @include media($desktop) {
 
   .container {
-    width: $desktop-width;
     padding: 0;
+    width: $desktop-width;
   }
 
 }

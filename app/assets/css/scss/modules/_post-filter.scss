@@ -1,7 +1,7 @@
 .post-filter {
   @extend %row;
-  margin-top: em(20);
   position: relative;
+  margin-top: em(20);
   margin-bottom: 0 !important;
   @include media($mobile-landscape) {
     margin-top: em(50);
@@ -53,25 +53,25 @@
   @include media($mobile-landscape) {
     margin-right: em(30);
     a {
-      font-size: em(13);
       padding: em(10) em(8) em(20);
+      font-size: em(13);
     }
   }
 }
 
 .post-filter_views {
-  list-style: none;
   float: right;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .post-filter_views-item {
   display: inline-block;
   margin-left: em(8);
   a {
-    padding: em(4);
     display: block;
+    padding: em(4);
   }
   svg {
     @include size(em(9));

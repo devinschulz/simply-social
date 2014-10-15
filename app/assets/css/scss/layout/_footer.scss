@@ -1,23 +1,23 @@
 .footer {
   @extend %row;
-  border-top: 1px solid $lines;
   padding: em(20) 0;
+  border-top: 1px solid $lines;
   @include media($tablet) {
     padding: em(30) 0;
   }
 }
 
 .footer_nav_list {
-  padding: 0;
   margin: 0;
+  padding: 0;
   list-style: none;
   text-align: center;
 }
 
 .footer_nav_list_item {
   display: inline-block;
-  text-transform: uppercase;
   color: $gray;
+  text-transform: uppercase;
   font: $font-weight-semi em(12) $font-family-semi;
   a {
     padding: em(5);

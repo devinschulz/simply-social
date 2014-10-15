@@ -11,7 +11,6 @@
 @import 'base/typography';
 @import 'base/forms';
 
-@import 'modules/navigation';
 @import 'modules/buttons';
 @import 'modules/search';
 @import 'modules/dropdown';
@@ -24,9 +23,5 @@
 @import 'modules/modal';
 
 @import 'layout/header';
-@import 'layout/sidebar';
 @import 'layout/footer';
-@import 'layout/forms';
 @import 'layout/content';
-
-@import 'pages/home';

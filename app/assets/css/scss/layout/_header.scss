@@ -1,13 +1,13 @@
 .header {
   @include position(fixed, 0 null null null);
   @extend %row;
+  z-index: 1000;
   height: em(60);
   background: #262728;
-  z-index: 1000;
   @include media($desktop) {
     .container {
-      max-width: em(1400);
       padding: 0 em(20);
+      max-width: em(1400);
       @include fill-parent;
     }
   }
@@ -49,9 +49,9 @@
   position: relative;
   &.is-active {
     .dropdown {
+      visibility: visible;
       opacity: 1;
       transform: translateY(0);
-      visibility: visible;
     }
   }
 }
@@ -68,8 +68,8 @@
 .header_components_new {
   margin-left: 0;
   path {
-    fill: $primary;
     transition: fill 0.3s ease;
+    fill: $primary;
   }
   svg {
     @include size(em(31) em(26));
