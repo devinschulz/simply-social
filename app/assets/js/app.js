@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app', ['ngRoute', 'ngSanitize', 'monospaced.elastic', 'taiPlaceholder', 'app.directives', 'app.header', 'app.header.directives', 'app.modal', 'app.modal.directives', 'app.home', 'app.home.filters', 'app.home.directives', 'app.settings', 'app.settings.directives']).config([
+angular.module('app', ['ngRoute', 'ngSanitize', 'monospaced.elastic', 'taiPlaceholder', 'app.directives', 'app.header', 'app.header.directives', 'app.modal', 'app.modal.directives', 'app.home', 'app.home.filters', 'app.home.directives', 'app.settings']).config([
   '$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
     return $routeProvider.when('/', {
@@ -222,7 +222,7 @@ HomeController = [
 
 angular.module('app.home', ['userFeed']).controller('HomeController', HomeController);
 
-var bar, postedOn;
+var postedOn;
 
 postedOn = function() {
   return {
@@ -238,37 +238,7 @@ postedOn = function() {
   };
 };
 
-bar = [
-  '$timeout', function($timeout) {
-    return {
-      restrict: 'A',
-      link: function(scope, elem, attrs) {
-        var setLocation, underline;
-        underline = document.createElement('div');
-        underline.className = 'bar';
-        elem.append(underline);
-        setLocation = function(elem) {
-          var left, width;
-          console.log(elem);
-          left = elem[0].offsetLeft;
-          width = elem[0].offsetWidth;
-          underline.style.left = "" + left + "px";
-          return underline.style.width = "" + width + "px";
-        };
-        elem.children('li').bind('click', function(e) {
-          console.log(e);
-          if (angular.element(e.currentTarget).hasClass('is-active')) {
-            return;
-          }
-          return setLocation(angular.element(e.currentTarget));
-        });
-        return setLocation(elem.children("li.is-active"));
-      }
-    };
-  }
-];
-
-angular.module('app.home.directives', []).directive('postedOn', postedOn).directive('bar', bar);
+angular.module('app.home.directives', []).directive('postedOn', postedOn);
 
 
 /*
@@ -394,40 +364,18 @@ var SettingsCtrl;
 
 SettingsCtrl = [
   '$scope', 'settings', function($scope, settings) {
-    return settings.getSettings().then(function(response) {
+    settings.getSettings().then(function(response) {
       $scope.user = response.data.settings.user;
       $scope.notifications = response.data.settings.notifications;
       return $scope.options = response.data.settings.privacy;
     });
+    return $scope.saveUserDetails = function() {
+      return $scope.settings.$setPristine();
+    };
   }
 ];
 
 angular.module('app.settings', ['settings.Service']).controller('SettingsController', SettingsCtrl);
-
-var optionsCheckbox, optionsToggle;
-
-optionsToggle = function() {
-  return {
-    restrict: 'E',
-    replace: true,
-    scope: {
-      label: "=",
-      val: "=",
-      id: "="
-    },
-    template: '<div class="toggle"> <input class="toggle_input" id="{{id}}" name="{{id}}" type="checkbox" ng-checked="{{val}}"/> <label class="toggle_handle" for="{{id}}"></label> <label class="toggle_label" for="{{id}}">{{label}}</label> </div>'
-  };
-};
-
-optionsCheckbox = function() {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: ''
-  };
-};
-
-angular.module('app.settings.directives', []).directive('optionsToggle', optionsToggle).directive('optionsCheckbox', optionsCheckbox);
 
 var settings;
 

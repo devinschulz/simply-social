@@ -54,6 +54,9 @@
   position: relative;
   @extend %row;
   margin-bottom: em(20);
+  input {
+    padding-right: em(50);
+  }
   &:last-child {
     margin-bottom: 0;
   }
@@ -78,6 +81,16 @@
       fill: $primary;
     }
   }
+}
+
+.settings_account_info_save {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: em(18);
+  font-size: em(13);
+  color: $primary;
+  cursor: pointer;
 }
 
 .settings_notifications,
