@@ -27,3 +27,4 @@ Temporary Items
 app/assets/vendors
 app/styles.css
 app/assets/js/plugins.js
+Gemfile.lock
