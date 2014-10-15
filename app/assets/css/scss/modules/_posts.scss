@@ -118,6 +118,8 @@
   }
   time {
     font-size: em(14);
+    position: relative;
+    top: em(-1);
     @include media($mobile-landscape) {
       font-size: em(16);
     }

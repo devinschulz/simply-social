@@ -16,12 +16,19 @@ input[type="password"] {
   border-radius: em(4);
   background: $white;
   transition: all 0.3s ease;
+  box-shadow: none;
+  -webkit-appearance: none; // iOS
   @include placeholder() {
     color: $link-light;
   }
   &:focus {
     outline: none;
   }
+}
+
+input[type="search"] {
+  -webkit-appearance: none;
+  border-radius: em(4);
 }
 
 input[type="password"] {

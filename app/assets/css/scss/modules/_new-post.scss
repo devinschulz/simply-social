@@ -4,6 +4,7 @@
   padding: em(15);
   @include fill-parent;
   background: rgba($primary, 0.7);
+  margin-bottom: 0 !important;
   @include media($mobile-landscape) {
     padding: em(25);
   }
@@ -62,7 +63,7 @@
     color: rgba($white, 0.5);
   }
   svg {
-    @include size(em(18) em(13));
+    @include size(em(19) em(13));
     margin-right: em(5);
   }
   path {

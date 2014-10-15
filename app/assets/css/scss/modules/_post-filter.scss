@@ -2,31 +2,16 @@
   @extend %row;
   margin-top: em(20);
   position: relative;
+  margin-bottom: 0 !important;
   @include media($mobile-landscape) {
     margin-top: em(50);
-    @include span-columns(10 of 12, inline-block);
-    @include shift(1);
   }
   @include media($tablet) {
     margin-top: em(110);
   }
   @include media($desktop) {
     margin-top: em(110);
-    @include span-columns(8 of 12, inline-block);
-    @include shift(2);
   }
-  @include media($super) {
-    $width: 51.34; // 575px
-    margin-right: 0;
-    margin-left: percentage(((100 - $width) / 2) / 100);
-    width: percentage($width / 100);
-  }
-}
-
-.bar {
-  position: absolute;
-  background: $primary;
-  height: 4px;
 }
 
 .post-filter_list {
@@ -48,7 +33,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: $font-weight-bold;
-    font-size: em(13);
+    font-size: em(10);
     font-family: $font-family-bold;
     &:hover,
     &:focus {
@@ -68,6 +53,7 @@
   @include media($mobile-landscape) {
     margin-right: em(30);
     a {
+      font-size: em(13);
       padding: em(10) em(8) em(20);
     }
   }

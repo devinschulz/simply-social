@@ -20,7 +20,8 @@
 
 .search_submit {
   position: absolute;
-  top: em(14);
+  top: 50%;
+  transform: translateY(-50%);
   right: em(14);
   border: none;
   background: none;

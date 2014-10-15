@@ -69,9 +69,16 @@
   margin-left: 0;
   path {
     fill: $primary;
+    transition: fill 0.3s ease;
   }
   svg {
     @include size(em(31) em(26));
+  }
+  &:hover,
+  &:focus {
+    path {
+      fill: lighten($primary, 10%);
+    }
   }
 }
 

@@ -6,7 +6,7 @@
 .toggle_label {
   display: inline-block;
   font-size: em(17);
-  margin-left: em(24);
+  padding-left: em(70);
 }
 
 .toggle_input {
@@ -29,7 +29,7 @@
 .toggle_handle {
   float: left;
   display: inline-block;
-  position: relative;
+  position: absolute;
   cursor: pointer;
   outline: none;
   user-select: none;
