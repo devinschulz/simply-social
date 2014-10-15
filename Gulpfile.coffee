@@ -1,6 +1,6 @@
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')({ camelize: true })
-rimraf = require 'rimraf'
+del = require 'del'
 ignore = require 'gulp-ignore'
 pngcrush = require 'imagemin-pngcrush'
 args = require('yargs').argv
@@ -139,7 +139,7 @@ gulp.task 'server', ->
 
 # Production Tasks
 gulp.task 'clean', (cb) ->
-  rimraf(config.public_path, cb)
+  del([config.public_path], cb)
 
 gulp.task 'moveImages', ->
   gulp.src config.images_path + '/**/*'
@@ -158,7 +158,7 @@ gulp.task 'moveFavicon', ->
   gulp.src config.root + '/favicon.ico'
     .pipe gulp.dest config.public_path
 
-gulp.task 'compile', ['clean', 'moveData', 'moveViews', 'moveFavicon', 'moveImages'], ->
+gulp.task 'compile', ['moveData', 'moveViews', 'moveFavicon', 'moveImages'], ->
   gulp.src config.root + '/*.html'
     .pipe $.usemin
       js: [$.uglify(), $.rev()]
@@ -180,7 +180,8 @@ gulp.task 'build', [
   'scripts'
 ]
 
-gulp.task 'build-public', [
+gulp.task 'build:public', [
   'build'
+  'clean'
   'compile'
 ]
