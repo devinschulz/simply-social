@@ -21,10 +21,7 @@ angular
     'app.settings'
   ]
 
-  .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
-
-    # Remove hash from URL
-    $locationProvider.html5Mode(true)
+  .config(['$routeProvider', ($routeProvider) ->
 
     $routeProvider
       .when '/',
