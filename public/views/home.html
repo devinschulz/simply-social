@@ -19,8 +19,8 @@
         </div>
       </div>
     </form>
-    <div class="post-filter">
-      <ul class="post-filter_list" bar>
+    <div class="post-filter layout">
+      <ul class="post-filter_list">
         <li ng-repeat="filter in filters" class="post-filter_list_item" ng-class="{'is-active': isSelected(filter)}">
           <a ng-click="setSelected(filter)" href="#" title="{{filter.title}}">{{filter.label}}</a>
         </li>
