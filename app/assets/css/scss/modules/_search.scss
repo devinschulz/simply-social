@@ -45,6 +45,9 @@
       }
     }
   }
+  @include media($tablet) {
+    right: em(5);
+  }
 }
 
 input[type=search] {
@@ -83,7 +86,7 @@ input[type=search] {
 
   .search_form {
     position: absolute;
-    top: em(60);
+    top: -100%;
     left: 0;
     z-index: -1;
     display: block;
@@ -94,6 +97,7 @@ input[type=search] {
     transition: all 0.3s ease;
     transform: translateY(-100%);
     &.is-active {
+      top: em(60);
       opacity: 1;
       transform: translateY(0);
     }

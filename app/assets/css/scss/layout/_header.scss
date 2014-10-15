@@ -84,11 +84,6 @@
 
 @include media($tablet) {
 
-  .search_submit {
-    top: em(5);
-    right: em(5);
-  }
-
   .header_logo {
     @include span-columns(2 of 8, inline-block);
   }
