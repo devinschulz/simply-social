@@ -4,6 +4,11 @@ SettingsCtrl = ['$scope', 'settings', ($scope, settings) ->
     $scope.notifications = response.data.settings.notifications
     $scope.options = response.data.settings.privacy
   )
+
+  $scope.saveUserDetails = ->
+    # Save user logic would go here. This just sets
+    # the form to pristine state for the demo.
+    $scope.settings.$setPristine()
 ]
 
 angular

@@ -19,7 +19,6 @@ angular
     'app.home.directives'
 
     'app.settings'
-    'app.settings.directives'
   ]
 
   .config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
