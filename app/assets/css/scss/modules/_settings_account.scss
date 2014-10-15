@@ -104,6 +104,9 @@
   &.is-first {
     margin-top: em(25);
   }
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .settings_save {

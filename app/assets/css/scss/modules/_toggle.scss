@@ -1,6 +1,9 @@
 .toggle {
   @extend %row;
   margin-bottom: em(20);
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .toggle_label {
