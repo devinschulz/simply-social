@@ -10,4 +10,4 @@ To run the development environment, simply run  `gulp` from the project root dir
 ## Production 
 To compile, minify, and lint the project, run `gulp --env=prod` from the project root directory and navigate to `localhost:8000`.
 
-Creating the public deploy files are easy, simply run `gulp build:public --env=prod` and it will create a public directory with all the required files
+Creating the public deploy files are easy, simply run `gulp build:public --env=prod` and it will create a `public` directory with all the required files.
