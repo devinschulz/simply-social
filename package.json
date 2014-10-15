@@ -50,6 +50,7 @@
     "node-sass-middleware": "latest",
     "object-assign": "latest",
     "path": "latest",
+    "rimraf": "^2.2.8",
     "yargs": "latest"
   },
   "dependencies": {

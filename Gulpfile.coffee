@@ -1,5 +1,6 @@
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')({ camelize: true })
+rimraf = require 'rimraf'
 ignore = require 'gulp-ignore'
 pngcrush = require 'imagemin-pngcrush'
 args = require('yargs').argv
@@ -137,22 +138,27 @@ gulp.task 'server', ->
     livereload: true
 
 # Production Tasks
-gulp.task 'clean', ->
-  gulp.src config.public_path, { read: false }
-    .pipe $.rimraf()
+gulp.task 'clean', (cb) ->
+  rimraf(config.public_path, cb)
 
 gulp.task 'moveImages', ->
-  gulp.src config.images_path + '/*/**'
-    .pipe gulp.dest config.public_path + '/assets/images/'
+  gulp.src config.images_path + '/**/*'
+    .pipe gulp.dest config.public_path + '/assets/images'
 
 gulp.task 'moveData', ->
   gulp.src config.root + '/data/*'
     .pipe $.jsonminify()
     .pipe gulp.dest config.public_path + '/data'
 
-gulp.task 'moveViews'
+gulp.task 'moveViews', ->
+  gulp.src config.root + '/views/**/*'
+    .pipe gulp.dest config.public_path + '/views'
 
-gulp.task 'compile', ['clean', 'moveImages', 'moveData'], ->
+gulp.task 'moveFavicon', ->
+  gulp.src config.root + '/favicon.ico'
+    .pipe gulp.dest config.public_path
+
+gulp.task 'compile', ['clean', 'moveData', 'moveViews', 'moveFavicon', 'moveImages'], ->
   gulp.src config.root + '/*.html'
     .pipe $.usemin
       js: [$.uglify(), $.rev()]
@@ -162,7 +168,6 @@ gulp.task 'compile', ['clean', 'moveImages', 'moveData'], ->
 
 # Default build tasks
 gulp.task 'default', ['gulplint', 'server', 'build'], ->
-  $.livereload.listen()
   gulp.watch config.sass_path + '**/*.scss', ['styles']
   gulp.watch config.coffee_path + '**/*.coffee', ['scripts']
 #  gulp.watch config.images_path + '*.{jpg, png, svg}', ['images']
@@ -173,5 +178,9 @@ gulp.task 'build', [
   'styles'
   'vendors'
   'scripts'
-#  'images'
+]
+
+gulp.task 'build-public', [
+  'build'
+  'compile'
 ]
