@@ -101,6 +101,8 @@ files = [
   config.vendors_path + '/angular-elastic/elastic.js'
   config.vendors_path + '/moment/moment.js'
   config.vendors_path + '/moment.twitter/moment-twitter.js'
+  config.vendors_path + '/underscore/underscore.js'
+  config.vendors_path + '/masonry/masonry.js'
 ]
 
 gulp.task 'move', ->
@@ -167,15 +169,14 @@ gulp.task 'compile', ['moveData', 'moveViews', 'moveFavicon', 'moveImages'], ->
 # Default build tasks
 gulp.task 'default', ['gulplint', 'server', 'build'], ->
   gulp.watch config.sass_path + '**/*.scss', ['styles']
-  gulp.watch config.coffee_path + '**/*.coffee', ['scripts']
-#  gulp.watch config.images_path + '*.{jpg, png, svg}', ['images']
+  gulp.watch config.js_path + '**/*.js', ->
+    connect.reload()
   gulp.watch(config.root + '**/*.html').on 'change', ->
     connect.reload()
 
 gulp.task 'build', [
   'styles'
   'vendors'
-  'scripts'
 ]
 
 gulp.task 'build:public', [
