@@ -14,25 +14,31 @@
 <body>
 
   <div class="main" ng-class="{true: 'modal-open'}[modalOpen]">
-
-    <div ng-include="'views/header/header.html'"></div>
-
+    <div ng-include="'header/header.html'"></div>
     <div ng-view></div>
-
-    <div ng-include="'views/footer/footer.html'"></div>
-
+    <div ng-include="'footer/footer.html'"></div>
   </div>
 
   <!-- build:js assets/js/app.js -->
-  <script src="assets/js/libs/moment.js"></script>
-  <script src="assets/js/libs/moment-twitter.js"></script>
   <script src="assets/js/libs/angular.js"></script>
   <script src="assets/js/libs/angular-route.js"></script>
   <script src="assets/js/libs/angular-sanitize.js"></script>
   <script src="assets/js/libs/angular-modal-service.js"></script>
   <script src="assets/js/libs/tai-placeholder.js"></script>
   <script src="assets/js/libs/elastic.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/libs/moment.js"></script>
+  <script src="assets/js/libs/moment-twitter.js"></script>
+
+  <script src="app.js"></script>
+  <script src="header/header.js"></script>
+  <script src="home/home.js"></script>
+  <script src="home/homeFactory.js"></script>
+  <script src="posts/postDirectives.js"></script>
+  <script src="modal/modal.js"></script>
+  <script src="modal/modalDirectives.js"></script>
+  <script src="settings/settings.js"></script>
+  <script src="components/link-directive.js"></script>
+  <script src="components/autofocus-directive.js"></script>
   <!-- endbuild -->
 </body>
 </html>
