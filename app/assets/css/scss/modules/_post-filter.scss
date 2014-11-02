@@ -57,6 +57,9 @@
       font-size: em(13);
     }
   }
+  @include media($tablet) {
+    margin-right: em(45);
+  }
 }
 
 .post-filter_views {
