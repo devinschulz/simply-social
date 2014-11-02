@@ -9,13 +9,13 @@ function Routes($routeProvider) {
   $routeProvider
     .when('/', {
       title: 'Posts',
-      templateUrl: 'home/home.html',
+      templateUrl: 'views/home/home.html',
       controllerAs: 'home',
       controller: 'HomeCtrl'
     })
     .when('/settings', {
       title: 'Settings',
-      templateUrl: 'settings/settings.html',
+      templateUrl: 'views/settings/settings.html',
       controllerAs: 'settings',
       controller: 'SettingsCtrl'
     })

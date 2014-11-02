@@ -10,7 +10,7 @@
 function HeaderCtrl($scope, $rootScope, ModalService) {
   $scope.openModal = function() {
     ModalService.showModal({
-      templateUrl: 'modal/modal.html',
+      templateUrl: '../modal/modal.html',
       controller: 'ModalCtrl'
     }).then(function() {
       $rootScope.modalOpen = true;

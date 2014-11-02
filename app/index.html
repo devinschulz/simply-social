@@ -14,9 +14,9 @@
 <body>
 
   <div class="main" ng-class="{true: 'modal-open'}[modalOpen]">
-    <div ng-include="'header/header.html'"></div>
+    <div ng-include="'views/header/header.html'"></div>
     <div ng-view></div>
-    <div ng-include="'footer/footer.html'"></div>
+    <div ng-include="'views/footer/footer.html'"></div>
   </div>
 
   <!-- build:js assets/js/app.js -->
@@ -31,15 +31,15 @@
   <script src="assets/js/libs/angular-deckgrid.js"></script>
 
   <script src="app.js"></script>
-  <script src="header/header.js"></script>
-  <script src="home/home.js"></script>
-  <script src="home/homeFactory.js"></script>
-  <script src="home/homeDirectives.js"></script>
-  <script src="modal/modal.js"></script>
-  <script src="modal/modalDirectives.js"></script>
-  <script src="settings/settings.js"></script>
-  <script src="components/link-directive.js"></script>
-  <script src="components/autofocus-directive.js"></script>
+  <script src="views/header/header.js"></script>
+  <script src="views/home/home.js"></script>
+  <script src="views/home/homeFactory.js"></script>
+  <script src="views/home/homeDirectives.js"></script>
+  <script src="views/modal/modal.js"></script>
+  <script src="views/modal/modalDirectives.js"></script>
+  <script src="views/settings/settings.js"></script>
+  <script src="views/components/link-directive.js"></script>
+  <script src="views/components/autofocus-directive.js"></script>
   <!-- endbuild -->
 </body>
 </html>

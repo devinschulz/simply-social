@@ -24,15 +24,15 @@
       <ul class="post-filter_list">
         <li ng-repeat="filter in filters" class="post-filter_list_item" ng-class="{'is-active': isSelected(filter)}">
           <a ng-click="setSelected(filter)" href="#" title="{{filter.title}}">
-            <span class="visually-hidden">{{filter.title}}</span>
-            {{filter.label}}
+            <span class="visually-hidden">{{::filter.title}}</span>
+            {{::filter.label}}
           </a>
         </li>
       </ul>
       <ul class="post-filter_views">
         <li ng-repeat="view in views" class="post-filter_views-item" ng-class="{'is-active': isSelectedLayout(view)}">
-          <a ng-click="setSelectedLayout(view)" href="#" title="{{view.title}}" ng-bind-html="view.icon">
-            <span class="visually-hidden">{{view.title}}</span>
+          <a ng-click="setSelectedLayout(view)" href="#" title="{{::view.title}}" ng-bind-html="view.icon">
+            <span class="visually-hidden">{{::view.title}}</span>
           </a>
         </li>
       </ul>
@@ -41,6 +41,6 @@
 </div>
 
 <div class="posts">
-  <div ng-if="selectedLayout.type == 'list'" ng-include="'posts/post-list.html'"></div>
-  <div ng-if="selectedLayout.type == 'grid'" ng-include="'posts/post-grid.html'"></div>
+  <div ng-if="selectedLayout.type == 'list'" ng-include="'/views/posts/post-list.html'"></div>
+  <div ng-if="selectedLayout.type == 'grid'" class="post-grid deckgrid" deckgrid source="posts" cardTemplate="/views/posts/post-grid.html"></div>
 </div>
