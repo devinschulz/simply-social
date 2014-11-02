@@ -221,9 +221,9 @@
   }
   &:after {
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
+    left: 0;
     width: 100%;
     height: 96%;
     border-radius: 0 0 em(4) em(4);
@@ -262,5 +262,26 @@
   }
   .placeholder {
     color: $link-light;
+  }
+}
+
+// Load More
+
+.posts_load-more {
+  @extend %row;
+  text-align: center;
+  font-family: $font-family-semi;
+  margin-bottom: em(20);
+  a {
+    display: inline-block;
+    color: $link-light;
+    text-transform: uppercase;
+    font-size: em(11.39);
+    cursor: pointer;
+    padding: em(10) em(20);
+    &:focus,
+    &:hover {
+      color: $text-dark;
+    }
   }
 }
