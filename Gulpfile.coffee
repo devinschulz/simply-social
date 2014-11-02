@@ -158,7 +158,7 @@ gulp.task 'moveFavicon', ->
 gulp.task 'compile', ['moveData', 'moveViews', 'moveFavicon', 'moveImages'], ->
   gulp.src config.root + '/*.html'
     .pipe $.usemin
-      js: [$.uglify(), $.rev()]
+      js: [$.ngAnnotate(), $.uglify(), $.rev()]
       css: [$.rev()]
       html: [$.minifyHtml({empty: true})]
     .pipe gulp.dest config.public_path
