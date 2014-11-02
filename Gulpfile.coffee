@@ -100,6 +100,7 @@ files = [
   config.vendors_path + '/angular-modal-service/dst/angular-modal-service.js'
   config.vendors_path + '/angular-elastic/elastic.js'
   config.vendors_path + '/moment/moment.js'
+  config.vendors_path + '/underscore/underscore.js'
 ]
 
 gulp.task 'move', ->
