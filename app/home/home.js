@@ -11,10 +11,6 @@ function HomeCtrl($scope, FeedFactory, $sce) {
     $scope.posts = FeedFactory.posts;
   });
 
-  function sortByVideos(feed) {
-    var posts = _.forEach(feed);
-  }
-
   $scope.text = "Expand";
   $scope.expanded = false;
 
@@ -63,11 +59,12 @@ function HomeCtrl($scope, FeedFactory, $sce) {
   };
 
   $scope.setSelectedLayout($scope.views[0]);
+
 }
 
 /**
  *  Sort Posts by Category
- * @returns {Function}
+ * @returns {object}
  * @constructor
  */
 function PostSortFilter() {

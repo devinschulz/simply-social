@@ -2,4 +2,53 @@
   max-width: em(1175);
   margin: 0 auto;
   display: block;
+  padding: 0 em(15);
+}
+
+.deckgrid[deckgrid]::before {
+  content: '1 .column.column-1-1';
+  font-size: 0;
+  visibility: hidden;
+}
+
+.deckgrid .column {
+  float: left;
+}
+
+.deckgrid .column-1-1 {
+  width: 100%;
+}
+
+@include media($tablet) {
+  .deckgrid[deckgrid]::before {
+    content: '2 .column.column-1-2';
+  }
+
+  .deckgrid .column-1-2 {
+    width: (100% /2);
+    &:first-child {
+      padding-right: em(12.5);
+    }
+    &:last-child {
+      padding-left: em(12.5);
+    }
+  }
+}
+
+@include media($desktop) {
+  .deckgrid[deckgrid]::before {
+    content: '3 .column.column-1-3';
+  }
+  .deckgrid .column-1-3 {
+    width: (100% /3);
+    &:first-child {
+      padding-right: em(12.5);
+    }
+    &:nth-child(2) {
+      padding: 0 em(12.5);
+    }
+    &:last-child {
+      padding-left: em(12.5);
+    }
+  }
 }

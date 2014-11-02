@@ -58,7 +58,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'taiPlaceholder',
-    'angularModalService'
+    'angularModalService',
+    'akoenig.deckgrid'
   ])
   .config(Routes)
   .config(CacheBuster)
