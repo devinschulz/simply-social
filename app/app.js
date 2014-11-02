@@ -45,12 +45,22 @@ function CacheBuster($httpProvider) {
  */
 function Title($location, $rootScope) {
   $rootScope.$on('$rootChangeSuccess', function(event, current) {
-    $rootScope.title = current.$$route.title;
+    if (current.hasOwnProperty('$$route')) {
+      $rootScope.title = current.$$route.title;
+    }
   });
 }
 
-function Debug($logProvider) {
-  $logProvider.debugEnabled(true);
+/**
+ * Force window position to top on page change.
+ *
+ * @param $rootScope
+ * @param $window
+ */
+function ForceWindowTop($rootScope, $window) {
+  $rootScope.$on('$routeChangeStart', function() {
+    $window.scrollTo(0,0)
+  });
 }
 
 angular
@@ -63,6 +73,6 @@ angular
   ])
   .config(Routes)
   .config(CacheBuster)
-  .config(Debug)
-  .run(Title);
+  .run(Title)
+  .run(ForceWindowTop);
 
