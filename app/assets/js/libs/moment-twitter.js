@@ -1,5 +1,5 @@
 (function() {
-  var day, formats, hour, initialize, minute, second, week;
+  var day, formats, hour, initialize, minute, second, week, year;
 
   second = 1e3;
 
@@ -10,6 +10,8 @@
   day = 864e5;
 
   week = 6048e5;
+
+  year = 44928e5;
 
   formats = {
     seconds: {
@@ -47,7 +49,7 @@
       } else if (diff < day) {
         unit = 'hours';
       } else if (format === 'short') {
-        if (diff < week) {
+        if (diff < year) {
           unit = 'days';
         } else {
           return this.format('M/D/YY');
