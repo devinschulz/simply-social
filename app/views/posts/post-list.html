@@ -74,8 +74,8 @@
             </div>
           </div>
         </div>
-        <form class="comments_reply" action="#" method="post" name="comment">
-          <input ng-model="comment.reply" type="text" placeholder="Reply&hellip;"/>
+        <form class="comments_reply" ng-submit="addComment(post, commentForm[$index])">
+          <input ng-model="commentForm[$index].message" type="text" placeholder="Reply&hellip;" ng-minlength="1" />
         </form>
       </div>
     </section>

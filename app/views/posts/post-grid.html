@@ -55,6 +55,11 @@
               <div class="post_content_meta_author">
                 {{::comment.name }}
               </div>
+            </div>
+            <div class="post_content_message">
+              <p ng-bind-html="comment.message"></p>
+            </div>
+            <div class="post_content_meta--grid">
               <ul class="post_content_meta_actions">
                 <li class="post_content_meta_reply">
                   <a href="#" title="Reply">
@@ -71,14 +76,11 @@
                 </li>
               </ul>
             </div>
-            <div class="post_content_message">
-              <p ng-bind-html="comment.message"></p>
-            </div>
           </div>
         </div>
       </div>
-      <form class="comments_reply" action="#" method="post" name="comment">
-        <input ng-model="comment.reply" type="text" placeholder="Reply&hellip;"/>
+      <form class="comments_reply" ng-submit="mother.addComment(card, commentForm[$index])">
+        <input ng-model="commentForm[$index].message" type="text" placeholder="Reply&hellip;" ng-minlength="1" />
       </form>
     </div>
   </section>
