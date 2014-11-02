@@ -3,6 +3,35 @@
   margin: 0 auto;
   display: block;
   padding: 0 em(15);
+  .post_content_thumbnail {
+    margin-bottom: em(-7);
+    img {
+      border-radius: 0 !important;
+    }
+  }
+  .is-video {
+    &:after {
+      border-radius: 0;
+      @include media($mobile-landscape) {
+        height: 94%;
+      }
+    }
+  }
+}
+
+.post__content_meta--grid {
+  float: right;
+  width: calc(100% - 57px);
+  margin-bottom: em(-7);
+  .post_content_meta_actions,
+  .post_content_expand {
+    width: 50%;
+    display: inline-block;
+  }
+  .post_content_meta_actions {
+    margin-top: em(19.6);
+    float: right;
+  }
 }
 
 .deckgrid[deckgrid]::before {
