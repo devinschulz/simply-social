@@ -1,12 +1,10 @@
-'use strict';
-
 /**
  * Controller for home page logic
  *
  * @param $scope
  * @param $rootScope
- * @param ModalService
- */
+* @param ModalService
+*/
 function HeaderCtrl($scope, $rootScope, ModalService) {
   $scope.openModal = function() {
     ModalService.showModal({
