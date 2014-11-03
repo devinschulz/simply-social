@@ -11,10 +11,14 @@
     fill: $primary;
   }
   svg {
-    @include size(em(26));
+    @include size(em(20));
   }
+
   @include media($tablet) {
     display: none;
+    svg {
+      @include size(em(26));
+    }
   }
 }
 

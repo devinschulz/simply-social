@@ -72,7 +72,10 @@
     fill: $primary;
   }
   svg {
-    @include size(em(31) em(26));
+    @include size(em(28) em(22));
+    @include media($tablet) {
+      @include size(em(31) em(26));
+    }
   }
   &:hover,
   &:focus {
