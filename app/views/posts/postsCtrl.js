@@ -56,13 +56,8 @@ function PostsCtrl($scope, FeedFactory, $sce) {
     var postComments = post.comments;
     var commentPosition = postComments.length;
 
-    // Force the new post to be pushed to the last position
-    // of comment object
-    if (commentPosition) {
-      post.comments[commentPosition] = newComment;
-    } else {
-      post.comments.push(newComment);
-    }
+    // Force the new post to be pushed to the last position of comment object
+    commentPosition ? post.comments[commentPosition] = newComment : post.comments.push(newComment);
 
     // Reset form message
     commentForm.message = null;
@@ -76,9 +71,7 @@ function PostsCtrl($scope, FeedFactory, $sce) {
   };
 
   $scope.isSelected = function(element) {
-    if ($scope.selected == element) {
-      return true;
-    }
+    if ($scope.selected == element) return true;
   };
 
   $scope.setSelected($scope.filters[0]);
@@ -102,9 +95,7 @@ function PostsCtrl($scope, FeedFactory, $sce) {
   };
 
   $scope.isSelectedLayout = function(element) {
-    if ($scope.selectedLayout == element) {
-      return true
-    }
+    if ($scope.selectedLayout == element) return true;
   };
 
   $scope.setSelectedLayout($scope.views[0]);

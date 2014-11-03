@@ -43,9 +43,7 @@ function CacheBuster($httpProvider) {
  */
 function Title($location, $rootScope) {
   $rootScope.$on('$rootChangeSuccess', function(event, current) {
-    if (current.hasOwnProperty('$$route')) {
-      $rootScope.title = current.$$route.title;
-    }
+    if (current.hasOwnProperty('$$route')) $rootScope.title = current.$$route.title;
   });
 }
 
