@@ -11,12 +11,14 @@ function HomeCtrl($scope, FeedFactory, $sce) {
     $scope.posts = FeedFactory.posts;
   });
 
-  $scope.text = "Expand";
-  $scope.expanded = false;
-
-  $scope.toggleComments = function(repeaterScope) {
-    repeaterScope.text = repeaterScope.expanded ? "Expand" : "Collapse";
-    repeaterScope.expanded = repeaterScope.expanded ? false : true;
+  /**
+   * Toggle Expand and Collapse post comments
+   *
+   * @param post - post of repeater scope
+   */
+  $scope.toggleComments = function(post) {
+    post.text = post.expanded ? "Expand" : "Collapse";
+    post.expanded = post.expanded ? false : true;
   };
 
   /**
@@ -44,7 +46,7 @@ function HomeCtrl($scope, FeedFactory, $sce) {
   $scope.addComment = function(post, commentForm) {
     var newComment = new function() {
       this.id = generateCommentId(post);
-      // This would normally be get from the current user session
+      // This would normally be pulled from the current user session
       this.name = "Jessica Tuan";
       this.avatar = "assets/images/avatar-thumbnail.jpg";
       this.message = commentForm.message;
@@ -64,7 +66,6 @@ function HomeCtrl($scope, FeedFactory, $sce) {
 
     // Reset form message
     commentForm.message = null;
-
   };
 
   $scope.filters = FeedFactory.sortLabels();

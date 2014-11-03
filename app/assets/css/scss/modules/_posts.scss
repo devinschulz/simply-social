@@ -175,7 +175,7 @@
     border-radius: 0 0 em(4) em(4);
   }
   @include media($mobile-landscape) {
-    margin: em(18) em(-26) em(-35);
+    margin: em(18) em(-26) em(-32);
     width: calc(100% + #{em(26 * 2)});
   }
 }
@@ -262,6 +262,14 @@
   }
   .placeholder {
     color: $link-light;
+  }
+}
+
+.comments-open {
+  .post_content_thumbnail {
+    img {
+      border-radius: 0 !important;
+    }
   }
 }
 

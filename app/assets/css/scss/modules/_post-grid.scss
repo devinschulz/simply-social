@@ -23,9 +23,20 @@
       }
     }
   }
+
+  .comments {
+    .post_content_meta--grid {
+      width: 100%;
+    }
+    .post_content_meta_actions {
+      float: right;
+      width: 100%;
+    }
+  }
+
 }
 
-.post__content_meta--grid {
+.post_content_meta--grid {
   float: right;
   width: calc(100% - 57px);
   margin-bottom: em(-7);

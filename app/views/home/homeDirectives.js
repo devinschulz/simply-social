@@ -11,7 +11,7 @@ function PostedOn($interval) {
   function link($scope, $element, $attrs) {
     $interval(function() {
       $scope.formattedDate = moment($scope.posted).twitterShort();
-    }, 1000);
+    }, 200);
   }
 
   return {
