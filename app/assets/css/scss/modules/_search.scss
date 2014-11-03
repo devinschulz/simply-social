@@ -11,10 +11,14 @@
     fill: $primary;
   }
   svg {
-    @include size(em(26));
+    @include size(em(20));
   }
+
   @include media($tablet) {
     display: none;
+    svg {
+      @include size(em(26));
+    }
   }
 }
 
@@ -92,9 +96,8 @@ input[type=search] {
     display: block;
     padding: em(10);
     width: 100%;
-    background: darken($black, 10%);
+    background: $black;
     opacity: 0;
-    transition: all 0.3s ease;
     transform: translateY(-100%);
     &.is-active {
       top: em(60);
