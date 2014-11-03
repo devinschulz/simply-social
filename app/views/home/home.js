@@ -11,12 +11,61 @@ function HomeCtrl($scope, FeedFactory, $sce) {
     $scope.posts = FeedFactory.posts;
   });
 
-  $scope.text = "Expand";
-  $scope.expanded = false;
+  /**
+   * Toggle Expand and Collapse post comments
+   *
+   * @param post - post of repeater scope
+   */
+  $scope.toggleComments = function(post) {
+    post.text = post.expanded ? "Expand" : "Collapse";
+    post.expanded = post.expanded ? false : true;
+  };
 
-  $scope.toggleComments = function(repeaterScope) {
-    repeaterScope.text = repeaterScope.expanded ? "Expand" : "Collapse";
-    repeaterScope.expanded = repeaterScope.expanded ? false : true;
+  /**
+   * Set the next post comment id
+   *
+   * @param post
+   * @returns int Post Id
+   */
+  function generateCommentId(post) {
+    var comments = post.comments;
+    if (!_.isEmpty(comments)) {
+      var getLastCommentId = _.last(comments);
+      return getLastCommentId.id + 1;
+    } else {
+      return 1;
+    }
+  }
+
+  /**
+   * Add a comment to a specific post
+   *
+   * @param post - The current post object in the repeater scope
+   * @param commentForm - The form associated to the post
+   */
+  $scope.addComment = function(post, commentForm) {
+    var newComment = new function() {
+      this.id = generateCommentId(post);
+      // This would normally be pulled from the current user session
+      this.name = "Jessica Tuan";
+      this.avatar = "assets/images/avatar-thumbnail.jpg";
+      this.message = commentForm.message;
+      this.posted = moment().format('YYYY-MM-DD HH:mm:ss');
+    };
+
+    var postComments = post.comments;
+    var commentPosition = postComments.length;
+
+    // Force the new post to be pushed to the last position
+    // of comment object
+    if (commentPosition) {
+      post.comments[commentPosition] = newComment;
+    } else {
+      post.comments.push(newComment);
+    }
+
+    // Reset form message
+    commentForm.message = null;
   };
 
   $scope.filters = FeedFactory.sortLabels();

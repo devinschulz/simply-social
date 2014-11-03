@@ -1,4 +1,4 @@
-<article class="post" data-post-id="{{card.id}}" ng-class="{'has-comments' : card.comments.length >= 1}">
+<article class="post" data-post-id="{{card.id}}" ng-class="{'has-comments' : card.comments.length >= 1, 'comments-open': card.expanded}">
   <div class="post_wrapper">
     <div class="post_avatar">
       <img ng-src="{{::card.avatar}}" alt="{{::card.name}}"/>
@@ -13,19 +13,28 @@
         <div class="post_content_message">
           <p ng-bind-html="card.message"></p>
         </div>
+      </div>
+    </div>
+    <div class="row post_content_thumbnail" ng-if="card.thumbnail" ng-class="{'is-video' : card.video}">
+      <img ng-src="{{::card.thumbnail}}" alt=""/>
+    </div>
+    <div class="row">
+      <div class="post_content_meta--grid">
         <div class="post_content_expand" ng-if="card.comments.length >= 1">
-          <a ng-href="#" ng-click="mother.toggleComments(this); card.selected[$index] = !card.selected[$index]" ng-class="{true: 'is-open'}[expanded]">{{mother.text}} <span class="caret"></span></a>
+          <a ng-href="#" ng-click="mother.toggleComments(card); card.selected[$index] = !card.selected[$index]" ng-class="{true: 'is-open'}[card.expanded]">
+            {{card.text}} <span class="caret"></span>
+          </a>
         </div>
         <ul class="post_content_meta_actions">
           <li class="post_content_meta_reply">
-            <a href="#" title="Reply" ng-click="mother.toggleComments(this); card.selected[$index] = !card.selected[$index]">
-              <span class="visually-hidden">Reply to {{ card.name }}</span>
+            <a href="#" title="Reply" ng-click="mother.toggleComments(card); card.selected[$index] = !card.selected[$index]">
+              <span class="visually-hidden">Reply to {{::card.name }}</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13.001" enable-background="new 0 0 13 13.001"><path fill="#231F20" d="M12.499 13.001c-.204 0-.392-.125-.467-.322-1.259-3.305-3.316-3.998-4.82-3.998-.576 0-1.061.102-1.356.183v2.837c0 .208-.129.396-.325.468-.195.074-.416.017-.553-.141l-4.857-5.6c-.163-.188-.163-.467 0-.655l4.857-5.6c.137-.158.357-.216.553-.141.196.073.325.26.325.468v2.658l.199-.003c1.63.001 6.945.675 6.945 9.346 0 .241-.172.448-.41.492l-.091.008zm-11.338-6.9l3.695 4.26v-1.86c0-.203.122-.385.31-.462.079-.032 4.086-1.529 6.68 2.13-.767-5.375-4.208-6.013-5.79-6.013-.366 0-.599.035-.618.038-.145.025-.294-.017-.404-.112-.112-.095-.177-.234-.177-.381v-1.86l-3.696 4.26z"/></svg>
             </a>
           </li>
           <li class="post_content_meta_like">
             <a href="#" title="Like">
-              <span class="visually-hidden">Like {{ card.name }} post</span>
+              <span class="visually-hidden">Like {{::card.name }} post</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" enable-background="new 0 0 13 13"><path fill="#231F20" d="M9.59 0c-1.14 0-2.385.604-3.09 1.918-.693-1.29-1.907-1.883-3.017-1.883-1.731 0-3.483 1.415-3.483 4.118 0 4.761 5.978 8.607 6.232 8.769.082.052.175.078.268.078.105 0 .21-.033.298-.099.253-.188 6.202-4.655 6.202-9.072 0-2.514-1.715-3.829-3.41-3.829zm-3.111 11.883c-1.169-.815-5.479-4.066-5.479-7.73 0-2.143 1.287-3.118 2.483-3.118.976 0 2.222.667 2.523 2.548.039.243.248.421.494.421s.455-.178.494-.421c.306-1.906 1.589-2.583 2.596-2.583 1.161 0 2.41.885 2.41 2.829 0 3.414-4.367 7.131-5.521 8.054z"/></svg>
             </a>
           </li>
@@ -34,9 +43,6 @@
           </li>
         </ul>
       </div>
-    </div>
-    <div class="row post_content_thumbnail" ng-if="card.thumbnail" ng-class="{'is-video' : card.video}">
-      <img ng-src="{{::card.thumbnail}}" alt=""/>
     </div>
   </div>
   <section class="comments" ng-show="card.selected[$index]">
@@ -51,6 +57,11 @@
               <div class="post_content_meta_author">
                 {{::comment.name }}
               </div>
+            </div>
+            <div class="post_content_message">
+              <p ng-bind-html="comment.message"></p>
+            </div>
+            <div class="post_content_meta--grid">
               <ul class="post_content_meta_actions">
                 <li class="post_content_meta_reply">
                   <a href="#" title="Reply">
@@ -67,14 +78,11 @@
                 </li>
               </ul>
             </div>
-            <div class="post_content_message">
-              <p ng-bind-html="comment.message"></p>
-            </div>
           </div>
         </div>
       </div>
-      <form class="comments_reply" action="#" method="post" name="comment">
-        <input ng-model="comment.reply" type="text" placeholder="Reply&hellip;"/>
+      <form class="comments_reply" ng-submit="mother.addComment(card, commentForm[$index])">
+        <input ng-model="commentForm[$index].message" type="text" placeholder="Reply&hellip;" ng-minlength="1" />
       </form>
     </div>
   </section>
