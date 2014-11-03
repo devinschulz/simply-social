@@ -40,7 +40,14 @@ function FeedFactory($http) {
   FeedFactory.getFeed = function() {
     return $http.get('data/feed.json')
       .success(function(data) {
-        FeedFactory.posts = data.feed;
+        var posts = data.feed;
+
+        // Add Default data
+        for (var i = 0; i < posts.length; i++) {
+          posts[i].text = "Expand";
+          posts[i].expanded = false;
+        }
+        FeedFactory.posts = posts;
       }).error(function(error) {
         console.log(error);
       });

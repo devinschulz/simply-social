@@ -59,7 +59,7 @@ angular.module('akoenig.deckgrid').factory('DeckgridDescriptor', [
             this.restrict = 'AE';
 
             this.template = '<div data-ng-repeat="column in columns" class="{{layout.classList}}">' +
-                                '<div data-ng-repeat="card in column | PostSortFilter:mother.sortType" data-ng-include="cardTemplate"></div>' +
+                                '<div data-ng-repeat="card in column | PostSortFilter:mother.selected.type" data-ng-include="cardTemplate"></div>' +
                             '</div>';
 
             this.scope = {

@@ -4,13 +4,14 @@
  * Moment.
  *
  * @returns {{restrict: string, template: string, replace: boolean, scope: {posted: string}, link: Function}}
- * @constructor
  */
 
-function PostedOn() {
+function PostedOn($interval) {
 
   function link($scope, $element, $attrs) {
-    $scope.formattedDate = moment($scope.posted).twitterShort();
+    $interval(function() {
+      $scope.formattedDate = moment($scope.posted).twitterShort();
+    }, 200);
   }
 
   return {
