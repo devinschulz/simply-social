@@ -5,7 +5,7 @@
  * @param FeedFactory
  * @param $sce
  */
-function HomeCtrl($scope, FeedFactory, $sce) {
+function PostsCtrl($scope, FeedFactory, $sce) {
 
   FeedFactory.getFeed().then(function() {
     $scope.posts = FeedFactory.posts;
@@ -152,5 +152,5 @@ function PostSortFilter() {
 
 angular
   .module('app')
-  .controller('HomeCtrl', HomeCtrl)
+  .controller('PostsCtrl', PostsCtrl)
   .filter('PostSortFilter', PostSortFilter);
