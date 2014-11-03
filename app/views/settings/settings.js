@@ -1,19 +1,4 @@
 /**
- * Settings Factory to fetch user data
- *
- * @param $http
- * @returns {object}
- */
-function Settings($http) {
-  return {
-    getProfileInformation: function(callback) {
-      var url = 'data/settings.json';
-      $http.get(url).success(callback);
-    }
-  }
-}
-
-/**
  * Settings Controller Logic
  *
  * @param $scope
@@ -34,5 +19,4 @@ function SettingsCtrl($scope, Settings) {
 
 angular
   .module('app')
-  .factory('Settings', Settings)
   .controller('SettingsCtrl', SettingsCtrl);
