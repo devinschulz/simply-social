@@ -9,14 +9,12 @@ function Routes($routeProvider) {
   $routeProvider
     .when('/', {
       title: 'Posts',
-      templateUrl: 'views/home/home.html',
-      controllerAs: 'home',
-      controller: 'HomeCtrl'
+      templateUrl: 'views/posts/posts.html',
+      controller: 'PostsCtrl'
     })
     .when('/settings', {
       title: 'Settings',
       templateUrl: 'views/settings/settings.html',
-      controllerAs: 'settings',
       controller: 'SettingsCtrl'
     })
     .otherwise({
