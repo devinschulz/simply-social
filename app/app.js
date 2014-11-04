@@ -38,12 +38,11 @@ function CacheBuster($httpProvider) {
  * Generate a title for the page. Will grab title
  * set in Routes function.
  *
- * @param $location
  * @param $rootScope
  */
-function Title($location, $rootScope) {
-  $rootScope.$on('$rootChangeSuccess', function(event, current) {
-    if (current.hasOwnProperty('$$route')) $rootScope.title = current.$$route.title;
+function Title($rootScope) {
+  $rootScope.$on("$routeChangeSuccess", function(event, currentRoute, previousRoute) {
+    $rootScope.title = currentRoute.title;
   });
 }
 
