@@ -150,6 +150,7 @@ gulp.task 'moveData', ->
 
 gulp.task 'moveViews', ->
   gulp.src config.root + '/views/**/*'
+    .pipe $.ignore '**/*.js'
     .pipe gulp.dest config.public_path + '/views'
 
 gulp.task 'moveFavicon', ->
@@ -179,6 +180,5 @@ gulp.task 'build', [
 
 gulp.task 'build:public', [
   'build'
-  'clean'
   'compile'
 ]

@@ -54,6 +54,7 @@
     "yargs": "latest"
   },
   "dependencies": {
+    "gulp-ignore": "^1.2.1",
     "gulp-jsonminify": "0.0.2"
   }
 }
