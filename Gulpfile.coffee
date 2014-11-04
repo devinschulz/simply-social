@@ -168,7 +168,7 @@ gulp.task 'compile', ['moveData', 'moveViews', 'moveFavicon', 'moveImages'], ->
 # Default build tasks
 gulp.task 'default', ['gulplint', 'server', 'build'], ->
   gulp.watch config.sass_path + '**/*.scss', ['styles']
-  gulp.watch config.js_path + '**/*.js', ->
+  gulp.watch config.root + '**/*.js', ->
     connect.reload()
   gulp.watch(config.root + '**/*.html').on 'change', ->
     connect.reload()
