@@ -16,7 +16,7 @@ namespace :gh_pages do
   desc "Commit public directory"
   task :commit do
     puts "Committing Public Directory"
-    status = system("git add -f public")
+    status = system("git add public")
     puts status ? "Successfully added public directory" : "Failed to add public directory"
     puts "\n## Committing site build at #{Time.now.utc}"
     message = "\n## Site build at #{Time.now.utc}"
