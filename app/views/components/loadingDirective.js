@@ -4,31 +4,35 @@
  * @returns {{restrict: string, link: Link}}
  * @constructor
  */
-function Loading() {
+function Loading($http) {
 
-  function Link($scope, $element, $attrs) {
+  function link($scope, element, attrs) {
     /**
      * Check to see if any pending requests are left
      * @returns {boolean}
      */
-    $scope.isLoading = function() {
+    $scope.loading = function() {
       return $http.pendingRequests.length !== 0;
     };
 
     /**
-     * Watch isLoading for it to be truthy
+     * Watch isLoading to be truthy
      */
-    $scope.$watch($scope.isLoading(), function(loaded) {
-      loaded ? $element.show() : $element.hide();
+    $scope.$watch($scope.loading(), function(loaded) {
+      if (attrs.loading == 'spinner') {
+        loaded ? element.removeClass('hide') : element.addClass('hide');
+      } else {
+        loaded ? element.addClass('hide') : element.removeClass('hide');
+      }
     });
   }
 
   return {
     restrict: 'A',
-    link: Link
-  }
+    link: link
+  };
 }
 
 angular
   .module('app')
-  .directive('Loading', Loading);
+  .directive('loading', Loading);

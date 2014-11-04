@@ -41,8 +41,9 @@
 </div>
 
 <div class="posts">
-  <div ng-if="selectedLayout.type == 'list'" ng-include="'/views/posts/post-list.html'"></div>
-  <div ng-if="selectedLayout.type == 'grid'" class="post-grid deckgrid" deckgrid source="posts" cardTemplate="/views/posts/post-grid.html"></div>
+  <spinner loading="spinner"></spinner>
+  <div ng-if="selectedLayout.type == 'list'" ng-include="'/views/posts/post-list.html'" loading></div>
+  <div ng-if="selectedLayout.type == 'grid'" class="post-grid deckgrid" deckgrid source="posts" cardTemplate="/views/posts/post-grid.html" loading></div>
   <div class="posts_load-more">
     <a ng-click="loadMorePosts()">Load More</a>
   </div>
