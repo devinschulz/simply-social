@@ -26,10 +26,12 @@ function ModalCtrl($scope, $timeout, $rootScope, close, $document) {
     triggerClose();
   };
 
+  /**
+   * ESC - When a user hits esc, close modal
+   * @param keyEvent
+   */
   function keyUpHandler(keyEvent) {
-    if (keyEvent.keyCode == 27) { // Esc
-      triggerClose();
-    }
+    if (keyEvent.keyCode == 27) triggerClose();
   }
 
   $document.on('keyup', keyUpHandler);
