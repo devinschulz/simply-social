@@ -19,7 +19,7 @@ namespace :gh_pages do
     status = system("git add public")
     puts status ? "Successfully added public directory" : "Failed to add public directory"
     puts "\n## Committing site build at #{Time.now.utc}"
-    message = "\n## Site build at #{Time.now.utc}"
+    message = "Site build at #{Time.now.utc}"
     status = system("git commit -m \"#{message}\"")
     puts status ? "Successfully committed public directory, ready for deploy" : "Failed to commit public directory"
   end
