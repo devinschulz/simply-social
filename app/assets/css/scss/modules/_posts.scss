@@ -241,6 +241,9 @@
   border-radius: 0 0 em(4) em(4);
   background: #f4f5f7;
   @extend %row;
+  textarea {
+    float: left;
+  }
 }
 
 .comment {
