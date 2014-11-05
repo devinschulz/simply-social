@@ -77,7 +77,8 @@
           </div>
         </div>
         <form class="comments_reply" ng-submit="addComment(post, commentForm[$index])">
-          <input ng-model="commentForm[$index].message" type="text" placeholder="Reply&hellip;" ng-minlength="1" />
+          <label for="message" class="visually-hidden">Your Reply</label>
+          <input ng-model="commentForm[$index].message" type="text" id="message" class="input-primary" name="message" placeholder="Reply&hellip;" ng-minlength="1" msd-elastic />
         </form>
       </div>
     </section>
