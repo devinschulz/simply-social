@@ -23,18 +23,6 @@ function Routes($routeProvider) {
 }
 
 /**
- * Prevent Angular from caching ajax requests.
- *
- * @param $httpProvider
- */
-function CacheBuster($httpProvider) {
-  if (!$httpProvider.defaults.headers.get) {
-    $httpProvider.defaults.headers.get = {};
-  }
-  $httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
-}
-
-/**
  * Generate a title for the page. Will grab title
  * set in Routes function.
  *
@@ -67,7 +55,6 @@ angular
     'akoenig.deckgrid'
   ])
   .config(Routes)
-  .config(CacheBuster)
   .run(Title)
   .run(ForceWindowTop);
 
