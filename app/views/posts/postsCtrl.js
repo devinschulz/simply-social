@@ -42,7 +42,7 @@
     }
 
     /**
-     * Comment
+     * Post
      *
      * @param post - Submitted post object
      * @param name - Authors Name
@@ -50,8 +50,8 @@
      * @param message - Post message
      * @constructor
      */
-    function Comment(post, name, avatar, message) {
-      this.id = generateId(post);
+    function Post(post, name, avatar, message) {
+      if (post) this.id = generateId(post);
       this.name = name;
       this.avatar = avatar;
       this.message = message;
@@ -66,7 +66,7 @@
      */
     $scope.addComment = function (post, commentForm) {
 
-      var newComment = new Comment(post, "Jessica Tuan", "assets/images/avatar-thumbnail.jpg", commentForm.message);
+      var newComment = new Post(post, "Jessica Tuan", "assets/images/avatar-thumbnail.jpg", commentForm.message);
       var postComments = post.comments;
       var commentPosition = postComments.length;
 
