@@ -53,6 +53,7 @@
       'ngRoute',
       'ngSanitize',
       'taiPlaceholder',
+      'monospaced.elastic',
       'angularModalService',
       'akoenig.deckgrid'
     ])
