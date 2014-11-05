@@ -3,7 +3,7 @@
   "use strict";
 
   /**
-   * Controller for home page logic
+   * Controller for header logic
    *
    * @param $scope
    * @param $rootScope
