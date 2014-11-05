@@ -15,17 +15,21 @@
     width: 100%;
   }
 
+  .post_content_message {
+    padding-top: em(7.5);
+    @include media($mobile-landscape) {
+      padding-top: em(10);
+    }
+  }
+
   .is-video {
     &:after {
       border-radius: 0;
-      @include media($mobile-landscape) {
-        height: 94%;
-      }
     }
   }
 
   .comments {
-    .post_content_meta--grid {
+    .post_content_meta-grid {
       width: 100%;
     }
     .post_content_meta_actions {
@@ -36,10 +40,19 @@
 
 }
 
-.post_content_meta--grid {
+.post_content_meta-grid {
   float: right;
-  width: calc(100% - 57px);
+  width: calc(100% - 50px);
   margin-bottom: em(-7);
+
+  @include media($mobile-landscape) {
+    width: calc(100% - 58px);
+    margin-bottom: em(-1);
+  }
+  @include media($tablet) {
+    margin-bottom: em(-7) !important;
+    margin-top: em(7);
+  }
 
   .post_content_meta_actions,
   .post_content_expand {
@@ -48,9 +61,18 @@
   }
 
   .post_content_meta_actions {
-    margin-top: em(19.6);
+    margin-top: em(11);
+    margin-bottom: em(6);
     float: right;
+    @include media($mobile-landscape) {
+      margin-top: em(20.6);
+      margin-bottom: 0;
+    }
+    @include media($tablet) {
+      margin-top: em(19.6);
+    }
   }
+
 }
 
 .deckgrid[deckgrid]::before {

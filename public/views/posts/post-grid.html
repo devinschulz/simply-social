@@ -19,7 +19,7 @@
       <img ng-src="{{::card.thumbnail}}" alt=""/>
     </div>
     <div class="row">
-      <div class="post_content_meta--grid">
+      <div class="post_content_meta-grid">
         <div class="post_content_expand" ng-if="card.comments.length >= 1">
           <a ng-href="#" ng-click="mother.toggleComments(card); card.selected[$index] = !card.selected[$index]" ng-class="{true: 'is-open'}[card.expanded]">
             {{card.text}} <span class="caret"></span>
@@ -61,7 +61,7 @@
             <div class="post_content_message">
               <p ng-bind-html="comment.message"></p>
             </div>
-            <div class="post_content_meta--grid">
+            <div class="post_content_meta-grid">
               <ul class="post_content_meta_actions">
                 <li class="post_content_meta_reply">
                   <a href="#" title="Reply">
