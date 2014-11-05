@@ -5,7 +5,10 @@
   padding: 0 em(15);
 
   .post_content_thumbnail {
-    margin-bottom: em(-7);
+    margin-bottom: 0;
+    @include media($tablet) {
+      margin-bottom: em(-8.8);
+    }
     img {
       border-radius: 0 !important;
     }
@@ -64,12 +67,14 @@
     margin-top: em(11);
     margin-bottom: em(6);
     float: right;
+    white-space: nowrap;
     @include media($mobile-landscape) {
       margin-top: em(20.6);
-      margin-bottom: 0;
+      margin-bottom: em(-7);
     }
     @include media($tablet) {
       margin-top: em(19.6);
+      margin-bottom: em(-1) !important;
     }
   }
 
