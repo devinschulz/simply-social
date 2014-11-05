@@ -27,6 +27,7 @@ config =
     'vendors/normalize-scss/normalize.scss'
   ],
   public_path: './public'
+  views_path: 'app/views/'
   port: 35729
 
 # Prepend sass path to includes
@@ -69,6 +70,14 @@ gulp.task('styles', ->
 )
 
 # Scripts
+
+gulp.task 'js', ->
+  gulp.src config.views_path + '**/*.js'
+    .pipe $.plumber
+      errorHandler: onError
+    .pipe $.jshint()
+    .pipe $.jshint.reporter('default')
+
 gulp.task 'scripts', ->
   gulp.src config.coffee_path + '**/*.coffee'
     .pipe $.plumber
