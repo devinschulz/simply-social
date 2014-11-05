@@ -1,6 +1,5 @@
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')({ camelize: true })
-del = require 'del'
 pngcrush = require 'imagemin-pngcrush'
 args = require('yargs').argv
 path = require 'path'
@@ -144,9 +143,6 @@ gulp.task 'server', ->
     livereload: true
 
 # Production Tasks
-gulp.task 'clean', (cb) ->
-  del([config.public_path], cb)
-
 gulp.task 'moveImages', ->
   gulp.src config.images_path + '/**/*'
     .pipe gulp.dest config.public_path + '/assets/images'
