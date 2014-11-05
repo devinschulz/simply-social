@@ -23,6 +23,7 @@ function PostsCtrl($scope, FeedFactory, $sce) {
 
   /**
    * Set the next post comment id
+   * This would normally be generated server side.
    *
    * @param post
    * @returns int Post Id
@@ -63,6 +64,9 @@ function PostsCtrl($scope, FeedFactory, $sce) {
     commentForm.message = null;
   };
 
+  /**
+   * Filter Posts
+   */
   $scope.filters = FeedFactory.sortLabels();
 
   $scope.setSelected = function(element) {
@@ -77,18 +81,17 @@ function PostsCtrl($scope, FeedFactory, $sce) {
   $scope.setSelected($scope.filters[0]);
 
   /**
-   * Populate sort view types
-   * Grid | List
-   */
-  $scope.views = FeedFactory.sortType();
-
-  /**
    * Allow SVG's to pass to views
    */
   angular.forEach($scope.views, function(view) {
     view.icon = $sce.trustAsHtml(view.icon)
   });
 
+  /**
+   * Populate sort view types
+   * Grid | List
+   */
+  $scope.views = FeedFactory.sortType();
 
   $scope.setSelectedLayout = function(element) {
     $scope.selectedLayout = element;
@@ -102,46 +105,6 @@ function PostsCtrl($scope, FeedFactory, $sce) {
 
 }
 
-/**
- *  Sort Posts by Category
- * @returns {object}
- * @constructor
- */
-function PostSortFilter() {
-  return function(posts, category) {
-    if (
-      !angular.isUndefined(posts) &&
-      !angular.isUndefined(category) &&
-      category.length
-    ) {
-      var categoryArray = [];
-      if (category == 'photos') {
-        for (var i = 0; i < posts.length; i++) {
-          if (
-            posts[i].thumbnail &&
-            posts[i].video == false
-          ) {
-            categoryArray.push(posts[i]);
-          }
-        }
-        return categoryArray;
-      } else if (category == 'videos') {
-        for (var x = 0; x < posts.length; x++) {
-          if (posts[x].video) {
-            categoryArray.push(posts[x]);
-          }
-        }
-        return categoryArray;
-      } else {
-        return posts;
-      }
-    } else {
-      return posts;
-    }
-  }
-}
-
 angular
   .module('app')
-  .controller('PostsCtrl', PostsCtrl)
-  .filter('PostSortFilter', PostSortFilter);
+  .controller('PostsCtrl', PostsCtrl);
