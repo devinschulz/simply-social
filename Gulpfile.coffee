@@ -1,7 +1,6 @@
 gulp = require 'gulp'
 $ = require('gulp-load-plugins')({ camelize: true })
 del = require 'del'
-ignore = require 'gulp-ignore'
 pngcrush = require 'imagemin-pngcrush'
 args = require('yargs').argv
 path = require 'path'
