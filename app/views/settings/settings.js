@@ -12,6 +12,9 @@ function SettingsCtrl($scope, Settings) {
     $scope.options = data.privacy;
   });
 
+  /**
+   * This would normally post the current details to the server
+   */
   $scope.saveUserDetails = function() {
     return $scope.settings.$setPristine()
   }
