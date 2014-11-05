@@ -167,15 +167,16 @@
 
 .post_content_thumbnail {
   @extend %row;
-  margin: em(9) em(-10) em(-20);
+  margin: em(9) em(-10) em(-10);
   width: calc(100% + #{em(10 * 2)});
   cursor: pointer;
   img {
     width: 100%;
+    float: left;
     border-radius: 0 0 em(4) em(4);
   }
   @include media($mobile-landscape) {
-    margin: em(18) em(-26) em(-32);
+    margin: em(18) em(-26) em(-25);
     width: calc(100% + #{em(26 * 2)});
   }
 }
@@ -225,14 +226,11 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 96%;
+    height: 100%;
     border-radius: 0 0 em(4) em(4);
     background: rgba(#000, 0.3);
     content: '';
     transition: all 0.3s ease;
-    @include media($mobile-landscape) {
-      height: 98%;
-    }
   }
 }
 
