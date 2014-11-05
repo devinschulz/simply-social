@@ -66,8 +66,8 @@ $base-text-color:           $black;
 // Links
 // -------------------------
 $base-link-color:           $primary;
-$hover-link-color:          lighten($base-link-color, 15%);
-$active-link-color:         darken($base-link-color, 10%);
+$hover-link-color:          darken($base-link-color, 20%);
+$active-link-color:         darken($base-link-color, 25%);
 
 //=============================================
 // Typography
