@@ -36,10 +36,9 @@
       var comments = post.comments;
       if (!_.isEmpty(comments)) {
         var getLastCommentId = _.last(comments);
-        return getLastCommentId.id + 1;
-      } else {
-        return 1;
+        getLastCommentId = getLastCommentId.id + 1
       }
+      return getLastCommentId || 1;
     }
 
     /**
