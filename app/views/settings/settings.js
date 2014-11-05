@@ -1,25 +1,31 @@
-/**
- * Settings Controller Logic
- *
- * @param $scope
- * @param Settings
- */
-function SettingsCtrl($scope, Settings) {
-  Settings.getProfileInformation(function(response) {
-    var data = response.settings;
-    $scope.user = data.user;
-    $scope.notifications = data.notifications;
-    $scope.options = data.privacy;
-  });
+(function() {
+
+  "use strict";
 
   /**
-   * This would normally post the current details to the server
+   * Settings Controller Logic
+   *
+   * @param $scope
+   * @param Settings
    */
-  $scope.saveUserDetails = function() {
-    return $scope.settings.$setPristine()
-  }
-}
+  function SettingsCtrl($scope, Settings) {
+    Settings.getProfileInformation(function (response) {
+      var data = response.settings;
+      $scope.user = data.user;
+      $scope.notifications = data.notifications;
+      $scope.options = data.privacy;
+    });
 
-angular
-  .module('app')
-  .controller('SettingsCtrl', SettingsCtrl);
+    /**
+     * This would send the current details to the server
+     */
+    $scope.saveUserDetails = function () {
+      return $scope.settings.$setPristine();
+    };
+  }
+
+  angular
+    .module('app')
+    .controller('SettingsCtrl', SettingsCtrl);
+
+})();
