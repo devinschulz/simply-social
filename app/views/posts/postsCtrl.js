@@ -11,6 +11,9 @@
    */
   function PostsCtrl($scope, FeedFactory, $sce) {
 
+    /**
+     * Get and set posts object
+     */
     FeedFactory.getFeed().then(function () {
       $scope.posts = FeedFactory.posts;
     });
@@ -79,18 +82,35 @@
 
     /**
      * Filter Posts
+     * All | Photos | Videos
      */
     $scope.filters = FeedFactory.sortLabels();
 
+    /**
+     * Set filter element as selected.
+     *
+     * @param element - filters repeated element
+     */
     $scope.setSelected = function (element) {
       $scope.selected = element;
       $scope.show = element.type;
     };
 
+    /**
+     * Check to see if filters element is
+     * truthy to set active class.
+     *
+     * @param element - views repeater element
+     * @returns {boolean}
+     */
     $scope.isSelected = function (element) {
       if ($scope.selected == element) return true;
     };
 
+    /**
+     * Set selected layout to filters all view
+     * by default.
+     */
     $scope.setSelected($scope.filters[0]);
 
     /**
@@ -100,20 +120,35 @@
     $scope.views = FeedFactory.sortType();
 
     /**
-     * Allow SVG's to pass to views
+     * Allow SVG's to pass to views.
      */
     angular.forEach($scope.views, function (view) {
       view.icon = $sce.trustAsHtml(view.icon);
     });
 
+    /**
+     * Set grid or list element as selected.
+     *
+     * @param element - views repeater element
+     */
     $scope.setSelectedLayout = function (element) {
       $scope.selectedLayout = element;
     };
 
+    /**
+     * Check to see if grid or list element is
+     * truthy to set active class
+     *
+     * @param element - views repeater element
+     * @returns {boolean}
+     */
     $scope.isSelectedLayout = function (element) {
       if ($scope.selectedLayout == element) return true;
     };
 
+    /**
+     * Set selected layout to list view by default
+     */
     $scope.setSelectedLayout($scope.views[0]);
 
   }
