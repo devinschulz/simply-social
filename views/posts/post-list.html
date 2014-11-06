@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="row post_content_thumbnail" ng-if="post.thumbnail" ng-class="{'is-video' : post.video}">
-        <img ng-src="{{post.thumbnail}}" alt=""/>
+        <img ng-src="{{post.thumbnail}}" alt="" width="40" height="40"/>
       </div>
     </div>
     <section class="comments" ng-show="post.selected[$index]">
