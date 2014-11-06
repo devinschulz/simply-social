@@ -11,7 +11,7 @@
    * @returns {object} posts
    */
   function PostSortFilter() {
-    return function (posts, category) {
+    return function(posts, category) {
       if (
         !angular.isUndefined(posts) && !angular.isUndefined(category) &&
         category.length

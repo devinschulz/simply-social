@@ -10,7 +10,7 @@
    */
   function Settings($http) {
     return {
-      getProfileInformation: function (callback) {
+      getProfileInformation: function(callback) {
         var url = 'data/settings.json';
         $http.get(url).success(callback);
       }

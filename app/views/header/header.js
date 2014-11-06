@@ -10,7 +10,7 @@
    * @param ModalService - Imported from angularModalService
    */
   function HeaderCtrl($scope, $rootScope, ModalService) {
-    $scope.openModal = function () {
+    $scope.openModal = function() {
       ModalService.showModal({
         templateUrl: 'views/modal/modal.html',
         controller: 'ModalCtrl'

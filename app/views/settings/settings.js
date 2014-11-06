@@ -19,7 +19,7 @@
     /**
      * This would send the current details to the server
      */
-    $scope.saveUserDetails = function () {
+    $scope.saveUserDetails = function() {
       return $scope.settings.$setPristine();
     };
   }

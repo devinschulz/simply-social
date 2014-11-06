@@ -5,6 +5,7 @@
   /**
    * Check to see if Ajax requests are complete
    *
+   * @type directive
    * @returns {{restrict: string, link: Link}}
    * @constructor
    */
@@ -15,14 +16,14 @@
        * Check to see if any pending requests are left
        * @returns {boolean}
        */
-      $scope.loading = function () {
+      $scope.loading = function() {
         return $http.pendingRequests.length !== 0;
       };
 
       /**
        * Watch isLoading to be truthy
        */
-      $scope.$watch($scope.loading(), function (loaded) {
+      $scope.$watch($scope.loading(), function(loaded) {
         if (attrs.loading == 'spinner') {
           loaded ? element.removeClass('hide') : element.addClass('hide');
         } else {

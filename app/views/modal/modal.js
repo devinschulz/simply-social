@@ -27,7 +27,7 @@
       close({});
     }
 
-    $scope.closeModal = function () {
+    $scope.closeModal = function() {
       triggerClose();
     };
 
@@ -40,7 +40,7 @@
     }
 
     $document.on('keyup', keyUpHandler);
-    $scope.$on('$destroy', function () {
+    $scope.$on('$destroy', function() {
       $document.off('keyup', keyUpHandler);
     });
   }

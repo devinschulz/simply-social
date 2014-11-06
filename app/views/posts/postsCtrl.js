@@ -23,7 +23,7 @@
      *
      * @param post - post of repeater scope
      */
-    $scope.toggleComments = function (post) {
+    $scope.toggleComments = function(post) {
       post.text = post.expanded ? "Expand" : "Collapse";
       post.expanded = post.expanded ? false : true;
     };
@@ -36,10 +36,11 @@
      * @returns int Post Id
      */
     function generateId(post) {
-      var comments = post.comments;
+      var comments, getLastCommentId;
+      comments = post.comments;
       if (!_.isEmpty(comments)) {
-        var getLastCommentId = _.last(comments);
-        getLastCommentId = getLastCommentId.id + 1
+        getLastCommentId = _.last(comments);
+        getLastCommentId = getLastCommentId.id + 1;
       }
       return getLastCommentId || 1;
     }
@@ -67,8 +68,10 @@
      * @param post - The current post object in the repeater scope
      * @param commentForm - The form associated to the post
      */
-    $scope.addComment = function (post, commentForm) {
+    $scope.addComment = function(post, commentForm) {
 
+      // Name and avatar would be called from the
+      // current user session
       var newComment = new Post(post, "Jessica Tuan", "assets/images/avatar-thumbnail.jpg", commentForm.message);
       var postComments = post.comments;
       var commentPosition = postComments.length;
@@ -91,7 +94,7 @@
      *
      * @param element - filters repeated element
      */
-    $scope.setSelected = function (element) {
+    $scope.setSelected = function(element) {
       $scope.selected = element;
       $scope.show = element.type;
     };
@@ -103,7 +106,7 @@
      * @param element - views repeater element
      * @returns {boolean}
      */
-    $scope.isSelected = function (element) {
+    $scope.isSelected = function(element) {
       if ($scope.selected == element) return true;
     };
 
@@ -122,7 +125,7 @@
     /**
      * Allow SVG's to pass to views.
      */
-    angular.forEach($scope.views, function (view) {
+    angular.forEach($scope.views, function(view) {
       view.icon = $sce.trustAsHtml(view.icon);
     });
 
@@ -131,7 +134,7 @@
      *
      * @param element - views repeater element
      */
-    $scope.setSelectedLayout = function (element) {
+    $scope.setSelectedLayout = function(element) {
       $scope.selectedLayout = element;
     };
 
@@ -142,7 +145,7 @@
      * @param element - views repeater element
      * @returns {boolean}
      */
-    $scope.isSelectedLayout = function (element) {
+    $scope.isSelectedLayout = function(element) {
       if ($scope.selectedLayout == element) return true;
     };
 

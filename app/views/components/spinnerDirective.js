@@ -5,6 +5,7 @@
   /**
    * Loading Spinner Directive
    *
+   * @type directive
    * @returns {{replace: boolean, restrict: string, template: string}}
    * @example <spinner></spinner>
    */

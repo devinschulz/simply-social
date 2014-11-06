@@ -17,7 +17,7 @@
       ].join(' '),
       transclude: true,
       link: function ($scope, element, attributes) {
-        element.on('click touchend', function () {
+        element.on('click touchend', function() {
           element.toggleClass('active');
           $scope.toggled = scope.toggled ? true : false;
         });
@@ -34,7 +34,7 @@
   function Dropdown() {
     return {
       link: function ($scope, element, attributes) {
-        element.on('mouseover mouseout', function () {
+        element.on('mouseover mouseout', function() {
           element.toggleClass('is-active');
         });
       }

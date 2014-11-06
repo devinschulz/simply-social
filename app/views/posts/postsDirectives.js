@@ -3,10 +3,11 @@
   "use strict";
 
   /**
-   * Posted On Directive used in comments to display
-   * the posted time/day. It is initially parsed with
-   * Moment.
+   * Posted On
    *
+   * @type directive
+   * @description Set a human readable date
+   * @example <posted-on posted="posted.date"></posted-on>
    * @returns {{restrict: string, template: string, replace: boolean, scope: {posted: string}, link: Function}}
    */
 

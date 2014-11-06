@@ -12,7 +12,7 @@
 
     FeedFactory.posts = {};
 
-    FeedFactory.sortLabels = function () {
+    FeedFactory.sortLabels = function() {
       return [{
         "label": "All Posts",
         "title": "View all posts",
@@ -28,7 +28,7 @@
       }];
     };
 
-    FeedFactory.sortType = function () {
+    FeedFactory.sortType = function() {
       return [{
         "title": "Show posts as a list",
         "type": "list",
@@ -40,7 +40,7 @@
       }];
     };
 
-    FeedFactory.getFeed = function () {
+    FeedFactory.getFeed = function() {
       return $http.get('data/feed.json')
         .success(function (data) {
           var posts = data.feed;

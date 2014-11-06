@@ -6,17 +6,17 @@
    * Prevent default on all empty links. This would generally
    * not be necessary in a production environment.
    *
+   * @type directive
    * @returns {{restrict: string, link: Function}}
-   * @constructor
    */
   function Link() {
-    var linkFunction = function ($scope, element, attributes) {
+    var linkFunction = function($scope, element, attributes) {
       if (
         attributes.ngClick ||
         attributes.href === '' ||
         attributes.href == '#'
       ) {
-        element.on('click', function (event) {
+        element.on('click', function(event) {
           event.preventDefault();
         });
       }
