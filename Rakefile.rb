@@ -9,7 +9,7 @@ namespace :gh_pages do
   desc "Compile and copy files to public directory"
   task :build do
     puts "Building Public Directory"
-    status = system("gulp build:public")
+    status = system("gulp build:public --env=prod")
     puts status ? "Compiled project into public directory" : "Failed to compile"
   end
 
