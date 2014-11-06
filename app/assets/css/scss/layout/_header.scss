@@ -20,7 +20,7 @@
     max-width: 100%;
   }
   @include media($mobile-max) {
-    img {
+    svg {
       margin-top: em(2);
       max-width: em(120);
     }
