@@ -7,7 +7,7 @@
    *
    * @param $scope
    * @param $rootScope
-   * @param ModalService
+   * @param ModalService - Imported from angularModalService
    */
   function HeaderCtrl($scope, $rootScope, ModalService) {
     $scope.openModal = function () {
