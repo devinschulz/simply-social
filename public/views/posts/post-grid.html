@@ -1,7 +1,7 @@
 <article class="post" data-post-id="{{card.id}}" ng-class="{'has-comments' : card.comments.length >= 1, 'comments-open': card.expanded}">
   <div class="post_wrapper">
     <div class="post_avatar">
-      <img ng-src="{{::card.avatar}}" alt="{{::card.name}}" width="40" height="40"/>
+      <img ng-src="{{::card.avatar}}" alt="{{::card.name}}"/>
     </div>
     <div class="post_content">
       <div class="row">
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="row post_content_thumbnail" ng-if="card.thumbnail" ng-class="{'is-video' : card.video}">
-      <img ng-src="{{::card.thumbnail}}" alt=""/>
+      <img ng-src="{{::card.thumbnail}}" alt="" width="40" height="40"/>
     </div>
     <div class="row">
       <div class="post_content_meta-grid">
